@@ -23,9 +23,10 @@ Partial Class Viewer
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.AlbumCover = New System.Windows.Forms.PictureBox()
-        Me.TrackLabel = New MetroFramework.Controls.MetroLabel()
-        Me.ArtistLabel = New MetroFramework.Controls.MetroLabel()
-        Me.AlbumLabel = New MetroFramework.Controls.MetroLabel()
+        Me.TrackLabel = New System.Windows.Forms.Label()
+        Me.ArtistLabel = New System.Windows.Forms.Label()
+        Me.AlbumLabel = New System.Windows.Forms.Label()
+        Me.MetroProgressBar1 = New MetroFramework.Controls.MetroProgressBar()
         CType(Me.AlbumCover, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -41,43 +42,43 @@ Partial Class Viewer
         'TrackLabel
         '
         Me.TrackLabel.AutoSize = True
-        Me.TrackLabel.CustomBackground = True
-        Me.TrackLabel.FontSize = MetroFramework.MetroLabelSize.Tall
-        Me.TrackLabel.FontWeight = MetroFramework.MetroLabelWeight.Regular
-        Me.TrackLabel.Location = New System.Drawing.Point(172, 18)
+        Me.TrackLabel.Font = New System.Drawing.Font("Calibri", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TrackLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
+        Me.TrackLabel.Location = New System.Drawing.Point(166, 26)
         Me.TrackLabel.Name = "TrackLabel"
-        Me.TrackLabel.Size = New System.Drawing.Size(161, 25)
-        Me.TrackLabel.TabIndex = 1
+        Me.TrackLabel.Size = New System.Drawing.Size(205, 33)
+        Me.TrackLabel.TabIndex = 4
         Me.TrackLabel.Text = "<< Track Name >>"
-        Me.TrackLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.TrackLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         '
         'ArtistLabel
         '
         Me.ArtistLabel.AutoSize = True
-        Me.ArtistLabel.CustomBackground = True
-        Me.ArtistLabel.FontWeight = MetroFramework.MetroLabelWeight.Regular
-        Me.ArtistLabel.Location = New System.Drawing.Point(172, 59)
+        Me.ArtistLabel.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ArtistLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
+        Me.ArtistLabel.Location = New System.Drawing.Point(167, 63)
         Me.ArtistLabel.Name = "ArtistLabel"
-        Me.ArtistLabel.Size = New System.Drawing.Size(130, 19)
-        Me.ArtistLabel.TabIndex = 2
-        Me.ArtistLabel.Text = "<< Artist Name >>"
-        Me.ArtistLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ArtistLabel.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.ArtistLabel.Size = New System.Drawing.Size(163, 26)
+        Me.ArtistLabel.TabIndex = 5
+        Me.ArtistLabel.Text = "<< Track Name >>"
         '
         'AlbumLabel
         '
         Me.AlbumLabel.AutoSize = True
-        Me.AlbumLabel.CustomBackground = True
-        Me.AlbumLabel.FontSize = MetroFramework.MetroLabelSize.Small
-        Me.AlbumLabel.FontWeight = MetroFramework.MetroLabelWeight.Regular
-        Me.AlbumLabel.Location = New System.Drawing.Point(172, 104)
+        Me.AlbumLabel.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AlbumLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
+        Me.AlbumLabel.Location = New System.Drawing.Point(168, 96)
         Me.AlbumLabel.Name = "AlbumLabel"
-        Me.AlbumLabel.Size = New System.Drawing.Size(116, 15)
-        Me.AlbumLabel.TabIndex = 3
-        Me.AlbumLabel.Text = "<< Album Name >>"
-        Me.AlbumLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.AlbumLabel.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.AlbumLabel.Size = New System.Drawing.Size(144, 23)
+        Me.AlbumLabel.TabIndex = 6
+        Me.AlbumLabel.Text = "<< Track Name >>"
+        '
+        'MetroProgressBar1
+        '
+        Me.MetroProgressBar1.Location = New System.Drawing.Point(172, 131)
+        Me.MetroProgressBar1.Name = "MetroProgressBar1"
+        Me.MetroProgressBar1.Size = New System.Drawing.Size(250, 10)
+        Me.MetroProgressBar1.Style = MetroFramework.MetroColorStyle.Green
+        Me.MetroProgressBar1.TabIndex = 7
         '
         'Viewer
         '
@@ -85,6 +86,7 @@ Partial Class Viewer
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(445, 164)
         Me.ControlBox = False
+        Me.Controls.Add(Me.MetroProgressBar1)
         Me.Controls.Add(Me.AlbumLabel)
         Me.Controls.Add(Me.ArtistLabel)
         Me.Controls.Add(Me.TrackLabel)
@@ -101,9 +103,9 @@ Partial Class Viewer
         Me.PerformLayout()
 
     End Sub
-
     Friend WithEvents AlbumCover As PictureBox
-    Friend WithEvents TrackLabel As MetroFramework.Controls.MetroLabel
-    Friend WithEvents ArtistLabel As MetroFramework.Controls.MetroLabel
-    Friend WithEvents AlbumLabel As MetroFramework.Controls.MetroLabel
+    Friend WithEvents TrackLabel As Label
+    Friend WithEvents ArtistLabel As Label
+    Friend WithEvents AlbumLabel As Label
+    Friend WithEvents MetroProgressBar1 As MetroFramework.Controls.MetroProgressBar
 End Class

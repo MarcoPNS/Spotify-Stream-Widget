@@ -3,7 +3,7 @@
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ViewerControl.Click
 
         Viewer.Show()
         Viewer.SpotifyConnect()
@@ -16,5 +16,9 @@
             Viewer.Show()
             Viewer.SpotifyConnect()
         End If
+    End Sub
+
+    Private Sub CreditLink_Click(sender As Object, e As EventArgs) Handles CreditLink.Click
+        Process.Start("https://twitter.com/MarcoSadowski")
     End Sub
 End Class

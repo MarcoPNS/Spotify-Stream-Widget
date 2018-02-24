@@ -22,19 +22,20 @@ Partial Class Settings
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ViewerControl = New System.Windows.Forms.Button()
         Me.DarkWindow = New MetroFramework.Controls.MetroToggle()
         Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
+        Me.CreditLink = New MetroFramework.Controls.MetroLink()
         Me.SuspendLayout()
         '
-        'Button1
+        'ViewerControl
         '
-        Me.Button1.Location = New System.Drawing.Point(23, 395)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(251, 23)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Open Viewer"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.ViewerControl.Location = New System.Drawing.Point(23, 395)
+        Me.ViewerControl.Name = "ViewerControl"
+        Me.ViewerControl.Size = New System.Drawing.Size(251, 23)
+        Me.ViewerControl.TabIndex = 0
+        Me.ViewerControl.Text = "Open Viewer"
+        Me.ViewerControl.UseVisualStyleBackColor = True
         '
         'DarkWindow
         '
@@ -59,14 +60,26 @@ Partial Class Settings
         Me.MetroLabel1.Text = "Dark Viewer"
         Me.MetroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark
         '
+        'CreditLink
+        '
+        Me.CreditLink.CustomBackground = True
+        Me.CreditLink.FontWeight = MetroFramework.MetroLinkWeight.Regular
+        Me.CreditLink.Location = New System.Drawing.Point(-6, 422)
+        Me.CreditLink.Name = "CreditLink"
+        Me.CreditLink.Size = New System.Drawing.Size(157, 23)
+        Me.CreditLink.TabIndex = 3
+        Me.CreditLink.Text = "Made by Marco Sadowski"
+        Me.CreditLink.UseStyleColors = True
+        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
+        Me.Controls.Add(Me.CreditLink)
         Me.Controls.Add(Me.MetroLabel1)
         Me.Controls.Add(Me.DarkWindow)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.ViewerControl)
         Me.Name = "Settings"
         Me.Resizable = False
         Me.Style = MetroFramework.MetroColorStyle.Green
@@ -78,7 +91,8 @@ Partial Class Settings
 
     End Sub
 
-    Friend WithEvents Button1 As Button
+    Friend WithEvents ViewerControl As Button
     Friend WithEvents DarkWindow As MetroFramework.Controls.MetroToggle
     Friend WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
+    Friend WithEvents CreditLink As MetroFramework.Controls.MetroLink
 End Class

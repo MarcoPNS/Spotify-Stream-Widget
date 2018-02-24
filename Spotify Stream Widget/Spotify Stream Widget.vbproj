@@ -50,19 +50,19 @@
     <Reference Include="MetroFramework">
       <HintPath>..\..\..\..\..\Dropbox\BWH\ZombLabs\Sender\ZombLabsSender\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
       <Private>True</Private>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="MetroFramework.Design">
       <HintPath>..\..\..\..\..\Dropbox\BWH\ZombLabs\Sender\ZombLabsSender\packages\MetroFramework.Design.1.2.0.3\lib\net40\MetroFramework.Design.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="MetroFramework.Fonts">
       <HintPath>..\..\..\..\..\Dropbox\BWH\ZombLabs\Sender\ZombLabsSender\packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="SpotifyAPI">
       <HintPath>..\..\..\..\..\Downloads\SpotifyAPI-NET_2.17.1\SpotifyAPI.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
