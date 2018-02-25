@@ -10,9 +10,6 @@ Public Class Viewer
         AddHandler _spotify.OnTrackTimeChange, AddressOf _spotify_OnTrackTimeChange
     End Sub
 
-    Private Sub MetroLabel1_Click(sender As Object, e As EventArgs)
-
-    End Sub
     Public Sub SpotifyConnect()
         'check if Spotfiy is ready
         If Not SpotifyLocalAPI.IsSpotifyRunning Then
@@ -42,11 +39,17 @@ Public Class Viewer
     End Sub
     Public Sub UpdateInfos()
         TrackLabel.Text = _spotify.GetStatus.Track.TrackResource.Name
+        'change text size when the title is longer
         If TrackLabel.Text.Length < 21 Then
+            TrackLabel.Font = New Font("Calibri", 20)
+        End If
+        If TrackLabel.Text.Length > 20 Then
+            TrackLabel.Font = New Font("Calibri", 12)
         End If
         ArtistLabel.Text = _spotify.GetStatus.Track.ArtistResource.Name
         AlbumLabel.Text = _spotify.GetStatus.Track.AlbumResource.Name
         AlbumCover.Image = _spotify.GetStatus.Track.GetAlbumArt(AlbumArtSize.Size160)
+        'timeProgressBar.Maximum = _currentTrack.Length
     End Sub
     Public Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
         Console.Write("Track changed")
@@ -56,8 +59,12 @@ Public Class Viewer
             UpdateInfos()
         End If
     End Sub
-    Public Sub _spotify_OnTrackTimeChange()
+    Public Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
         Console.Write("Track Time changed")
+        MsgBox(_currentTrack.Length & " - " & e.TrackTime)
+        'If (e.TrackTime < Me._currentTrack.Length) Then
+        'timeProgressBar.Value = CType(e.TrackTime, Integer)
+        'End If
     End Sub
     Public Sub _spotify_OnPlayStateChange()
         Console.Write("Play State changed")

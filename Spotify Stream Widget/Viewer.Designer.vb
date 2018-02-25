@@ -26,7 +26,8 @@ Partial Class Viewer
         Me.TrackLabel = New System.Windows.Forms.Label()
         Me.ArtistLabel = New System.Windows.Forms.Label()
         Me.AlbumLabel = New System.Windows.Forms.Label()
-        Me.MetroProgressBar1 = New MetroFramework.Controls.MetroProgressBar()
+        Me.timeProgressBar = New MetroFramework.Controls.MetroProgressBar()
+        Me.timeLabel = New MetroFramework.Controls.MetroLabel()
         CType(Me.AlbumCover, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -72,13 +73,24 @@ Partial Class Viewer
         Me.AlbumLabel.TabIndex = 6
         Me.AlbumLabel.Text = "<< Track Name >>"
         '
-        'MetroProgressBar1
+        'timeProgressBar
         '
-        Me.MetroProgressBar1.Location = New System.Drawing.Point(172, 131)
-        Me.MetroProgressBar1.Name = "MetroProgressBar1"
-        Me.MetroProgressBar1.Size = New System.Drawing.Size(250, 10)
-        Me.MetroProgressBar1.Style = MetroFramework.MetroColorStyle.Green
-        Me.MetroProgressBar1.TabIndex = 7
+        Me.timeProgressBar.Location = New System.Drawing.Point(172, 131)
+        Me.timeProgressBar.Name = "timeProgressBar"
+        Me.timeProgressBar.Size = New System.Drawing.Size(250, 10)
+        Me.timeProgressBar.Style = MetroFramework.MetroColorStyle.Green
+        Me.timeProgressBar.TabIndex = 7
+        '
+        'timeLabel
+        '
+        Me.timeLabel.AutoSize = True
+        Me.timeLabel.CustomBackground = True
+        Me.timeLabel.Location = New System.Drawing.Point(172, 144)
+        Me.timeLabel.Name = "timeLabel"
+        Me.timeLabel.Size = New System.Drawing.Size(35, 19)
+        Me.timeLabel.TabIndex = 8
+        Me.timeLabel.Text = "time"
+        Me.timeLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         '
         'Viewer
         '
@@ -86,7 +98,8 @@ Partial Class Viewer
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(445, 164)
         Me.ControlBox = False
-        Me.Controls.Add(Me.MetroProgressBar1)
+        Me.Controls.Add(Me.timeLabel)
+        Me.Controls.Add(Me.timeProgressBar)
         Me.Controls.Add(Me.AlbumLabel)
         Me.Controls.Add(Me.ArtistLabel)
         Me.Controls.Add(Me.TrackLabel)
@@ -107,5 +120,6 @@ Partial Class Viewer
     Friend WithEvents TrackLabel As Label
     Friend WithEvents ArtistLabel As Label
     Friend WithEvents AlbumLabel As Label
-    Friend WithEvents MetroProgressBar1 As MetroFramework.Controls.MetroProgressBar
+    Friend WithEvents timeProgressBar As MetroFramework.Controls.MetroProgressBar
+    Friend WithEvents timeLabel As MetroFramework.Controls.MetroLabel
 End Class
