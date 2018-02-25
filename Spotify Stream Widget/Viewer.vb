@@ -42,6 +42,8 @@ Public Class Viewer
     End Sub
     Public Sub UpdateInfos()
         TrackLabel.Text = _spotify.GetStatus.Track.TrackResource.Name
+        If TrackLabel.Text.Length < 21 Then
+        End If
         ArtistLabel.Text = _spotify.GetStatus.Track.ArtistResource.Name
         AlbumLabel.Text = _spotify.GetStatus.Track.AlbumResource.Name
         AlbumCover.Image = _spotify.GetStatus.Track.GetAlbumArt(AlbumArtSize.Size160)
@@ -51,10 +53,7 @@ Public Class Viewer
         Dim Status As StatusResponse = _spotify.GetStatus
         If Status Is Nothing Then
         Else
-            TrackLabel.Text = _spotify.GetStatus.Track.TrackResource.Name
-            ArtistLabel.Text = _spotify.GetStatus.Track.ArtistResource.Name
-            AlbumLabel.Text = _spotify.GetStatus.Track.AlbumResource.Name
-            AlbumCover.Image = _spotify.GetStatus.Track.GetAlbumArt(AlbumArtSize.Size160)
+            UpdateInfos()
         End If
     End Sub
     Public Sub _spotify_OnTrackTimeChange()
