@@ -33,7 +33,7 @@ Partial Class Viewer
         '
         'AlbumCover
         '
-        Me.AlbumCover.Location = New System.Drawing.Point(13, 14)
+        Me.AlbumCover.Location = New System.Drawing.Point(9, 14)
         Me.AlbumCover.Name = "AlbumCover"
         Me.AlbumCover.Size = New System.Drawing.Size(160, 160)
         Me.AlbumCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -75,10 +75,10 @@ Partial Class Viewer
         '
         'timeProgressBar
         '
-        Me.timeProgressBar.Location = New System.Drawing.Point(177, 142)
+        Me.timeProgressBar.Location = New System.Drawing.Point(177, 135)
         Me.timeProgressBar.Name = "timeProgressBar"
         Me.timeProgressBar.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Blocks
-        Me.timeProgressBar.Size = New System.Drawing.Size(286, 10)
+        Me.timeProgressBar.Size = New System.Drawing.Size(286, 17)
         Me.timeProgressBar.Style = MetroFramework.MetroColorStyle.Green
         Me.timeProgressBar.TabIndex = 7
         Me.timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Dark
