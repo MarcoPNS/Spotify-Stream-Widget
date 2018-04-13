@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Viewer
+Partial Class NormalViewer
     Inherits MetroFramework.Forms.MetroForm
 
     'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
@@ -33,7 +33,7 @@ Partial Class Viewer
         '
         'AlbumCover
         '
-        Me.AlbumCover.Location = New System.Drawing.Point(13, 14)
+        Me.AlbumCover.Location = New System.Drawing.Point(9, 14)
         Me.AlbumCover.Name = "AlbumCover"
         Me.AlbumCover.Size = New System.Drawing.Size(160, 160)
         Me.AlbumCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -75,10 +75,10 @@ Partial Class Viewer
         '
         'timeProgressBar
         '
-        Me.timeProgressBar.Location = New System.Drawing.Point(177, 142)
+        Me.timeProgressBar.Location = New System.Drawing.Point(177, 135)
         Me.timeProgressBar.Name = "timeProgressBar"
         Me.timeProgressBar.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Blocks
-        Me.timeProgressBar.Size = New System.Drawing.Size(286, 10)
+        Me.timeProgressBar.Size = New System.Drawing.Size(286, 17)
         Me.timeProgressBar.Style = MetroFramework.MetroColorStyle.Green
         Me.timeProgressBar.TabIndex = 7
         Me.timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Dark
@@ -93,7 +93,7 @@ Partial Class Viewer
         Me.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.timeLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         '
-        'Viewer
+        'NormalViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -106,11 +106,11 @@ Partial Class Viewer
         Me.Controls.Add(Me.TrackLabel)
         Me.Controls.Add(Me.AlbumCover)
         Me.DisplayHeader = False
-        Me.Name = "Viewer"
+        Me.Name = "NormalViewer"
         Me.Padding = New System.Windows.Forms.Padding(20, 30, 20, 20)
         Me.Resizable = False
         Me.Style = MetroFramework.MetroColorStyle.Green
-        Me.Text = "Spotify Player Viewer"
+        Me.Text = "Spotify Viewer"
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
         CType(Me.AlbumCover, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

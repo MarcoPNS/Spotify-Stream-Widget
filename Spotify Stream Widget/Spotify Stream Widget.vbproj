@@ -110,10 +110,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Viewer.Designer.vb">
-      <DependentUpon>Viewer.vb</DependentUpon>
+    <Compile Include="NormalViewer.Designer.vb">
+      <DependentUpon>NormalViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="Viewer.vb">
+    <Compile Include="NormalViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SmallViewer.Designer.vb">
+      <DependentUpon>SmallViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SmallViewer.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -127,8 +133,11 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Viewer.resx">
-      <DependentUpon>Viewer.vb</DependentUpon>
+    <EmbeddedResource Include="NormalViewer.resx">
+      <DependentUpon>NormalViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallViewer.resx">
+      <DependentUpon>SmallViewer.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

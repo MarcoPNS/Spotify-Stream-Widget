@@ -1,6 +1,5 @@
 ﻿Imports SpotifyAPI.Local, SpotifyAPI.Local.Enums, SpotifyAPI.Local.Models
-Imports System, System.Diagnostics, System.Globalization, System.Windows.Forms, System.Threading, System.ComponentModel
-Public Class Viewer
+Public Class SmallViewer
     Private _spotify As SpotifyLocalAPI
     Private _currentTrack As Track
     Public Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -49,7 +48,6 @@ Public Class Viewer
         If track.IsAd() Then Return
         TrackLabel.Text = track.TrackResource?.Name
         ArtistLabel.Text = track.ArtistResource?.Name
-        AlbumLabel.Text = track.AlbumResource?.Name
         AlbumCover.Image = If(track.AlbumResource IsNot Nothing, Await track.GetAlbumArtAsync(AlbumArtSize.Size160), Nothing)
         'change text size when the title is longer
         ResponsiveText()
@@ -81,42 +79,6 @@ Public Class Viewer
         If ArtistLabel.Text.Length > 30 Then
             ArtistLabel.Font = New Font("Calibri", 10)
         End If
-        'Album
-        If AlbumLabel.Text.Length < 21 Then
-            AlbumLabel.Font = New Font("Calibri", 14)
-        End If
-        If AlbumLabel.Text.Length > 20 Then
-            AlbumLabel.Font = New Font("Calibri", 12)
-        End If
-        If AlbumLabel.Text.Length > 25 Then
-            AlbumLabel.Font = New Font("Calibri", 10)
-        End If
-        If AlbumLabel.Text.Length > 30 Then
-            AlbumLabel.Font = New Font("Calibri", 10)
-        End If
-    End Sub
-    'backup
-    Public Sub UpdateInfos_()
-        TrackLabel.Text = _spotify.GetStatus.Track.TrackResource.Name
-        'change text size when the title is longer
-        If TrackLabel.Text.Length < 21 Then
-            TrackLabel.Font = New Font("Calibri", 20)
-        End If
-        If TrackLabel.Text.Length > 20 Then
-            TrackLabel.Font = New Font("Calibri", 12)
-        End If
-        Try
-            TrackLabel.Text = ""
-            ArtistLabel.Text = ""
-            AlbumLabel.Text = ""
-            AlbumCover.Image = Nothing
-            ArtistLabel.Text = _spotify.GetStatus.Track.ArtistResource.Name
-            AlbumLabel.Text = _spotify.GetStatus.Track.AlbumResource.Name
-            AlbumCover.Image = _spotify.GetStatus.Track.GetAlbumArt(AlbumArtSize.Size160)
-        Catch ex As Exception
-
-        End Try
-        'timeProgressBar.Maximum = _currentTrack.Length
     End Sub
 
     Private Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
@@ -129,8 +91,9 @@ Public Class Viewer
 
         UpdateTrack(e.NewTrack)
     End Sub
-
-
+    Public Sub _spotify_OnPlayStateChange()
+        Console.Write("Play State changed")
+    End Sub
     Private Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
         If InvokeRequired Then
             Invoke(Sub()
@@ -138,31 +101,9 @@ Public Class Viewer
                    End Sub)
             Return
         End If
-
-        timeLabel.Text = $"{FormatTime(e.TrackTime)}/{FormatTime(_currentTrack.Length)}"
         If e.TrackTime < _currentTrack.Length Then timeProgressBar.Value = CInt(e.TrackTime)
     End Sub
-    Private Shared Function FormatTime(ByVal sec As Double) As String
-        Dim span As TimeSpan = TimeSpan.FromSeconds(sec)
-        Dim secs As String = span.Seconds.ToString(), mins As String = span.Minutes.ToString()
-        If secs.Length < 2 Then secs = "0" & secs
-        Return mins & ":" + secs
-    End Function
-    Public Sub _spotify_OnTrackTimeChange_(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
-        Console.Write("Track Time changed")
-        Try
-            timeLabel.Text = _currentTrack.Length & " - " & e.TrackTime
-        Catch ex As Exception
-        End Try
-        'If (e.TrackTime < Me._currentTrack.Length) Then
-        'timeProgressBar.Value = CType(e.TrackTime, Integer)
-        'End If
-    End Sub
-    Public Sub _spotify_OnPlayStateChange()
-        Console.Write("Play State changed")
-    End Sub
-
-    Private Sub timeLabel_Click(sender As Object, e As EventArgs) Handles timeLabel.Click
+    Private Sub timeLabel_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class

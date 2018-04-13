@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 ' Werte der Assemblyattribute überprüfen
 
 <Assembly: AssemblyTitle("Spotify Stream Widget")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyDescription("A small Tool for Streamers to show the current Track on Spotify to your Viewers!")>
+<Assembly: AssemblyCompany("Marco Sadowski")>
 <Assembly: AssemblyProduct("Spotify Stream Widget")>
-<Assembly: AssemblyCopyright("Copyright ©  2018")>
+<Assembly: AssemblyCopyright("Marco Sadowski ©  2018")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

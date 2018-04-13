@@ -23,9 +23,13 @@ Partial Class Settings
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.ViewerControl = New System.Windows.Forms.Button()
-        Me.DarkWindow = New MetroFramework.Controls.MetroToggle()
-        Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
+        Me.ColorSettingToggle = New MetroFramework.Controls.MetroToggle()
+        Me.ColorSettingLabel = New MetroFramework.Controls.MetroLabel()
         Me.CreditLink = New MetroFramework.Controls.MetroLink()
+        Me.SizeSettingBox = New MetroFramework.Controls.MetroComboBox()
+        Me.SizeSettingLabel = New MetroFramework.Controls.MetroLabel()
+        Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
+        Me.MetroComboBox1 = New MetroFramework.Controls.MetroComboBox()
         Me.SuspendLayout()
         '
         'ViewerControl
@@ -37,28 +41,28 @@ Partial Class Settings
         Me.ViewerControl.Text = "Open Viewer"
         Me.ViewerControl.UseVisualStyleBackColor = True
         '
-        'DarkWindow
+        'ColorSettingToggle
         '
-        Me.DarkWindow.AutoSize = True
-        Me.DarkWindow.Checked = True
-        Me.DarkWindow.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.DarkWindow.Location = New System.Drawing.Point(171, 63)
-        Me.DarkWindow.Name = "DarkWindow"
-        Me.DarkWindow.Size = New System.Drawing.Size(80, 17)
-        Me.DarkWindow.TabIndex = 1
-        Me.DarkWindow.Text = "An"
-        Me.DarkWindow.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.DarkWindow.UseSelectable = True
+        Me.ColorSettingToggle.AutoSize = True
+        Me.ColorSettingToggle.Checked = True
+        Me.ColorSettingToggle.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ColorSettingToggle.Location = New System.Drawing.Point(183, 63)
+        Me.ColorSettingToggle.Name = "ColorSettingToggle"
+        Me.ColorSettingToggle.Size = New System.Drawing.Size(80, 17)
+        Me.ColorSettingToggle.TabIndex = 1
+        Me.ColorSettingToggle.Text = "An"
+        Me.ColorSettingToggle.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.ColorSettingToggle.UseSelectable = True
         '
-        'MetroLabel1
+        'ColorSettingLabel
         '
-        Me.MetroLabel1.AutoSize = True
-        Me.MetroLabel1.Location = New System.Drawing.Point(40, 63)
-        Me.MetroLabel1.Name = "MetroLabel1"
-        Me.MetroLabel1.Size = New System.Drawing.Size(79, 19)
-        Me.MetroLabel1.TabIndex = 2
-        Me.MetroLabel1.Text = "Dark Viewer"
-        Me.MetroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.ColorSettingLabel.AutoSize = True
+        Me.ColorSettingLabel.Location = New System.Drawing.Point(23, 63)
+        Me.ColorSettingLabel.Name = "ColorSettingLabel"
+        Me.ColorSettingLabel.Size = New System.Drawing.Size(79, 19)
+        Me.ColorSettingLabel.TabIndex = 2
+        Me.ColorSettingLabel.Text = "Dark Viewer"
+        Me.ColorSettingLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         '
         'CreditLink
         '
@@ -72,19 +76,69 @@ Partial Class Settings
         Me.CreditLink.UseSelectable = True
         Me.CreditLink.UseStyleColors = True
         '
+        'SizeSettingBox
+        '
+        Me.SizeSettingBox.FormattingEnabled = True
+        Me.SizeSettingBox.ItemHeight = 23
+        Me.SizeSettingBox.Items.AddRange(New Object() {"Small", "Normal", "Big"})
+        Me.SizeSettingBox.Location = New System.Drawing.Point(161, 86)
+        Me.SizeSettingBox.Name = "SizeSettingBox"
+        Me.SizeSettingBox.Size = New System.Drawing.Size(102, 29)
+        Me.SizeSettingBox.Style = MetroFramework.MetroColorStyle.Green
+        Me.SizeSettingBox.TabIndex = 4
+        Me.SizeSettingBox.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.SizeSettingBox.UseSelectable = True
+        '
+        'SizeSettingLabel
+        '
+        Me.SizeSettingLabel.AutoSize = True
+        Me.SizeSettingLabel.Location = New System.Drawing.Point(23, 96)
+        Me.SizeSettingLabel.Name = "SizeSettingLabel"
+        Me.SizeSettingLabel.Size = New System.Drawing.Size(75, 19)
+        Me.SizeSettingLabel.TabIndex = 5
+        Me.SizeSettingLabel.Text = "Viewer Size"
+        Me.SizeSettingLabel.Theme = MetroFramework.MetroThemeStyle.Dark
+        '
+        'MetroLabel1
+        '
+        Me.MetroLabel1.AutoSize = True
+        Me.MetroLabel1.Location = New System.Drawing.Point(23, 127)
+        Me.MetroLabel1.Name = "MetroLabel1"
+        Me.MetroLabel1.Size = New System.Drawing.Size(111, 19)
+        Me.MetroLabel1.TabIndex = 7
+        Me.MetroLabel1.Text = "ProgressBar Style"
+        Me.MetroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark
+        '
+        'MetroComboBox1
+        '
+        Me.MetroComboBox1.FormattingEnabled = True
+        Me.MetroComboBox1.ItemHeight = 23
+        Me.MetroComboBox1.Items.AddRange(New Object() {"Small", "Normal", "Big"})
+        Me.MetroComboBox1.Location = New System.Drawing.Point(161, 121)
+        Me.MetroComboBox1.Name = "MetroComboBox1"
+        Me.MetroComboBox1.Size = New System.Drawing.Size(102, 29)
+        Me.MetroComboBox1.Style = MetroFramework.MetroColorStyle.Green
+        Me.MetroComboBox1.TabIndex = 6
+        Me.MetroComboBox1.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.MetroComboBox1.UseSelectable = True
+        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
-        Me.Controls.Add(Me.CreditLink)
         Me.Controls.Add(Me.MetroLabel1)
-        Me.Controls.Add(Me.DarkWindow)
+        Me.Controls.Add(Me.MetroComboBox1)
+        Me.Controls.Add(Me.SizeSettingLabel)
+        Me.Controls.Add(Me.SizeSettingBox)
+        Me.Controls.Add(Me.CreditLink)
+        Me.Controls.Add(Me.ColorSettingLabel)
+        Me.Controls.Add(Me.ColorSettingToggle)
         Me.Controls.Add(Me.ViewerControl)
         Me.Name = "Settings"
         Me.Resizable = False
         Me.Style = MetroFramework.MetroColorStyle.Green
-        Me.Text = "Spotify Stream Widget"
+        Me.Text = "Stream Widget Settings"
         Me.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.ResumeLayout(False)
@@ -93,7 +147,11 @@ Partial Class Settings
     End Sub
 
     Friend WithEvents ViewerControl As Button
-    Friend WithEvents DarkWindow As MetroFramework.Controls.MetroToggle
-    Friend WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
+    Friend WithEvents ColorSettingToggle As MetroFramework.Controls.MetroToggle
+    Friend WithEvents ColorSettingLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents CreditLink As MetroFramework.Controls.MetroLink
+    Friend WithEvents SizeSettingBox As MetroFramework.Controls.MetroComboBox
+    Friend WithEvents SizeSettingLabel As MetroFramework.Controls.MetroLabel
+    Friend WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
+    Friend WithEvents MetroComboBox1 As MetroFramework.Controls.MetroComboBox
 End Class
