@@ -35,6 +35,7 @@ Partial Class Settings
         Me.CreditPanel = New System.Windows.Forms.Panel()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.MetroLink2 = New MetroFramework.Controls.MetroLink()
         Me.CreditPanel.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -55,6 +56,7 @@ Partial Class Settings
         Me.ColorSettingToggle.Location = New System.Drawing.Point(183, 63)
         Me.ColorSettingToggle.Name = "ColorSettingToggle"
         Me.ColorSettingToggle.Size = New System.Drawing.Size(80, 17)
+        Me.ColorSettingToggle.Style = MetroFramework.MetroColorStyle.Green
         Me.ColorSettingToggle.TabIndex = 1
         Me.ColorSettingToggle.Text = "An"
         Me.ColorSettingToggle.Theme = MetroFramework.MetroThemeStyle.Dark
@@ -72,9 +74,9 @@ Partial Class Settings
         '
         'CreditLink
         '
-        Me.CreditLink.Location = New System.Drawing.Point(1, 400)
+        Me.CreditLink.Location = New System.Drawing.Point(23, 400)
         Me.CreditLink.Name = "CreditLink"
-        Me.CreditLink.Size = New System.Drawing.Size(297, 18)
+        Me.CreditLink.Size = New System.Drawing.Size(251, 18)
         Me.CreditLink.TabIndex = 3
         Me.CreditLink.Text = "Made by Marco Sadowski"
         Me.CreditLink.UseCustomBackColor = True
@@ -142,7 +144,7 @@ Partial Class Settings
         '
         Me.CreditPanel.Controls.Add(Me.Button1)
         Me.CreditPanel.Controls.Add(Me.TextBox1)
-        Me.CreditPanel.Location = New System.Drawing.Point(23, 63)
+        Me.CreditPanel.Location = New System.Drawing.Point(251, 424)
         Me.CreditPanel.Name = "CreditPanel"
         Me.CreditPanel.Size = New System.Drawing.Size(251, 304)
         Me.CreditPanel.TabIndex = 9
@@ -167,11 +169,23 @@ Partial Class Settings
         Me.Button1.Text = "Close"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'MetroLink2
+        '
+        Me.MetroLink2.Location = New System.Drawing.Point(0, 424)
+        Me.MetroLink2.Name = "MetroLink2"
+        Me.MetroLink2.Size = New System.Drawing.Size(88, 18)
+        Me.MetroLink2.TabIndex = 10
+        Me.MetroLink2.Text = "Report a bug"
+        Me.MetroLink2.UseCustomBackColor = True
+        Me.MetroLink2.UseSelectable = True
+        Me.MetroLink2.UseStyleColors = True
+        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
+        Me.Controls.Add(Me.MetroLink2)
         Me.Controls.Add(Me.CreditPanel)
         Me.Controls.Add(Me.MetroLink1)
         Me.Controls.Add(Me.ProgressStyleLabel)
@@ -207,4 +221,5 @@ Partial Class Settings
     Friend WithEvents CreditPanel As Panel
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents MetroLink2 As MetroFramework.Controls.MetroLink
 End Class

@@ -6,6 +6,14 @@ Public Class SmallViewer
         If My.Settings.DarkMode = False Then
             ActivateWhite()
         End If
+        Select Case My.Settings.ProgressBarStyle
+            Case "Blocks"
+                timeProgressBar.ProgressBarStyle = ProgressBarStyle.Blocks
+            Case "Continuous"
+                timeProgressBar.ProgressBarStyle = ProgressBarStyle.Continuous
+            Case "Marquee"
+                timeProgressBar.ProgressBarStyle = ProgressBarStyle.Marquee
+        End Select
         _spotify = New SpotifyLocalAPI()
         AddHandler _spotify.OnPlayStateChange, AddressOf _spotify_OnPlayStateChange
         AddHandler _spotify.OnTrackChange, AddressOf _spotify_OnTrackChange

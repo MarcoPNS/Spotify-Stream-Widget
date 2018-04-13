@@ -3,6 +3,14 @@ Public Class BigViewer
     Private _spotify As SpotifyLocalAPI
     Private _currentTrack As Track
     Public Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Select Case My.Settings.ProgressBarStyle
+            Case "Blocks"
+                timeProgressBar.ProgressBarStyle = ProgressBarStyle.Blocks
+            Case "Continuous"
+                timeProgressBar.ProgressBarStyle = ProgressBarStyle.Continuous
+            Case "Marquee"
+                timeProgressBar.ProgressBarStyle = ProgressBarStyle.Marquee
+        End Select
         If My.Settings.DarkMode = False Then
             ActivateWhite()
         End If
