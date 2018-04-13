@@ -3,13 +3,24 @@ Public Class NormalViewer
     Private _spotify As SpotifyLocalAPI
     Private _currentTrack As Track
     Public Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If My.Settings.DarkMode = False Then
+            ActivateWhite()
+        End If
         _spotify = New SpotifyLocalAPI()
         AddHandler _spotify.OnPlayStateChange, AddressOf _spotify_OnPlayStateChange
         AddHandler _spotify.OnTrackChange, AddressOf _spotify_OnTrackChange
         AddHandler _spotify.OnTrackTimeChange, AddressOf _spotify_OnTrackTimeChange
     End Sub
+    Private Sub ActivateWhite()
+        Me.Theme = MetroFramework.MetroThemeStyle.Light
+        timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Light
+        timeLabel.Theme = MetroFramework.MetroThemeStyle.Light
+        TrackLabel.ForeColor = Color.FromArgb(64, 64, 64)
+        ArtistLabel.ForeColor = Color.FromArgb(64, 64, 64)
 
+    End Sub
     Public Sub SpotifyConnect()
+        timeLabel.Text = ""
         'check if Spotfiy is ready
         If Not SpotifyLocalAPI.IsSpotifyRunning Then
             MessageBox.Show("Spotify isn't running!")
@@ -48,7 +59,6 @@ Public Class NormalViewer
         If track.IsAd() Then Return
         TrackLabel.Text = track.TrackResource?.Name
         ArtistLabel.Text = track.ArtistResource?.Name
-        AlbumLabel.Text = track.AlbumResource?.Name
         AlbumCover.Image = If(track.AlbumResource IsNot Nothing, Await track.GetAlbumArtAsync(AlbumArtSize.Size160), Nothing)
         'change text size when the title is longer
         ResponsiveText()
@@ -79,19 +89,6 @@ Public Class NormalViewer
         End If
         If ArtistLabel.Text.Length > 30 Then
             ArtistLabel.Font = New Font("Calibri", 10)
-        End If
-        'Album
-        If AlbumLabel.Text.Length < 21 Then
-            AlbumLabel.Font = New Font("Calibri", 14)
-        End If
-        If AlbumLabel.Text.Length > 20 Then
-            AlbumLabel.Font = New Font("Calibri", 12)
-        End If
-        If AlbumLabel.Text.Length > 25 Then
-            AlbumLabel.Font = New Font("Calibri", 10)
-        End If
-        If AlbumLabel.Text.Length > 30 Then
-            AlbumLabel.Font = New Font("Calibri", 10)
         End If
     End Sub
 

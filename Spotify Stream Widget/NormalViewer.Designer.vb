@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class NormalViewer
     Inherits MetroFramework.Forms.MetroForm
 
     'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,88 +20,74 @@ Partial Class NormalViewer
     'Hinweis: Die folgende Prozedur ist für den Windows Form-Designer erforderlich.
     'Das Bearbeiten ist mit dem Windows Form-Designer möglich.  
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.AlbumCover = New System.Windows.Forms.PictureBox()
-        Me.TrackLabel = New System.Windows.Forms.Label()
-        Me.ArtistLabel = New System.Windows.Forms.Label()
-        Me.AlbumLabel = New System.Windows.Forms.Label()
-        Me.timeProgressBar = New MetroFramework.Controls.MetroProgressBar()
         Me.timeLabel = New MetroFramework.Controls.MetroLabel()
+        Me.timeProgressBar = New MetroFramework.Controls.MetroProgressBar()
+        Me.ArtistLabel = New System.Windows.Forms.Label()
+        Me.TrackLabel = New System.Windows.Forms.Label()
+        Me.AlbumCover = New System.Windows.Forms.PictureBox()
         CType(Me.AlbumCover, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'AlbumCover
+        'timeLabel
         '
-        Me.AlbumCover.Location = New System.Drawing.Point(9, 14)
-        Me.AlbumCover.Name = "AlbumCover"
-        Me.AlbumCover.Size = New System.Drawing.Size(160, 160)
-        Me.AlbumCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.AlbumCover.TabIndex = 0
-        Me.AlbumCover.TabStop = False
+        Me.timeLabel.Location = New System.Drawing.Point(172, 116)
+        Me.timeLabel.Name = "timeLabel"
+        Me.timeLabel.Size = New System.Drawing.Size(300, 19)
+        Me.timeLabel.TabIndex = 14
+        Me.timeLabel.Text = "time"
+        Me.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.timeLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         '
-        'TrackLabel
+        'timeProgressBar
         '
-        Me.TrackLabel.AutoSize = True
-        Me.TrackLabel.Font = New System.Drawing.Font("Calibri", 18.0!)
-        Me.TrackLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
-        Me.TrackLabel.Location = New System.Drawing.Point(177, 25)
-        Me.TrackLabel.Name = "TrackLabel"
-        Me.TrackLabel.Size = New System.Drawing.Size(187, 29)
-        Me.TrackLabel.TabIndex = 4
-        Me.TrackLabel.Text = "<< Track Name >>"
+        Me.timeProgressBar.Location = New System.Drawing.Point(174, 96)
+        Me.timeProgressBar.Name = "timeProgressBar"
+        Me.timeProgressBar.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Blocks
+        Me.timeProgressBar.Size = New System.Drawing.Size(298, 17)
+        Me.timeProgressBar.Style = MetroFramework.MetroColorStyle.Green
+        Me.timeProgressBar.TabIndex = 13
+        Me.timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Dark
         '
         'ArtistLabel
         '
         Me.ArtistLabel.AutoSize = True
         Me.ArtistLabel.Font = New System.Drawing.Font("Calibri", 16.0!)
         Me.ArtistLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
-        Me.ArtistLabel.Location = New System.Drawing.Point(177, 60)
+        Me.ArtistLabel.Location = New System.Drawing.Point(169, 56)
         Me.ArtistLabel.Name = "ArtistLabel"
         Me.ArtistLabel.Size = New System.Drawing.Size(174, 27)
-        Me.ArtistLabel.TabIndex = 5
+        Me.ArtistLabel.TabIndex = 11
         Me.ArtistLabel.Text = "<< Artist Name >>"
         '
-        'AlbumLabel
+        'TrackLabel
         '
-        Me.AlbumLabel.AutoSize = True
-        Me.AlbumLabel.Font = New System.Drawing.Font("Calibri", 14.0!)
-        Me.AlbumLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
-        Me.AlbumLabel.Location = New System.Drawing.Point(177, 95)
-        Me.AlbumLabel.Name = "AlbumLabel"
-        Me.AlbumLabel.Size = New System.Drawing.Size(153, 23)
-        Me.AlbumLabel.TabIndex = 6
-        Me.AlbumLabel.Text = "<< Album Name >>"
+        Me.TrackLabel.AutoSize = True
+        Me.TrackLabel.Font = New System.Drawing.Font("Calibri", 18.0!)
+        Me.TrackLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
+        Me.TrackLabel.Location = New System.Drawing.Point(167, 19)
+        Me.TrackLabel.Name = "TrackLabel"
+        Me.TrackLabel.Size = New System.Drawing.Size(187, 29)
+        Me.TrackLabel.TabIndex = 10
+        Me.TrackLabel.Text = "<< Track Name >>"
         '
-        'timeProgressBar
+        'AlbumCover
         '
-        Me.timeProgressBar.Location = New System.Drawing.Point(177, 135)
-        Me.timeProgressBar.Name = "timeProgressBar"
-        Me.timeProgressBar.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Blocks
-        Me.timeProgressBar.Size = New System.Drawing.Size(286, 17)
-        Me.timeProgressBar.Style = MetroFramework.MetroColorStyle.Green
-        Me.timeProgressBar.TabIndex = 7
-        Me.timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Dark
-        '
-        'timeLabel
-        '
-        Me.timeLabel.Location = New System.Drawing.Point(177, 155)
-        Me.timeLabel.Name = "timeLabel"
-        Me.timeLabel.Size = New System.Drawing.Size(286, 19)
-        Me.timeLabel.TabIndex = 8
-        Me.timeLabel.Text = "time"
-        Me.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.timeLabel.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.AlbumCover.Location = New System.Drawing.Point(30, 14)
+        Me.AlbumCover.Name = "AlbumCover"
+        Me.AlbumCover.Size = New System.Drawing.Size(120, 120)
+        Me.AlbumCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.AlbumCover.TabIndex = 9
+        Me.AlbumCover.TabStop = False
         '
         'NormalViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(478, 186)
-        Me.ControlBox = False
+        Me.ClientSize = New System.Drawing.Size(503, 151)
         Me.Controls.Add(Me.timeLabel)
         Me.Controls.Add(Me.timeProgressBar)
-        Me.Controls.Add(Me.AlbumLabel)
         Me.Controls.Add(Me.ArtistLabel)
         Me.Controls.Add(Me.TrackLabel)
         Me.Controls.Add(Me.AlbumCover)
@@ -117,10 +103,10 @@ Partial Class NormalViewer
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents AlbumCover As PictureBox
-    Friend WithEvents TrackLabel As Label
-    Friend WithEvents ArtistLabel As Label
-    Friend WithEvents AlbumLabel As Label
-    Friend WithEvents timeProgressBar As MetroFramework.Controls.MetroProgressBar
+
     Friend WithEvents timeLabel As MetroFramework.Controls.MetroLabel
+    Friend WithEvents timeProgressBar As MetroFramework.Controls.MetroProgressBar
+    Friend WithEvents ArtistLabel As Label
+    Friend WithEvents TrackLabel As Label
+    Friend WithEvents AlbumCover As PictureBox
 End Class

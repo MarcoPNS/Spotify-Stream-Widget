@@ -1,5 +1,5 @@
 ﻿Imports SpotifyAPI.Local, SpotifyAPI.Local.Enums, SpotifyAPI.Local.Models
-Public Class SmallViewer
+Public Class BigViewer
     Private _spotify As SpotifyLocalAPI
     Private _currentTrack As Track
     Public Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -14,10 +14,14 @@ Public Class SmallViewer
     Private Sub ActivateWhite()
         Me.Theme = MetroFramework.MetroThemeStyle.Light
         timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Light
+        timeLabel.Theme = MetroFramework.MetroThemeStyle.Light
         TrackLabel.ForeColor = Color.FromArgb(64, 64, 64)
         ArtistLabel.ForeColor = Color.FromArgb(64, 64, 64)
+        AlbumLabel.ForeColor = Color.FromArgb(64, 64, 64)
+
     End Sub
     Public Sub SpotifyConnect()
+        timeLabel.Text = ""
         'check if Spotfiy is ready
         If Not SpotifyLocalAPI.IsSpotifyRunning Then
             MessageBox.Show("Spotify isn't running!")
@@ -56,6 +60,7 @@ Public Class SmallViewer
         If track.IsAd() Then Return
         TrackLabel.Text = track.TrackResource?.Name
         ArtistLabel.Text = track.ArtistResource?.Name
+        AlbumLabel.Text = track.AlbumResource?.Name
         AlbumCover.Image = If(track.AlbumResource IsNot Nothing, Await track.GetAlbumArtAsync(AlbumArtSize.Size160), Nothing)
         'change text size when the title is longer
         ResponsiveText()
@@ -87,6 +92,19 @@ Public Class SmallViewer
         If ArtistLabel.Text.Length > 30 Then
             ArtistLabel.Font = New Font("Calibri", 10)
         End If
+        'Album
+        If AlbumLabel.Text.Length < 21 Then
+            AlbumLabel.Font = New Font("Calibri", 14)
+        End If
+        If AlbumLabel.Text.Length > 20 Then
+            AlbumLabel.Font = New Font("Calibri", 12)
+        End If
+        If AlbumLabel.Text.Length > 25 Then
+            AlbumLabel.Font = New Font("Calibri", 10)
+        End If
+        If AlbumLabel.Text.Length > 30 Then
+            AlbumLabel.Font = New Font("Calibri", 10)
+        End If
     End Sub
 
     Private Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
@@ -99,9 +117,8 @@ Public Class SmallViewer
 
         UpdateTrack(e.NewTrack)
     End Sub
-    Public Sub _spotify_OnPlayStateChange()
-        Console.Write("Play State changed")
-    End Sub
+
+
     Private Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
         If InvokeRequired Then
             Invoke(Sub()
@@ -109,9 +126,31 @@ Public Class SmallViewer
                    End Sub)
             Return
         End If
+
+        timeLabel.Text = $"{FormatTime(e.TrackTime)}/{FormatTime(_currentTrack.Length)}"
         If e.TrackTime < _currentTrack.Length Then timeProgressBar.Value = CInt(e.TrackTime)
     End Sub
-    Private Sub timeLabel_Click(sender As Object, e As EventArgs)
+    Private Shared Function FormatTime(ByVal sec As Double) As String
+        Dim span As TimeSpan = TimeSpan.FromSeconds(sec)
+        Dim secs As String = span.Seconds.ToString(), mins As String = span.Minutes.ToString()
+        If secs.Length < 2 Then secs = "0" & secs
+        Return mins & ":" + secs
+    End Function
+    Public Sub _spotify_OnTrackTimeChange_(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
+        Console.Write("Track Time changed")
+        Try
+            timeLabel.Text = _currentTrack.Length & " - " & e.TrackTime
+        Catch ex As Exception
+        End Try
+        'If (e.TrackTime < Me._currentTrack.Length) Then
+        'timeProgressBar.Value = CType(e.TrackTime, Integer)
+        'End If
+    End Sub
+    Public Sub _spotify_OnPlayStateChange()
+        Console.Write("Play State changed")
+    End Sub
+
+    Private Sub timeLabel_Click(sender As Object, e As EventArgs) Handles timeLabel.Click
 
     End Sub
 End Class

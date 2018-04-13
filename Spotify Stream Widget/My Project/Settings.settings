@@ -8,5 +8,8 @@
     <Setting Name="Size" Type="System.String" Scope="User">
       <Value Profile="(Default)">Normal</Value>
     </Setting>
+    <Setting Name="ProgressBarStyle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Blocks</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

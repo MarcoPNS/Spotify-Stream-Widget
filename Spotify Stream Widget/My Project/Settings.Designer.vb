@@ -77,6 +77,18 @@ Namespace My
                 Me("Size") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Blocks")>  _
+        Public Property ProgressBarStyle() As String
+            Get
+                Return CType(Me("ProgressBarStyle"),String)
+            End Get
+            Set
+                Me("ProgressBarStyle") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

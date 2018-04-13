@@ -28,8 +28,8 @@ Partial Class Settings
         Me.CreditLink = New MetroFramework.Controls.MetroLink()
         Me.SizeSettingBox = New MetroFramework.Controls.MetroComboBox()
         Me.SizeSettingLabel = New MetroFramework.Controls.MetroLabel()
-        Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
-        Me.MetroComboBox1 = New MetroFramework.Controls.MetroComboBox()
+        Me.ProgressStyleLabel = New MetroFramework.Controls.MetroLabel()
+        Me.ProgressStyleBox = New MetroFramework.Controls.MetroComboBox()
         Me.SuspendLayout()
         '
         'ViewerControl
@@ -59,9 +59,9 @@ Partial Class Settings
         Me.ColorSettingLabel.AutoSize = True
         Me.ColorSettingLabel.Location = New System.Drawing.Point(23, 63)
         Me.ColorSettingLabel.Name = "ColorSettingLabel"
-        Me.ColorSettingLabel.Size = New System.Drawing.Size(79, 19)
+        Me.ColorSettingLabel.Size = New System.Drawing.Size(75, 19)
         Me.ColorSettingLabel.TabIndex = 2
-        Me.ColorSettingLabel.Text = "Dark Viewer"
+        Me.ColorSettingLabel.Text = "Dark Mode"
         Me.ColorSettingLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         '
         'CreditLink
@@ -99,36 +99,36 @@ Partial Class Settings
         Me.SizeSettingLabel.Text = "Viewer Size"
         Me.SizeSettingLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         '
-        'MetroLabel1
+        'ProgressStyleLabel
         '
-        Me.MetroLabel1.AutoSize = True
-        Me.MetroLabel1.Location = New System.Drawing.Point(23, 127)
-        Me.MetroLabel1.Name = "MetroLabel1"
-        Me.MetroLabel1.Size = New System.Drawing.Size(111, 19)
-        Me.MetroLabel1.TabIndex = 7
-        Me.MetroLabel1.Text = "ProgressBar Style"
-        Me.MetroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.ProgressStyleLabel.AutoSize = True
+        Me.ProgressStyleLabel.Location = New System.Drawing.Point(23, 127)
+        Me.ProgressStyleLabel.Name = "ProgressStyleLabel"
+        Me.ProgressStyleLabel.Size = New System.Drawing.Size(111, 19)
+        Me.ProgressStyleLabel.TabIndex = 7
+        Me.ProgressStyleLabel.Text = "ProgressBar Style"
+        Me.ProgressStyleLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         '
-        'MetroComboBox1
+        'ProgressStyleBox
         '
-        Me.MetroComboBox1.FormattingEnabled = True
-        Me.MetroComboBox1.ItemHeight = 23
-        Me.MetroComboBox1.Items.AddRange(New Object() {"Small", "Normal", "Big"})
-        Me.MetroComboBox1.Location = New System.Drawing.Point(161, 121)
-        Me.MetroComboBox1.Name = "MetroComboBox1"
-        Me.MetroComboBox1.Size = New System.Drawing.Size(102, 29)
-        Me.MetroComboBox1.Style = MetroFramework.MetroColorStyle.Green
-        Me.MetroComboBox1.TabIndex = 6
-        Me.MetroComboBox1.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.MetroComboBox1.UseSelectable = True
+        Me.ProgressStyleBox.FormattingEnabled = True
+        Me.ProgressStyleBox.ItemHeight = 23
+        Me.ProgressStyleBox.Items.AddRange(New Object() {"Blocks", "Continuous", "Marquee"})
+        Me.ProgressStyleBox.Location = New System.Drawing.Point(161, 121)
+        Me.ProgressStyleBox.Name = "ProgressStyleBox"
+        Me.ProgressStyleBox.Size = New System.Drawing.Size(102, 29)
+        Me.ProgressStyleBox.Style = MetroFramework.MetroColorStyle.Green
+        Me.ProgressStyleBox.TabIndex = 6
+        Me.ProgressStyleBox.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.ProgressStyleBox.UseSelectable = True
         '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
-        Me.Controls.Add(Me.MetroLabel1)
-        Me.Controls.Add(Me.MetroComboBox1)
+        Me.Controls.Add(Me.ProgressStyleLabel)
+        Me.Controls.Add(Me.ProgressStyleBox)
         Me.Controls.Add(Me.SizeSettingLabel)
         Me.Controls.Add(Me.SizeSettingBox)
         Me.Controls.Add(Me.CreditLink)
@@ -152,6 +152,6 @@ Partial Class Settings
     Friend WithEvents CreditLink As MetroFramework.Controls.MetroLink
     Friend WithEvents SizeSettingBox As MetroFramework.Controls.MetroComboBox
     Friend WithEvents SizeSettingLabel As MetroFramework.Controls.MetroLabel
-    Friend WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
-    Friend WithEvents MetroComboBox1 As MetroFramework.Controls.MetroComboBox
+    Friend WithEvents ProgressStyleLabel As MetroFramework.Controls.MetroLabel
+    Friend WithEvents ProgressStyleBox As MetroFramework.Controls.MetroComboBox
 End Class

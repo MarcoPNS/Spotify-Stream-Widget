@@ -88,6 +88,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NormalViewer.Designer.vb">
+      <DependentUpon>NormalViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="NormalViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Settings.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -110,10 +116,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="NormalViewer.Designer.vb">
-      <DependentUpon>NormalViewer.vb</DependentUpon>
+    <Compile Include="BigViewer.Designer.vb">
+      <DependentUpon>BigViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="NormalViewer.vb">
+    <Compile Include="BigViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SmallViewer.Designer.vb">
@@ -124,6 +130,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="NormalViewer.resx">
+      <DependentUpon>NormalViewer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.vb</DependentUpon>
     </EmbeddedResource>
@@ -133,8 +142,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="NormalViewer.resx">
-      <DependentUpon>NormalViewer.vb</DependentUpon>
+    <EmbeddedResource Include="BigViewer.resx">
+      <DependentUpon>BigViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SmallViewer.resx">
       <DependentUpon>SmallViewer.vb</DependentUpon>

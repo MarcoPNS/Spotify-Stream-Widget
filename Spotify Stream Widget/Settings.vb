@@ -1,7 +1,8 @@
 ﻿Public Class Settings
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ColorSettingToggle.Checked = My.Settings.DarkMode
-        SizeSettingBox.PromptText = My.Settings.Size
+        SizeSettingBox.Text = My.Settings.Size
+        ProgressStyleBox.Text = My.Settings.ProgressBarStyle
     End Sub
 
     Private Sub StartViewer(sender As Object, e As EventArgs) Handles ViewerControl.Click
@@ -17,14 +18,18 @@
             NormalViewer.Show()
             NormalViewer.SpotifyConnect()
         End If
+        If SizeSettingBox.Text = "Big" Then
+            BigViewer.Show()
+            BigViewer.SpotifyConnect()
+        End If
     End Sub
     Private Sub LoadViewer()
         If ColorSettingToggle.Checked = True Then
-            NormalViewer.Show()
-            NormalViewer.SpotifyConnect()
+            BigViewer.Show()
+            BigViewer.SpotifyConnect()
         Else
-            NormalViewer.Show()
-            NormalViewer.SpotifyConnect()
+            BigViewer.Show()
+            BigViewer.SpotifyConnect()
         End If
     End Sub
 
