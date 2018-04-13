@@ -52,14 +52,49 @@ Public Class Viewer
         AlbumLabel.Text = track.AlbumResource?.Name
         AlbumCover.Image = If(track.AlbumResource IsNot Nothing, Await track.GetAlbumArtAsync(AlbumArtSize.Size160), Nothing)
         'change text size when the title is longer
+        ResponsiveText()
+    End Sub
+    Private Sub ResponsiveText()
+        'Track
         If TrackLabel.Text.Length < 21 Then
             TrackLabel.Font = New Font("Calibri", 20)
         End If
         If TrackLabel.Text.Length > 20 Then
+            TrackLabel.Font = New Font("Calibri", 17)
+        End If
+        If TrackLabel.Text.Length > 25 Then
+            TrackLabel.Font = New Font("Calibri", 15)
+        End If
+        If TrackLabel.Text.Length > 30 Then
             TrackLabel.Font = New Font("Calibri", 12)
         End If
+        'Artist
+        If ArtistLabel.Text.Length < 21 Then
+            ArtistLabel.Font = New Font("Calibri", 16)
+        End If
+        If ArtistLabel.Text.Length > 20 Then
+            ArtistLabel.Font = New Font("Calibri", 14)
+        End If
+        If ArtistLabel.Text.Length > 25 Then
+            ArtistLabel.Font = New Font("Calibri", 12)
+        End If
+        If ArtistLabel.Text.Length > 30 Then
+            ArtistLabel.Font = New Font("Calibri", 10)
+        End If
+        'Album
+        If AlbumLabel.Text.Length < 21 Then
+            AlbumLabel.Font = New Font("Calibri", 14)
+        End If
+        If AlbumLabel.Text.Length > 20 Then
+            AlbumLabel.Font = New Font("Calibri", 12)
+        End If
+        If AlbumLabel.Text.Length > 25 Then
+            AlbumLabel.Font = New Font("Calibri", 10)
+        End If
+        If AlbumLabel.Text.Length > 30 Then
+            AlbumLabel.Font = New Font("Calibri", 10)
+        End If
     End Sub
-
     'backup
     Public Sub UpdateInfos_()
         TrackLabel.Text = _spotify.GetStatus.Track.TrackResource.Name
@@ -84,16 +119,6 @@ Public Class Viewer
         'timeProgressBar.Maximum = _currentTrack.Length
     End Sub
 
-
-
-    'Public Sub _spotify_OnTrackChange__(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
-    '   Console.Write("Track changed")
-    'Try
-    '       UpdateInfos()
-    'Catch ex As Exception
-    'End Try
-    'End Sub
-
     Private Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
         If InvokeRequired Then
             Invoke(Sub()
@@ -104,7 +129,26 @@ Public Class Viewer
 
         UpdateTrack(e.NewTrack)
     End Sub
-    Public Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
+
+
+    Private Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
+        If InvokeRequired Then
+            Invoke(Sub()
+                       _spotify_OnTrackTimeChange(sender, e)
+                   End Sub)
+            Return
+        End If
+
+        timeLabel.Text = $"{FormatTime(e.TrackTime)}/{FormatTime(_currentTrack.Length)}"
+        If e.TrackTime < _currentTrack.Length Then timeProgressBar.Value = CInt(e.TrackTime)
+    End Sub
+    Private Shared Function FormatTime(ByVal sec As Double) As String
+        Dim span As TimeSpan = TimeSpan.FromSeconds(sec)
+        Dim secs As String = span.Seconds.ToString(), mins As String = span.Minutes.ToString()
+        If secs.Length < 2 Then secs = "0" & secs
+        Return mins & ":" + secs
+    End Function
+    Public Sub _spotify_OnTrackTimeChange_(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
         Console.Write("Track Time changed")
         Try
             timeLabel.Text = _currentTrack.Length & " - " & e.TrackTime
@@ -116,5 +160,9 @@ Public Class Viewer
     End Sub
     Public Sub _spotify_OnPlayStateChange()
         Console.Write("Play State changed")
+    End Sub
+
+    Private Sub timeLabel_Click(sender As Object, e As EventArgs) Handles timeLabel.Click
+
     End Sub
 End Class
