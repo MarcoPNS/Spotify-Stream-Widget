@@ -88,7 +88,7 @@ Partial Class Viewer
         Me.timeLabel.CustomBackground = True
         Me.timeLabel.Location = New System.Drawing.Point(177, 155)
         Me.timeLabel.Name = "timeLabel"
-        Me.timeLabel.Size = New System.Drawing.Size(280, 19)
+        Me.timeLabel.Size = New System.Drawing.Size(286, 19)
         Me.timeLabel.TabIndex = 8
         Me.timeLabel.Text = "time"
         Me.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter

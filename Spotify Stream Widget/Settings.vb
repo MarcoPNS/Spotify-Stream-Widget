@@ -3,7 +3,7 @@
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ViewerControl.Click
+    Private Sub StartViewer(sender As Object, e As EventArgs) Handles ViewerControl.Click
 
         Viewer.Show()
         Viewer.SpotifyConnect()
