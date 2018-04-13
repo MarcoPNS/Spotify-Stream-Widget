@@ -48,7 +48,7 @@ Partial Class Settings
         Me.DarkWindow.TabIndex = 1
         Me.DarkWindow.Text = "An"
         Me.DarkWindow.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.DarkWindow.UseVisualStyleBackColor = True
+        Me.DarkWindow.UseSelectable = True
         '
         'MetroLabel1
         '
@@ -62,13 +62,14 @@ Partial Class Settings
         '
         'CreditLink
         '
-        Me.CreditLink.CustomBackground = True
         Me.CreditLink.FontWeight = MetroFramework.MetroLinkWeight.Regular
-        Me.CreditLink.Location = New System.Drawing.Point(-6, 422)
+        Me.CreditLink.Location = New System.Drawing.Point(-1, 422)
         Me.CreditLink.Name = "CreditLink"
-        Me.CreditLink.Size = New System.Drawing.Size(157, 23)
+        Me.CreditLink.Size = New System.Drawing.Size(150, 18)
         Me.CreditLink.TabIndex = 3
         Me.CreditLink.Text = "Made by Marco Sadowski"
+        Me.CreditLink.UseCustomBackColor = True
+        Me.CreditLink.UseSelectable = True
         Me.CreditLink.UseStyleColors = True
         '
         'Settings
@@ -84,7 +85,7 @@ Partial Class Settings
         Me.Resizable = False
         Me.Style = MetroFramework.MetroColorStyle.Green
         Me.Text = "Spotify Stream Widget"
-        Me.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center
+        Me.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -85,7 +85,6 @@ Partial Class Viewer
         '
         'timeLabel
         '
-        Me.timeLabel.CustomBackground = True
         Me.timeLabel.Location = New System.Drawing.Point(177, 155)
         Me.timeLabel.Name = "timeLabel"
         Me.timeLabel.Size = New System.Drawing.Size(286, 19)
