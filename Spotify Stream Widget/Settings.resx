@@ -117,4 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="TextBox1.Text" xml:space="preserve">
+    <value>Made by Marco Sadowski
+
+This application use the SpotifyAPI-NET which is licensed under the GNU Lesser General Public License v3.0 
+https://github.com/JohnnyCrazy/SpotifyAPI-NET
+
+This application use the MetroFramework which is licensed under the MIT License (MIT)
+https://github.com/dennismagno/metroframework-modern-ui
+Copyright (c) 2011 Sven Walter, http://github.com/viperneo
+Copyright (c) 2013 Dennis Magno, http://github.com/dennismagno
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</value>
+  </data>
 </root>

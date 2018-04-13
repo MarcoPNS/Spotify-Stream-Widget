@@ -36,4 +36,12 @@
     Private Sub CreditLink_Click(sender As Object, e As EventArgs) Handles CreditLink.Click
         Process.Start("https://twitter.com/MarcoSadowski")
     End Sub
+
+    Private Sub MetroLink1_Click(sender As Object, e As EventArgs) Handles MetroLink1.Click
+        CreditPanel.Visible = True
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        CreditPanel.Visible = False
+    End Sub
 End Class

@@ -22,6 +22,7 @@ Partial Class Settings
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Settings))
         Me.ViewerControl = New System.Windows.Forms.Button()
         Me.ColorSettingToggle = New MetroFramework.Controls.MetroToggle()
         Me.ColorSettingLabel = New MetroFramework.Controls.MetroLabel()
@@ -30,11 +31,16 @@ Partial Class Settings
         Me.SizeSettingLabel = New MetroFramework.Controls.MetroLabel()
         Me.ProgressStyleLabel = New MetroFramework.Controls.MetroLabel()
         Me.ProgressStyleBox = New MetroFramework.Controls.MetroComboBox()
+        Me.MetroLink1 = New MetroFramework.Controls.MetroLink()
+        Me.CreditPanel = New System.Windows.Forms.Panel()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.CreditPanel.SuspendLayout()
         Me.SuspendLayout()
         '
         'ViewerControl
         '
-        Me.ViewerControl.Location = New System.Drawing.Point(23, 395)
+        Me.ViewerControl.Location = New System.Drawing.Point(23, 373)
         Me.ViewerControl.Name = "ViewerControl"
         Me.ViewerControl.Size = New System.Drawing.Size(251, 23)
         Me.ViewerControl.TabIndex = 0
@@ -66,10 +72,9 @@ Partial Class Settings
         '
         'CreditLink
         '
-        Me.CreditLink.FontWeight = MetroFramework.MetroLinkWeight.Regular
-        Me.CreditLink.Location = New System.Drawing.Point(-1, 422)
+        Me.CreditLink.Location = New System.Drawing.Point(1, 400)
         Me.CreditLink.Name = "CreditLink"
-        Me.CreditLink.Size = New System.Drawing.Size(150, 18)
+        Me.CreditLink.Size = New System.Drawing.Size(297, 18)
         Me.CreditLink.TabIndex = 3
         Me.CreditLink.Text = "Made by Marco Sadowski"
         Me.CreditLink.UseCustomBackColor = True
@@ -122,11 +127,53 @@ Partial Class Settings
         Me.ProgressStyleBox.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.ProgressStyleBox.UseSelectable = True
         '
+        'MetroLink1
+        '
+        Me.MetroLink1.Location = New System.Drawing.Point(183, 424)
+        Me.MetroLink1.Name = "MetroLink1"
+        Me.MetroLink1.Size = New System.Drawing.Size(115, 18)
+        Me.MetroLink1.TabIndex = 8
+        Me.MetroLink1.Text = "Credits and License"
+        Me.MetroLink1.UseCustomBackColor = True
+        Me.MetroLink1.UseSelectable = True
+        Me.MetroLink1.UseStyleColors = True
+        '
+        'CreditPanel
+        '
+        Me.CreditPanel.Controls.Add(Me.Button1)
+        Me.CreditPanel.Controls.Add(Me.TextBox1)
+        Me.CreditPanel.Location = New System.Drawing.Point(23, 63)
+        Me.CreditPanel.Name = "CreditPanel"
+        Me.CreditPanel.Size = New System.Drawing.Size(251, 304)
+        Me.CreditPanel.TabIndex = 9
+        Me.CreditPanel.Visible = False
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(0, 0)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox1.Size = New System.Drawing.Size(251, 304)
+        Me.TextBox1.TabIndex = 10
+        Me.TextBox1.Text = resources.GetString("TextBox1.Text")
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(151, 0)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 24)
+        Me.Button1.TabIndex = 10
+        Me.Button1.Text = "Close"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
+        Me.Controls.Add(Me.CreditPanel)
+        Me.Controls.Add(Me.MetroLink1)
         Me.Controls.Add(Me.ProgressStyleLabel)
         Me.Controls.Add(Me.ProgressStyleBox)
         Me.Controls.Add(Me.SizeSettingLabel)
@@ -141,6 +188,8 @@ Partial Class Settings
         Me.Text = "Stream Widget Settings"
         Me.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.CreditPanel.ResumeLayout(False)
+        Me.CreditPanel.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -154,4 +203,8 @@ Partial Class Settings
     Friend WithEvents SizeSettingLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents ProgressStyleLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents ProgressStyleBox As MetroFramework.Controls.MetroComboBox
+    Friend WithEvents MetroLink1 As MetroFramework.Controls.MetroLink
+    Friend WithEvents CreditPanel As Panel
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Button1 As Button
 End Class
