@@ -120,44 +120,36 @@ Public Class BigViewer
     End Sub
     Private Sub ResponsiveText()
         'Track
-        If TrackLabel.Text.Length < 21 Then
-            TrackLabel.Font = New Font("Calibri", 20)
-        End If
-        If TrackLabel.Text.Length > 20 Then
-            TrackLabel.Font = New Font("Calibri", 17)
-        End If
-        If TrackLabel.Text.Length > 25 Then
-            TrackLabel.Font = New Font("Calibri", 15)
-        End If
-        If TrackLabel.Text.Length > 30 Then
-            TrackLabel.Font = New Font("Calibri", 12)
-        End If
+        Select Case TrackLabel.Text.Length
+            Case 0 To 20
+                TrackLabel.Font = New Font("Calibri", 20)
+            Case 21 To 25
+                TrackLabel.Font = New Font("Calibri", 17)
+            Case 26 To 30
+                TrackLabel.Font = New Font("Calibri", 15)
+            Case Is >= 31
+                TrackLabel.Font = New Font("Calibri", 12)
+        End Select
         'Artist
-        If ArtistLabel.Text.Length < 21 Then
-            ArtistLabel.Font = New Font("Calibri", 16)
-        End If
-        If ArtistLabel.Text.Length > 20 Then
-            ArtistLabel.Font = New Font("Calibri", 14)
-        End If
-        If ArtistLabel.Text.Length > 25 Then
-            ArtistLabel.Font = New Font("Calibri", 12)
-        End If
-        If ArtistLabel.Text.Length > 30 Then
-            ArtistLabel.Font = New Font("Calibri", 10)
-        End If
+        Select Case ArtistLabel.Text.Length
+            Case 0 To 20
+                ArtistLabel.Font = New Font("Calibri", 16)
+            Case 21 To 25
+                ArtistLabel.Font = New Font("Calibri", 14)
+            Case 26 To 30
+                ArtistLabel.Font = New Font("Calibri", 12)
+            Case Is >= 31
+                ArtistLabel.Font = New Font("Calibri", 10)
+        End Select
         'Album
-        If AlbumLabel.Text.Length < 21 Then
-            AlbumLabel.Font = New Font("Calibri", 14)
-        End If
-        If AlbumLabel.Text.Length > 20 Then
-            AlbumLabel.Font = New Font("Calibri", 12)
-        End If
-        If AlbumLabel.Text.Length > 25 Then
-            AlbumLabel.Font = New Font("Calibri", 10)
-        End If
-        If AlbumLabel.Text.Length > 30 Then
-            AlbumLabel.Font = New Font("Calibri", 10)
-        End If
+        Select Case AlbumLabel.Text.Length
+            Case 0 To 20
+                AlbumLabel.Font = New Font("Calibri", 14)
+            Case 21 To 25
+                AlbumLabel.Font = New Font("Calibri", 12)
+            Case Is >= 26
+                AlbumLabel.Font = New Font("Calibri", 10)
+        End Select
     End Sub
     Private Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
         If InvokeRequired Then

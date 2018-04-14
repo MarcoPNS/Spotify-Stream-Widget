@@ -1,6 +1,7 @@
 ﻿Public Class Settings
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'get current settings
+        VersionLabel.Text = Me.ProductVersion
         ColorSettingToggle.Checked = My.Settings.DarkMode
         SizeSettingBox.Text = My.Settings.Size
         ProgressStyleBox.Text = My.Settings.ProgressBarStyle
@@ -15,18 +16,17 @@
         My.Settings.Color = ColorStyleBox.Text
         My.Settings.Save()
         'load viewer
-        If SizeSettingBox.Text = "Small" Then
-            SmallViewer.Show()
-            SmallViewer.SpotifyConnect()
-        End If
-        If SizeSettingBox.Text = "Normal" Then
-            NormalViewer.Show()
-            NormalViewer.SpotifyConnect()
-        End If
-        If SizeSettingBox.Text = "Big" Then
-            BigViewer.Show()
-            BigViewer.SpotifyConnect()
-        End If
+        Select Case SizeSettingBox.Text
+            Case "Small"
+                SmallViewer.Show()
+                SmallViewer.SpotifyConnect()
+            Case "Normal"
+                NormalViewer.Show()
+                NormalViewer.SpotifyConnect()
+            Case "Big"
+                BigViewer.Show()
+                BigViewer.SpotifyConnect()
+        End Select
     End Sub
 
     Private Sub CreditLink_Click(sender As Object, e As EventArgs) Handles CreditLink.Click
