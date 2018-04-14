@@ -22,6 +22,7 @@ Partial Class NormalViewer
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(NormalViewer))
         Me.timeLabel = New MetroFramework.Controls.MetroLabel()
         Me.timeProgressBar = New MetroFramework.Controls.MetroProgressBar()
         Me.ArtistLabel = New System.Windows.Forms.Label()
@@ -93,6 +94,7 @@ Partial Class NormalViewer
         Me.Controls.Add(Me.TrackLabel)
         Me.Controls.Add(Me.AlbumCover)
         Me.DisplayHeader = False
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "NormalViewer"

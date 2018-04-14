@@ -22,6 +22,7 @@ Partial Class BigViewer
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BigViewer))
         Me.AlbumCover = New System.Windows.Forms.PictureBox()
         Me.TrackLabel = New System.Windows.Forms.Label()
         Me.ArtistLabel = New System.Windows.Forms.Label()
@@ -106,6 +107,7 @@ Partial Class BigViewer
         Me.Controls.Add(Me.TrackLabel)
         Me.Controls.Add(Me.AlbumCover)
         Me.DisplayHeader = False
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "BigViewer"
         Me.Padding = New System.Windows.Forms.Padding(20, 30, 20, 20)
         Me.Resizable = False

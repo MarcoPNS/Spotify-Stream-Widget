@@ -223,6 +223,7 @@ Partial Class Settings
         Me.Controls.Add(Me.ColorSettingLabel)
         Me.Controls.Add(Me.ColorSettingToggle)
         Me.Controls.Add(Me.ViewerControl)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Settings"
         Me.Resizable = False
