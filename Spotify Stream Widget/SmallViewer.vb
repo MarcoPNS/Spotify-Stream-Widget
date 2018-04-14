@@ -137,15 +137,6 @@ Public Class SmallViewer
             Case Is >= 31
                 ArtistLabel.Font = New Font("Calibri", 10)
         End Select
-        'Album
-        Select Case AlbumLabel.Text.Length
-            Case 0 To 20
-                AlbumLabel.Font = New Font("Calibri", 14)
-            Case 21 To 25
-                AlbumLabel.Font = New Font("Calibri", 12)
-            Case Is >= 26
-                AlbumLabel.Font = New Font("Calibri", 10)
-        End Select
     End Sub
     Private Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
         If InvokeRequired Then

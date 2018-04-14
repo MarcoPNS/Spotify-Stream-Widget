@@ -38,6 +38,7 @@ Partial Class Settings
         Me.ReportLink = New MetroFramework.Controls.MetroLink()
         Me.ColorStyleLabel = New MetroFramework.Controls.MetroLabel()
         Me.ColorStyleBox = New MetroFramework.Controls.MetroComboBox()
+        Me.VersionLabel = New System.Windows.Forms.Label()
         Me.CreditPanel.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -205,11 +206,23 @@ Partial Class Settings
         Me.ColorStyleBox.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.ColorStyleBox.UseSelectable = True
         '
+        'VersionLabel
+        '
+        Me.VersionLabel.AutoSize = True
+        Me.VersionLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!)
+        Me.VersionLabel.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.VersionLabel.Location = New System.Drawing.Point(255, 49)
+        Me.VersionLabel.Name = "VersionLabel"
+        Me.VersionLabel.Size = New System.Drawing.Size(30, 9)
+        Me.VersionLabel.TabIndex = 13
+        Me.VersionLabel.Text = "version"
+        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
+        Me.Controls.Add(Me.VersionLabel)
         Me.Controls.Add(Me.CreditPanel)
         Me.Controls.Add(Me.ColorStyleLabel)
         Me.Controls.Add(Me.ColorStyleBox)
@@ -253,4 +266,5 @@ Partial Class Settings
     Friend WithEvents ReportLink As MetroFramework.Controls.MetroLink
     Friend WithEvents ColorStyleLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents ColorStyleBox As MetroFramework.Controls.MetroComboBox
+    Friend WithEvents VersionLabel As Label
 End Class

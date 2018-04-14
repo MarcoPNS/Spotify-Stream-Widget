@@ -1,6 +1,7 @@
 ﻿Public Class Settings
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'get current settings
+        VersionLabel.Text = Me.ProductVersion
         ColorSettingToggle.Checked = My.Settings.DarkMode
         SizeSettingBox.Text = My.Settings.Size
         ProgressStyleBox.Text = My.Settings.ProgressBarStyle
