@@ -14,10 +14,57 @@ Public Class BigViewer
         If My.Settings.DarkMode = False Then
             ActivateWhite()
         End If
+        GetColor
         _spotify = New SpotifyLocalAPI()
         AddHandler _spotify.OnPlayStateChange, AddressOf _spotify_OnPlayStateChange
         AddHandler _spotify.OnTrackChange, AddressOf _spotify_OnTrackChange
         AddHandler _spotify.OnTrackTimeChange, AddressOf _spotify_OnTrackTimeChange
+    End Sub
+    Private Sub GetColor()
+        Select Case My.Settings.Color
+            Case "Green"
+                Me.Style = MetroFramework.MetroColorStyle.Green
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Green
+            Case "Black"
+                Me.Style = MetroFramework.MetroColorStyle.Black
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Black
+            Case "White"
+                Me.Style = MetroFramework.MetroColorStyle.White
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.White
+            Case "Silver"
+                Me.Style = MetroFramework.MetroColorStyle.Silver
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Silver
+            Case "Blue"
+                Me.Style = MetroFramework.MetroColorStyle.Blue
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Blue
+            Case "Lime"
+                Me.Style = MetroFramework.MetroColorStyle.Lime
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Lime
+            Case "Teal"
+                Me.Style = MetroFramework.MetroColorStyle.Teal
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Teal
+            Case "Orange"
+                Me.Style = MetroFramework.MetroColorStyle.Orange
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Orange
+            Case "Brown"
+                Me.Style = MetroFramework.MetroColorStyle.Brown
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Brown
+            Case "Pink"
+                Me.Style = MetroFramework.MetroColorStyle.Pink
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Pink
+            Case "Magenta"
+                Me.Style = MetroFramework.MetroColorStyle.Magenta
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Magenta
+            Case "Purple"
+                Me.Style = MetroFramework.MetroColorStyle.Purple
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Purple
+            Case "Red"
+                Me.Style = MetroFramework.MetroColorStyle.Red
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Red
+            Case "Yellow"
+                Me.Style = MetroFramework.MetroColorStyle.Red
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Yellow
+        End Select
     End Sub
     Private Sub ActivateWhite()
         Me.Theme = MetroFramework.MetroThemeStyle.Light

@@ -11,5 +11,8 @@
     <Setting Name="ProgressBarStyle" Type="System.String" Scope="User">
       <Value Profile="(Default)">Blocks</Value>
     </Setting>
+    <Setting Name="Color" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Green</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

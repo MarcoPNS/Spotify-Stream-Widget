@@ -3,9 +3,11 @@ Public Class SmallViewer
     Private _spotify As SpotifyLocalAPI
     Private _currentTrack As Track
     Public Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'apply settings
         If My.Settings.DarkMode = False Then
             ActivateWhite()
         End If
+        GetColor()
         Select Case My.Settings.ProgressBarStyle
             Case "Blocks"
                 timeProgressBar.ProgressBarStyle = ProgressBarStyle.Blocks
@@ -24,6 +26,52 @@ Public Class SmallViewer
         timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Light
         TrackLabel.ForeColor = Color.FromArgb(64, 64, 64)
         ArtistLabel.ForeColor = Color.FromArgb(64, 64, 64)
+    End Sub
+    Private Sub GetColor()
+        Select Case My.Settings.Color
+            Case "Green"
+                Me.Style = MetroFramework.MetroColorStyle.Green
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Green
+            Case "Black"
+                Me.Style = MetroFramework.MetroColorStyle.Black
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Black
+            Case "White"
+                Me.Style = MetroFramework.MetroColorStyle.White
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.White
+            Case "Silver"
+                Me.Style = MetroFramework.MetroColorStyle.Silver
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Silver
+            Case "Blue"
+                Me.Style = MetroFramework.MetroColorStyle.Blue
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Blue
+            Case "Lime"
+                Me.Style = MetroFramework.MetroColorStyle.Lime
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Lime
+            Case "Teal"
+                Me.Style = MetroFramework.MetroColorStyle.Teal
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Teal
+            Case "Orange"
+                Me.Style = MetroFramework.MetroColorStyle.Orange
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Orange
+            Case "Brown"
+                Me.Style = MetroFramework.MetroColorStyle.Brown
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Brown
+            Case "Pink"
+                Me.Style = MetroFramework.MetroColorStyle.Pink
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Pink
+            Case "Magenta"
+                Me.Style = MetroFramework.MetroColorStyle.Magenta
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Magenta
+            Case "Purple"
+                Me.Style = MetroFramework.MetroColorStyle.Purple
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Purple
+            Case "Red"
+                Me.Style = MetroFramework.MetroColorStyle.Red
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Red
+            Case "Yellow"
+                Me.Style = MetroFramework.MetroColorStyle.Red
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Yellow
+        End Select
     End Sub
     Public Sub SpotifyConnect()
         'check if Spotfiy is ready
