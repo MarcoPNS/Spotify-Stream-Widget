@@ -86,12 +86,15 @@ Partial Class NormalViewer
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(503, 151)
+        Me.ControlBox = False
         Me.Controls.Add(Me.timeLabel)
         Me.Controls.Add(Me.timeProgressBar)
         Me.Controls.Add(Me.ArtistLabel)
         Me.Controls.Add(Me.TrackLabel)
         Me.Controls.Add(Me.AlbumCover)
         Me.DisplayHeader = False
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "NormalViewer"
         Me.Padding = New System.Windows.Forms.Padding(20, 30, 20, 20)
         Me.Resizable = False

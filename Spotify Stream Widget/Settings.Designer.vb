@@ -146,7 +146,7 @@ Partial Class Settings
         '
         Me.CreditPanel.Controls.Add(Me.Button1)
         Me.CreditPanel.Controls.Add(Me.CreditsText)
-        Me.CreditPanel.Location = New System.Drawing.Point(251, 424)
+        Me.CreditPanel.Location = New System.Drawing.Point(23, 63)
         Me.CreditPanel.Name = "CreditPanel"
         Me.CreditPanel.Size = New System.Drawing.Size(251, 304)
         Me.CreditPanel.TabIndex = 9
@@ -210,10 +210,10 @@ Partial Class Settings
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
+        Me.Controls.Add(Me.CreditPanel)
         Me.Controls.Add(Me.ColorStyleLabel)
         Me.Controls.Add(Me.ColorStyleBox)
         Me.Controls.Add(Me.ReportLink)
-        Me.Controls.Add(Me.CreditPanel)
         Me.Controls.Add(Me.CreditsLink)
         Me.Controls.Add(Me.ProgressStyleLabel)
         Me.Controls.Add(Me.ProgressStyleBox)
@@ -223,6 +223,7 @@ Partial Class Settings
         Me.Controls.Add(Me.ColorSettingLabel)
         Me.Controls.Add(Me.ColorSettingToggle)
         Me.Controls.Add(Me.ViewerControl)
+        Me.MaximizeBox = False
         Me.Name = "Settings"
         Me.Resizable = False
         Me.Style = MetroFramework.MetroColorStyle.Green
