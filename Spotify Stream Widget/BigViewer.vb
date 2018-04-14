@@ -14,79 +14,77 @@ Public Class BigViewer
         If My.Settings.DarkMode = False Then
             ActivateWhite()
         End If
-        GetColor
+        GetColor()
         _spotify = New SpotifyLocalAPI()
-        AddHandler _spotify.OnPlayStateChange, AddressOf _spotify_OnPlayStateChange
         AddHandler _spotify.OnTrackChange, AddressOf _spotify_OnTrackChange
         AddHandler _spotify.OnTrackTimeChange, AddressOf _spotify_OnTrackTimeChange
     End Sub
     Private Sub GetColor()
         Select Case My.Settings.Color
             Case "Green"
-                Me.Style = MetroFramework.MetroColorStyle.Green
+                Style = MetroFramework.MetroColorStyle.Green
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Green
             Case "Black"
-                Me.Style = MetroFramework.MetroColorStyle.Black
+                Style = MetroFramework.MetroColorStyle.Black
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Black
             Case "White"
-                Me.Style = MetroFramework.MetroColorStyle.White
+                Style = MetroFramework.MetroColorStyle.White
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.White
             Case "Silver"
-                Me.Style = MetroFramework.MetroColorStyle.Silver
+                Style = MetroFramework.MetroColorStyle.Silver
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Silver
             Case "Blue"
-                Me.Style = MetroFramework.MetroColorStyle.Blue
+                Style = MetroFramework.MetroColorStyle.Blue
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Blue
             Case "Lime"
-                Me.Style = MetroFramework.MetroColorStyle.Lime
+                Style = MetroFramework.MetroColorStyle.Lime
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Lime
             Case "Teal"
-                Me.Style = MetroFramework.MetroColorStyle.Teal
+                Style = MetroFramework.MetroColorStyle.Teal
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Teal
             Case "Orange"
-                Me.Style = MetroFramework.MetroColorStyle.Orange
+                Style = MetroFramework.MetroColorStyle.Orange
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Orange
             Case "Brown"
-                Me.Style = MetroFramework.MetroColorStyle.Brown
+                Style = MetroFramework.MetroColorStyle.Brown
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Brown
             Case "Pink"
-                Me.Style = MetroFramework.MetroColorStyle.Pink
+                Style = MetroFramework.MetroColorStyle.Pink
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Pink
             Case "Magenta"
-                Me.Style = MetroFramework.MetroColorStyle.Magenta
+                Style = MetroFramework.MetroColorStyle.Magenta
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Magenta
             Case "Purple"
-                Me.Style = MetroFramework.MetroColorStyle.Purple
+                Style = MetroFramework.MetroColorStyle.Purple
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Purple
             Case "Red"
-                Me.Style = MetroFramework.MetroColorStyle.Red
+                Style = MetroFramework.MetroColorStyle.Red
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Red
             Case "Yellow"
-                Me.Style = MetroFramework.MetroColorStyle.Red
+                Style = MetroFramework.MetroColorStyle.Red
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Yellow
         End Select
     End Sub
     Private Sub ActivateWhite()
-        Me.Theme = MetroFramework.MetroThemeStyle.Light
+        Theme = MetroFramework.MetroThemeStyle.Light
         timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Light
         timeLabel.Theme = MetroFramework.MetroThemeStyle.Light
         TrackLabel.ForeColor = Color.FromArgb(64, 64, 64)
         ArtistLabel.ForeColor = Color.FromArgb(64, 64, 64)
         AlbumLabel.ForeColor = Color.FromArgb(64, 64, 64)
-
     End Sub
     Public Sub SpotifyConnect()
         timeLabel.Text = ""
         'check if Spotfiy is ready
         If Not SpotifyLocalAPI.IsSpotifyRunning Then
             MessageBox.Show("Spotify isn't running!")
-            Me.Close()
+            Close()
             Return
         End If
 
         If Not SpotifyLocalAPI.IsSpotifyWebHelperRunning Then
             MessageBox.Show("SpotifyWebHelper isn't running!")
-            Me.Close()
+            Close()
             Return
         End If
 
@@ -161,7 +159,6 @@ Public Class BigViewer
             AlbumLabel.Font = New Font("Calibri", 10)
         End If
     End Sub
-
     Private Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
         If InvokeRequired Then
             Invoke(Sub()
@@ -169,11 +166,8 @@ Public Class BigViewer
                    End Sub)
             Return
         End If
-
         UpdateTrack(e.NewTrack)
     End Sub
-
-
     Private Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
         If InvokeRequired Then
             Invoke(Sub()
@@ -181,7 +175,6 @@ Public Class BigViewer
                    End Sub)
             Return
         End If
-
         timeLabel.Text = $"{FormatTime(e.TrackTime)}/{FormatTime(_currentTrack.Length)}"
         If e.TrackTime < _currentTrack.Length Then timeProgressBar.Value = CInt(e.TrackTime)
     End Sub
@@ -191,21 +184,4 @@ Public Class BigViewer
         If secs.Length < 2 Then secs = "0" & secs
         Return mins & ":" + secs
     End Function
-    Public Sub _spotify_OnTrackTimeChange_(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
-        Console.Write("Track Time changed")
-        Try
-            timeLabel.Text = _currentTrack.Length & " - " & e.TrackTime
-        Catch ex As Exception
-        End Try
-        'If (e.TrackTime < Me._currentTrack.Length) Then
-        'timeProgressBar.Value = CType(e.TrackTime, Integer)
-        'End If
-    End Sub
-    Public Sub _spotify_OnPlayStateChange()
-        Console.Write("Play State changed")
-    End Sub
-
-    Private Sub timeLabel_Click(sender As Object, e As EventArgs) Handles timeLabel.Click
-
-    End Sub
 End Class
