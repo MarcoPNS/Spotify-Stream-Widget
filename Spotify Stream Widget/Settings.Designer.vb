@@ -228,7 +228,7 @@ Partial Class Settings
         Me.Name = "Settings"
         Me.Resizable = False
         Me.Style = MetroFramework.MetroColorStyle.Green
-        Me.Text = "Stream Widget Settings"
+        Me.Text = "Spotify Widget Settings"
         Me.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.CreditPanel.ResumeLayout(False)
