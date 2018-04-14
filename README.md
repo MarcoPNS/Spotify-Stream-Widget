@@ -17,6 +17,7 @@ A small Tool for Streamers to show the current Track of Spotify to your Viewers!
 5. Now you can add the window "Spotify Viewer" on your Stream using OBS, XSplit or similiar.
 
 ## Donate
+PayPal: [https://www.paypal.me/MarcoSadowski](https://www.paypal.me/MarcoSadowski)
 Dogecoin: [D9Amrvp3sGvk9aBepRtiGuZJgHV2zFaYZh](https://dogechain.info/address/D9Amrvp3sGvk9aBepRtiGuZJgHV2zFaYZh)
 Such wow! Much amaze!
 
