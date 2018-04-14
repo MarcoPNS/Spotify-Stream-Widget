@@ -7,7 +7,7 @@ A small Tool for Streamers to show the current Track of Spotify to your Viewers!
 ![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/master/img/2018-04-14%2012_05_32-.jpg?raw=true "Screenshot")
 ![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/master/img/screen2.jpg?raw=true "Screenshot")
 
-## [Download v1.0.0.0](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/master/Release/Spot_Widget_1_0_0_0.zip?raw=true)
+## [Download v1.0.1.1](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/master/Release/Spot_Widget_1_0_1_1.zip?raw=true)
 
 ## How to use it?
 1. Download the tool
