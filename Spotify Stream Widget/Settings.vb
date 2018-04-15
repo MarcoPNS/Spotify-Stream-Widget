@@ -8,7 +8,21 @@
         ColorStyleBox.Text = My.Settings.Color
     End Sub
 
-    Private Sub StartViewer(sender As Object, e As EventArgs) Handles ViewerControl.Click
+    Private Sub StartViewer(sender As Object, e As EventArgs) Handles ViewerLaunchBtn.Click
+        If ViewerLaunchBtn.Text = "Close Viewer" Then
+            Select Case SizeSettingBox.Text
+                Case "Small"
+                    SmallViewer.Close()
+
+                Case "Normal"
+                    NormalViewer.Close()
+                Case "Big"
+                    BigViewer.Close()
+            End Select
+            ViewerLaunchBtn.Text = "Open Viewer"
+            Return
+        End If
+        ViewerLaunchBtn.Enabled = False
         'save settings
         My.Settings.Size = SizeSettingBox.Text
         My.Settings.DarkMode = ColorSettingToggle.Checked
@@ -20,6 +34,7 @@
             Case "Small"
                 SmallViewer.Show()
                 SmallViewer.SpotifyConnect()
+
             Case "Normal"
                 NormalViewer.Show()
                 NormalViewer.SpotifyConnect()

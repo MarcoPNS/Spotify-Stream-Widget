@@ -23,7 +23,7 @@ Partial Class Settings
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Settings))
-        Me.ViewerControl = New System.Windows.Forms.Button()
+        Me.ViewerLaunchBtn = New System.Windows.Forms.Button()
         Me.ColorSettingToggle = New MetroFramework.Controls.MetroToggle()
         Me.ColorSettingLabel = New MetroFramework.Controls.MetroLabel()
         Me.CreditLink = New MetroFramework.Controls.MetroLink()
@@ -42,14 +42,14 @@ Partial Class Settings
         Me.CreditPanel.SuspendLayout()
         Me.SuspendLayout()
         '
-        'ViewerControl
+        'ViewerLaunchBtn
         '
-        Me.ViewerControl.Location = New System.Drawing.Point(23, 373)
-        Me.ViewerControl.Name = "ViewerControl"
-        Me.ViewerControl.Size = New System.Drawing.Size(251, 23)
-        Me.ViewerControl.TabIndex = 0
-        Me.ViewerControl.Text = "Open Viewer"
-        Me.ViewerControl.UseVisualStyleBackColor = True
+        Me.ViewerLaunchBtn.Location = New System.Drawing.Point(23, 373)
+        Me.ViewerLaunchBtn.Name = "ViewerLaunchBtn"
+        Me.ViewerLaunchBtn.Size = New System.Drawing.Size(251, 23)
+        Me.ViewerLaunchBtn.TabIndex = 0
+        Me.ViewerLaunchBtn.Text = "Open Viewer"
+        Me.ViewerLaunchBtn.UseVisualStyleBackColor = True
         '
         'ColorSettingToggle
         '
@@ -222,8 +222,8 @@ Partial Class Settings
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
-        Me.Controls.Add(Me.VersionLabel)
         Me.Controls.Add(Me.CreditPanel)
+        Me.Controls.Add(Me.VersionLabel)
         Me.Controls.Add(Me.ColorStyleLabel)
         Me.Controls.Add(Me.ColorStyleBox)
         Me.Controls.Add(Me.ReportLink)
@@ -235,7 +235,7 @@ Partial Class Settings
         Me.Controls.Add(Me.CreditLink)
         Me.Controls.Add(Me.ColorSettingLabel)
         Me.Controls.Add(Me.ColorSettingToggle)
-        Me.Controls.Add(Me.ViewerControl)
+        Me.Controls.Add(Me.ViewerLaunchBtn)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Settings"
@@ -251,7 +251,7 @@ Partial Class Settings
 
     End Sub
 
-    Friend WithEvents ViewerControl As Button
+    Friend WithEvents ViewerLaunchBtn As Button
     Friend WithEvents ColorSettingToggle As MetroFramework.Controls.MetroToggle
     Friend WithEvents ColorSettingLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents CreditLink As MetroFramework.Controls.MetroLink

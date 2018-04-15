@@ -90,8 +90,8 @@ Public Class BigViewer
 
         Dim successful As Boolean = _spotify.Connect
         If successful Then
-            Settings.ViewerControl.Text = "Connection to Spotify successful"
-            Settings.ViewerControl.Enabled = False
+            Settings.ViewerLaunchBtn.Text = "Close Viewer"
+            Settings.ViewerLaunchBtn.Enabled = True
             UpdateInfos()
             _spotify.ListenForEvents = True
         Else

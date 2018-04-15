@@ -76,19 +76,19 @@ Public Class SmallViewer
         'check if Spotfiy is ready
         If Not SpotifyLocalAPI.IsSpotifyRunning Then
             MessageBox.Show("Spotify isn't running!")
-            Me.Close()
+            Close()
             Return
         End If
 
         If Not SpotifyLocalAPI.IsSpotifyWebHelperRunning Then
             MessageBox.Show("SpotifyWebHelper isn't running!")
-            Me.Close()
+            Close()
             Return
         End If
         Dim successful As Boolean = _spotify.Connect
         If successful Then
-            Settings.ViewerControl.Text = "Connection to Spotify successful"
-            Settings.ViewerControl.Enabled = False
+            Settings.ViewerLaunchBtn.Text = "Close Viewer"
+            Settings.ViewerLaunchBtn.Enabled = True
             UpdateInfos()
             _spotify.ListenForEvents = True
         Else
