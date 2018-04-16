@@ -75,7 +75,7 @@ Partial Class NormalViewer
         '
         'AlbumCover
         '
-        Me.AlbumCover.Location = New System.Drawing.Point(30, 14)
+        Me.AlbumCover.Location = New System.Drawing.Point(23, 15)
         Me.AlbumCover.Name = "AlbumCover"
         Me.AlbumCover.Size = New System.Drawing.Size(120, 120)
         Me.AlbumCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage

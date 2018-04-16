@@ -1,5 +1,8 @@
-﻿Public Class Settings
+﻿Imports System.Threading, System.Net
+Public Class Settings
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'check for new version
+        VersionCheck.RunWorkerAsync()
         'get current settings
         VersionLabel.Text = ProductVersion
         ColorSettingToggle.Checked = My.Settings.DarkMode
@@ -7,10 +10,10 @@
         ProgressStyleBox.Text = My.Settings.ProgressBarStyle
         ColorStyleBox.Text = My.Settings.Color
     End Sub
+
     'start event
     Private Sub StartViewer(sender As Object, e As EventArgs) Handles ViewerLaunchBtn.Click
         'close the viewer
-        'TODO: "new viewer feature" need some rework. It produce a lot of memory garbage.
         If ViewerLaunchBtn.Text = "Close Viewer" Then
             Viewer.Close()
             ViewerLaunchBtn.Text = "Open Viewer"
@@ -42,5 +45,22 @@
 
     Private Sub MetroLink2_Click(sender As Object, e As EventArgs) Handles ReportLink.Click
         Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/issues")
+    End Sub
+    'check for updates
+    Private Sub VersionCheck_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles VersionCheck.DoWork
+        Try
+            Dim Version As Integer = Me.ProductVersion.Trim({"."c})
+            Dim ServerResponse As String = New WebClient().DownloadString("https://raw.githubusercontent.com/MarcoPNS/Spotify-Stream-Widget/master/Release/version.md")
+            If Version = ServerResponse.Trim({"."c}) Then
+            Else
+                Dim res As DialogResult = MessageBox.Show("A new version is availalbe. Do you want to check it out? ", "Spotify", MessageBoxButtons.YesNo)
+                If (res = DialogResult.Yes) Then
+                    Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/releases")
+                Else
+                End If
+            End If
+        Catch ex As Exception
+        End Try
+        Return
     End Sub
 End Class

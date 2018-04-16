@@ -39,6 +39,7 @@ Partial Class Settings
         Me.ColorStyleLabel = New MetroFramework.Controls.MetroLabel()
         Me.ColorStyleBox = New MetroFramework.Controls.MetroComboBox()
         Me.VersionLabel = New System.Windows.Forms.Label()
+        Me.VersionCheck = New System.ComponentModel.BackgroundWorker()
         Me.CreditPanel.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -217,6 +218,9 @@ Partial Class Settings
         Me.VersionLabel.TabIndex = 13
         Me.VersionLabel.Text = "version"
         '
+        'VersionCheck
+        '
+        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -267,4 +271,5 @@ Partial Class Settings
     Friend WithEvents ColorStyleLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents ColorStyleBox As MetroFramework.Controls.MetroComboBox
     Friend WithEvents VersionLabel As Label
+    Friend WithEvents VersionCheck As System.ComponentModel.BackgroundWorker
 End Class
