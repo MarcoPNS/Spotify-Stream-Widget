@@ -1,5 +1,5 @@
 ﻿Imports SpotifyAPI.Local, SpotifyAPI.Local.Enums, SpotifyAPI.Local.Models
-Public Class BigViewer
+Public Class Viewer
     Private _spotify As SpotifyLocalAPI
     Private _currentTrack As Track
     Public Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load

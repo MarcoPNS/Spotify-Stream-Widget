@@ -164,6 +164,12 @@
     <Compile Include="SmallViewer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Viewer.Designer.vb">
+      <DependentUpon>Viewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NormalViewer.resx">
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SmallViewer.resx">
       <DependentUpon>SmallViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer.resx">
+      <DependentUpon>Viewer.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
