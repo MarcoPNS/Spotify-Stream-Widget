@@ -106,6 +106,7 @@ Public Class Viewer
         End Select
     End Sub
     Private Sub ActivateWhite()
+        'turn the lights on!
         Theme = MetroFramework.MetroThemeStyle.Light
         timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Light
         timeLabel.Theme = MetroFramework.MetroThemeStyle.Light
