@@ -76,17 +76,40 @@ Public Class NormalViewer
         timeLabel.Text = ""
         'check if Spotfiy is ready
         If Not SpotifyLocalAPI.IsSpotifyRunning Then
-            MessageBox.Show("Spotify isn't running!")
-            Me.Close()
+            Dim res As DialogResult = MessageBox.Show("Spotify isn't running! Should we try to start it?" & vbNewLine & "If this error still appears after some retrys then please start Spotify.", "Spotify", MessageBoxButtons.YesNo)
+            If (res = DialogResult.Yes) Then
+                'try to start it
+                SpotifyLocalAPI.RunSpotify()
+                SpotifyConnect()
+            Else
+                Settings.ViewerLaunchBtn.Enabled = True
+                Close()
+            End If
             Return
         End If
-
+        'check if the WebHelper is running
         If Not SpotifyLocalAPI.IsSpotifyWebHelperRunning Then
-            MessageBox.Show("SpotifyWebHelper isn't running!")
-            Me.Close()
+            Dim res As DialogResult = MessageBox.Show("SpotifyWebHelper isn't running! Should we try to start it?" & vbNewLine & "If this error still appears after some retrys then please check your Spotify settings and activate ""Allow Spotify to be opened from the web"" and restart it.", "Spotify", MessageBoxButtons.YesNo)
+            If (res = DialogResult.Yes) Then
+                'try to start it
+                SpotifyLocalAPI.RunSpotifyWebHelper()
+                SpotifyConnect()
+            Else
+                Settings.ViewerLaunchBtn.Enabled = True
+                Close()
+            End If
             Return
         End If
-        Dim successful As Boolean = _spotify.Connect
+        Dim successful As Boolean
+        'Check if the WebHelper is ready to speak. It can drop some random exception if not. 
+        Try
+            successful = _spotify.Connect
+        Catch ex As Exception
+            MsgBox("Can't connect to Spotify. Please restart Spotify or check your connection." & vbNewLine & ex.Message.ToString)
+            Settings.ViewerLaunchBtn.Enabled = True
+            Close()
+            Return
+        End Try
         If successful Then
             Settings.ViewerLaunchBtn.Enabled = True
             Settings.ViewerLaunchBtn.Text = "Close Viewer"
