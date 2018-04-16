@@ -101,7 +101,7 @@ Public Class Viewer
                 Style = MetroFramework.MetroColorStyle.Red
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Red
             Case "Yellow"
-                Style = MetroFramework.MetroColorStyle.Red
+                Style = MetroFramework.MetroColorStyle.Yellow
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Yellow
         End Select
     End Sub
@@ -122,7 +122,8 @@ Public Class Viewer
             If (res = DialogResult.Yes) Then
                 'try to start it
                 SpotifyLocalAPI.RunSpotify()
-                SpotifyConnect()
+                Settings.ViewerLaunchBtn.Enabled = True
+                Close()
             Else
                 Settings.ViewerLaunchBtn.Enabled = True
                 Close()
@@ -135,7 +136,8 @@ Public Class Viewer
             If (res = DialogResult.Yes) Then
                 'try to start it
                 SpotifyLocalAPI.RunSpotifyWebHelper()
-                SpotifyConnect()
+                Settings.ViewerLaunchBtn.Enabled = True
+                Close()
             Else
                 Settings.ViewerLaunchBtn.Enabled = True
                 Close()
@@ -161,8 +163,14 @@ Public Class Viewer
             Dim res As DialogResult = MessageBox.Show("Couldn't connect to the spotify client. Retry?", "Spotify", MessageBoxButtons.YesNo)
             If (res = DialogResult.Yes) Then
                 SpotifyConnect()
+            Else
+                Close()
             End If
         End If
+    End Sub
+    Private Sub Wadde(sender As Object, e As EventArgs) Handles Me.FormClosing
+        _spotify.ListenForEvents = False
+        MsgBox("HiKids!")
     End Sub
     Public Sub UpdateInfos()
         Dim status As StatusResponse = _spotify.GetStatus()
