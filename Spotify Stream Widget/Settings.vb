@@ -7,13 +7,14 @@
         ProgressStyleBox.Text = My.Settings.ProgressBarStyle
         ColorStyleBox.Text = My.Settings.Color
     End Sub
-
+    'start event
     Private Sub StartViewer(sender As Object, e As EventArgs) Handles ViewerLaunchBtn.Click
+        'close the old viewer
+        'TODO: "new viewer feature" need some rework. It produce a lot of memory garbage.
         If ViewerLaunchBtn.Text = "Close Viewer" Then
             Select Case SizeSettingBox.Text
                 Case "Small"
                     SmallViewer.Close()
-
                 Case "Normal"
                     NormalViewer.Close()
                 Case "Big"
@@ -34,7 +35,6 @@
             Case "Small"
                 SmallViewer.Show()
                 SmallViewer.SpotifyConnect()
-
             Case "Normal"
                 NormalViewer.Show()
                 NormalViewer.SpotifyConnect()
@@ -43,9 +43,9 @@
                 BigViewer.SpotifyConnect()
         End Select
     End Sub
-
+    'credit stuff
     Private Sub CreditLink_Click(sender As Object, e As EventArgs) Handles CreditLink.Click
-        Process.Start("https://twitter.com/MarcoSadowski")
+        Process.Start("https://twitter.com/MarcoSadowski") 'best guy on earth!
     End Sub
 
     Private Sub MetroLink1_Click(sender As Object, e As EventArgs) Handles CreditsLink.Click

@@ -54,11 +54,11 @@ Partial Class SmallViewer
         'TrackLabel
         '
         Me.TrackLabel.AutoSize = True
-        Me.TrackLabel.Font = New System.Drawing.Font("Calibri", 18.0!)
+        Me.TrackLabel.Font = New System.Drawing.Font("Calibri", 20.0!)
         Me.TrackLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
         Me.TrackLabel.Location = New System.Drawing.Point(108, 12)
         Me.TrackLabel.Name = "TrackLabel"
-        Me.TrackLabel.Size = New System.Drawing.Size(187, 29)
+        Me.TrackLabel.Size = New System.Drawing.Size(205, 33)
         Me.TrackLabel.TabIndex = 10
         Me.TrackLabel.Text = "<< Track Name >>"
         '
