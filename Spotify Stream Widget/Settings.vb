@@ -14,14 +14,7 @@
         'close the old viewer
         'TODO: "new viewer feature" need some rework. It produce a lot of memory garbage.
         If ViewerLaunchBtn.Text = "Close Viewer" Then
-            Select Case SizeSettingBox.Text
-                Case "Small"
-                    SmallViewer.Close()
-                Case "Normal"
-                    NormalViewer.Close()
-                Case "Big"
-                    BigViewer.Close()
-            End Select
+            Viewer.Close()
             ViewerLaunchBtn.Text = "Open Viewer"
             Return
         End If
@@ -33,17 +26,8 @@
         My.Settings.Color = ColorStyleBox.Text
         My.Settings.Save()
         'load viewer
-        Select Case SizeSettingBox.Text
-            Case "Small"
-                SmallViewer.Show()
-                SmallViewer.SpotifyConnect()
-            Case "Normal"
-                NormalViewer.Show()
-                NormalViewer.SpotifyConnect()
-            Case "Big"
-                BigViewer.Show()
-                BigViewer.SpotifyConnect()
-        End Select
+        Viewer.Show()
+        Viewer.SpotifyConnect()
     End Sub
     'credit stuff
     Private Sub CreditLink_Click(sender As Object, e As EventArgs) Handles CreditLink.Click

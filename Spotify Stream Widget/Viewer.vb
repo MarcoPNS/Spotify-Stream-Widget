@@ -23,8 +23,6 @@ Public Class Viewer
     Private Sub ApplySize()
         Select Case My.Settings.Size
             Case "Small"
-            Case "Normal"
-            Case "Big"
                 Me.Size = SmallViewer.Size
                 AlbumCover.Size = SmallViewer.AlbumCover.Size
                 AlbumCover.Location = SmallViewer.AlbumCover.Location
@@ -34,6 +32,31 @@ Public Class Viewer
                 timeProgressBar.Size = SmallViewer.timeProgressBar.Size
                 timeLabel.Visible = False
                 AlbumLabel.Visible = False
+            Case "Normal"
+                Me.Size = NormalViewer.Size
+                AlbumCover.Size = NormalViewer.AlbumCover.Size
+                AlbumCover.Location = NormalViewer.AlbumCover.Location
+                TrackLabel.Location = NormalViewer.TrackLabel.Location
+                ArtistLabel.Location = NormalViewer.ArtistLabel.Location
+                timeProgressBar.Location = NormalViewer.timeProgressBar.Location
+                timeProgressBar.Size = NormalViewer.timeProgressBar.Size
+                timeLabel.Visible = True
+                timeLabel.Location = NormalViewer.timeLabel.Location
+                timeLabel.Size = NormalViewer.timeLabel.Size
+                AlbumLabel.Visible = False
+            Case "Big"
+                Me.Size = BigViewer.Size
+                AlbumCover.Size = BigViewer.AlbumCover.Size
+                AlbumCover.Location = BigViewer.AlbumCover.Location
+                TrackLabel.Location = BigViewer.TrackLabel.Location
+                ArtistLabel.Location = BigViewer.ArtistLabel.Location
+                timeProgressBar.Location = BigViewer.timeProgressBar.Location
+                timeProgressBar.Size = BigViewer.timeProgressBar.Size
+                timeLabel.Visible = True
+                timeLabel.Location = BigViewer.timeLabel.Location
+                timeLabel.Size = BigViewer.timeLabel.Size
+                AlbumLabel.Visible = True
+                AlbumLabel.Location = BigViewer.AlbumLabel.Location
         End Select
     End Sub
     Private Sub GetColor()

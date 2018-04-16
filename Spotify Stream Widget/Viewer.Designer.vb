@@ -38,7 +38,7 @@ Partial Class Viewer
         Me.timeLabel.Name = "timeLabel"
         Me.timeLabel.Size = New System.Drawing.Size(350, 19)
         Me.timeLabel.TabIndex = 14
-        Me.timeLabel.Text = "time"
+        Me.timeLabel.Text = "Don't change the design here! Use the other design forms!"
         Me.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.timeLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         '
