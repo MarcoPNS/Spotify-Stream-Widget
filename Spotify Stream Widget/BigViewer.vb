@@ -121,33 +121,33 @@ Public Class BigViewer
     Private Sub ResponsiveText()
         'Track
         Select Case TrackLabel.Text.Length
-            Case 0 To 20
+            Case 0 To 24
                 TrackLabel.Font = New Font("Calibri", 20)
-            Case 21 To 25
+            Case 25 To 30
                 TrackLabel.Font = New Font("Calibri", 17)
-            Case 26 To 30
+            Case 31 To 35
                 TrackLabel.Font = New Font("Calibri", 15)
-            Case Is >= 31
+            Case Is >= 36
                 TrackLabel.Font = New Font("Calibri", 12)
         End Select
         'Artist
         Select Case ArtistLabel.Text.Length
-            Case 0 To 20
+            Case 0 To 24
                 ArtistLabel.Font = New Font("Calibri", 16)
-            Case 21 To 25
+            Case 25 To 30
                 ArtistLabel.Font = New Font("Calibri", 14)
-            Case 26 To 30
+            Case 31 To 35
                 ArtistLabel.Font = New Font("Calibri", 12)
-            Case Is >= 31
+            Case Is >= 36
                 ArtistLabel.Font = New Font("Calibri", 10)
         End Select
         'Album
         Select Case AlbumLabel.Text.Length
-            Case 0 To 20
+            Case 0 To 30
                 AlbumLabel.Font = New Font("Calibri", 14)
-            Case 21 To 25
+            Case 31 To 35
                 AlbumLabel.Font = New Font("Calibri", 12)
-            Case Is >= 26
+            Case Is >= 36
                 AlbumLabel.Font = New Font("Calibri", 10)
         End Select
     End Sub
