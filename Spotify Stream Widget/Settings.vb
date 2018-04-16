@@ -16,6 +16,10 @@ Public Class Settings
         'close the viewer
         If ViewerLaunchBtn.Text = "Close Viewer" Then
             Viewer.Close()
+            ColorSettingToggle.Enabled = True
+            ColorStyleBox.Enabled = True
+            SizeSettingBox.Enabled = True
+            ProgressStyleBox.Enabled = True
             ViewerLaunchBtn.Text = "Open Viewer"
             Return
         End If
@@ -26,6 +30,10 @@ Public Class Settings
         My.Settings.ProgressBarStyle = ProgressStyleBox.Text
         My.Settings.Color = ColorStyleBox.Text
         My.Settings.Save()
+        ColorSettingToggle.Enabled = False
+        ColorStyleBox.Enabled = False
+        SizeSettingBox.Enabled = False
+        ProgressStyleBox.Enabled = False
         'load viewer
         Viewer.Show()
         Viewer.SpotifyConnect()

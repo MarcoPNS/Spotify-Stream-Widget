@@ -122,9 +122,17 @@ Public Class Viewer
             If (res = DialogResult.Yes) Then
                 'try to start it
                 SpotifyLocalAPI.RunSpotify()
+                Settings.ColorSettingToggle.Enabled = True
+                Settings.ColorStyleBox.Enabled = True
+                Settings.SizeSettingBox.Enabled = True
+                Settings.ProgressStyleBox.Enabled = True
                 Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             Else
+                Settings.ColorSettingToggle.Enabled = True
+                Settings.ColorStyleBox.Enabled = True
+                Settings.SizeSettingBox.Enabled = True
+                Settings.ProgressStyleBox.Enabled = True
                 Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             End If
@@ -136,9 +144,17 @@ Public Class Viewer
             If (res = DialogResult.Yes) Then
                 'try to start it
                 SpotifyLocalAPI.RunSpotifyWebHelper()
+                Settings.ColorSettingToggle.Enabled = True
+                Settings.ColorStyleBox.Enabled = True
+                Settings.SizeSettingBox.Enabled = True
+                Settings.ProgressStyleBox.Enabled = True
                 Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             Else
+                Settings.ColorSettingToggle.Enabled = True
+                Settings.ColorStyleBox.Enabled = True
+                Settings.SizeSettingBox.Enabled = True
+                Settings.ProgressStyleBox.Enabled = True
                 Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             End If
@@ -150,6 +166,10 @@ Public Class Viewer
             successful = _spotify.Connect
         Catch ex As Exception
             MsgBox("Can't connect to Spotify. Please restart Spotify or check your connection." & vbNewLine & ex.Message.ToString)
+            Settings.ColorSettingToggle.Enabled = True
+            Settings.ColorStyleBox.Enabled = True
+            Settings.SizeSettingBox.Enabled = True
+            Settings.ProgressStyleBox.Enabled = True
             Settings.ViewerLaunchBtn.Enabled = True
             Close()
             Return
@@ -164,13 +184,17 @@ Public Class Viewer
             If (res = DialogResult.Yes) Then
                 SpotifyConnect()
             Else
+                Settings.ColorSettingToggle.Enabled = True
+                Settings.ColorStyleBox.Enabled = True
+                Settings.SizeSettingBox.Enabled = True
+                Settings.ProgressStyleBox.Enabled = True
+                Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             End If
         End If
     End Sub
-    Private Sub Wadde(sender As Object, e As EventArgs) Handles Me.FormClosing
+    Private Sub SpotifyAPISleep(sender As Object, e As EventArgs) Handles Me.FormClosing
         _spotify.ListenForEvents = False
-        MsgBox("HiKids!")
     End Sub
     Public Sub UpdateInfos()
         Dim status As StatusResponse = _spotify.GetStatus()
