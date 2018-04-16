@@ -7,6 +7,8 @@
         ProgressStyleBox.Text = My.Settings.ProgressBarStyle
         ColorStyleBox.Text = My.Settings.Color
     End Sub
+    'TODO: just a idea - To fix the problem with the "new viewer" maybe just call the SpotifyAPI only in the main form and not in the viewer.
+    Dim ActiveViewer As Form = SmallViewer
     'start event
     Private Sub StartViewer(sender As Object, e As EventArgs) Handles ViewerLaunchBtn.Click
         'close the old viewer
