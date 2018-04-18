@@ -2,6 +2,8 @@
 Public Class Viewer
     Private _spotify As SpotifyLocalAPI
     Private _currentTrack As Track
+
+    'loading....
     Public Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ApplySize()
         Select Case My.Settings.ProgressBarStyle
@@ -20,6 +22,8 @@ Public Class Viewer
         AddHandler _spotify.OnTrackChange, AddressOf _spotify_OnTrackChange
         AddHandler _spotify.OnTrackTimeChange, AddressOf _spotify_OnTrackTimeChange
     End Sub
+
+    'change the size of the viewer
     Private Sub ApplySize()
         Select Case My.Settings.Size
             Case "Small"
@@ -59,6 +63,8 @@ Public Class Viewer
                 AlbumLabel.Location = BigViewer.AlbumLabel.Location
         End Select
     End Sub
+
+    'change the style color of the viewer
     Private Sub GetColor()
         Select Case My.Settings.Color
             Case "Green"
@@ -105,8 +111,9 @@ Public Class Viewer
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Yellow
         End Select
     End Sub
+
+    'activate the Metro UI Light Theme
     Private Sub ActivateWhite()
-        'turn the lights on!
         Theme = MetroFramework.MetroThemeStyle.Light
         timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Light
         timeLabel.Theme = MetroFramework.MetroThemeStyle.Light
@@ -114,6 +121,8 @@ Public Class Viewer
         ArtistLabel.ForeColor = Color.FromArgb(64, 64, 64)
         AlbumLabel.ForeColor = Color.FromArgb(64, 64, 64)
     End Sub
+
+    'Connects with Spotify. Needs to be called before all other SpotifyAPI functions
     Public Sub SpotifyConnect()
         timeLabel.Text = ""
         'check if Spotfiy is ready
@@ -193,15 +202,22 @@ Public Class Viewer
             End If
         End If
     End Sub
+
+    'Pause the work of the SpotifyAPI when the viewer is closed
     Private Sub SpotifyAPISleep(sender As Object, e As EventArgs) Handles Me.FormClosing
         _spotify.ListenForEvents = False
     End Sub
+
+
     Public Sub UpdateInfos()
         Dim status As StatusResponse = _spotify.GetStatus()
         If status Is Nothing Then Return
         If status.Track IsNot Nothing Then UpdateTrack(status.Track)
     End Sub
+
+
     Public Async Sub UpdateTrack(ByVal track As Track)
+        'get the current track
         _currentTrack = track
         TrackLabel.Text = If(track.IsAd(), "ADVERT", "")
         timeProgressBar.Maximum = track.Length
@@ -213,6 +229,8 @@ Public Class Viewer
         'change text size when the title is longer
         ResponsiveText()
     End Sub
+
+    'change the text size based on the text length
     Private Sub ResponsiveText()
         'Track
         Select Case TrackLabel.Text.Length
@@ -246,6 +264,9 @@ Public Class Viewer
                 AlbumLabel.Font = New Font("Calibri", 10)
         End Select
     End Sub
+
+    'Event gets triggered, when the Track is changed
+    'TODO: Why does the event not fire when a third party app change the track on spotify? (example: Streamlabs Chatbot)
     Private Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
         If InvokeRequired Then
             Invoke(Sub()
@@ -255,6 +276,8 @@ Public Class Viewer
         End If
         UpdateTrack(e.NewTrack)
     End Sub
+
+    'Event gets triggered, when the tracktime changes
     Private Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
         If InvokeRequired Then
             Invoke(Sub()
@@ -271,4 +294,6 @@ Public Class Viewer
         If secs.Length < 2 Then secs = "0" & secs
         Return mins & ":" + secs
     End Function
+
+
 End Class
