@@ -62,7 +62,7 @@ Public Class Settings
             Dim ServerResponse As String = New WebClient().DownloadString("https://raw.githubusercontent.com/MarcoPNS/Spotify-Stream-Widget/master/Release/version.md")
             If Version = ServerResponse.Trim({"."c}) Then
             Else
-                Dim res As DialogResult = MessageBox.Show("A new version is available! & (v" & ServerResponse & ") Do you want to check it out? ", "Spotify", MessageBoxButtons.YesNo)
+                Dim res As DialogResult = MessageBox.Show("A new version is available! Version " & ServerResponse & "Do you want to check it out? ", "Spotify", MessageBoxButtons.YesNo)
                 If (res = DialogResult.Yes) Then
                     Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/releases")
                 Else
