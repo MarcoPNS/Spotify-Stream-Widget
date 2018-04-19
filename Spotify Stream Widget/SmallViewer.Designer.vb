@@ -75,7 +75,7 @@ Partial Class SmallViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(420, 100)
+        Me.ClientSize = New System.Drawing.Size(420, 107)
         Me.ControlBox = False
         Me.Controls.Add(Me.timeProgressBar)
         Me.Controls.Add(Me.ArtistLabel)

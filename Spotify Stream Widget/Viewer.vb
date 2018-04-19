@@ -2,6 +2,8 @@
 Public Class Viewer
     Private _spotify As SpotifyLocalAPI
     Private _currentTrack As Track
+
+    'loading....
     Public Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ApplySize()
         Select Case My.Settings.ProgressBarStyle
@@ -20,6 +22,8 @@ Public Class Viewer
         AddHandler _spotify.OnTrackChange, AddressOf _spotify_OnTrackChange
         AddHandler _spotify.OnTrackTimeChange, AddressOf _spotify_OnTrackTimeChange
     End Sub
+
+    'change the size of the viewer
     Private Sub ApplySize()
         Select Case My.Settings.Size
             Case "Small"
@@ -59,6 +63,8 @@ Public Class Viewer
                 AlbumLabel.Location = BigViewer.AlbumLabel.Location
         End Select
     End Sub
+
+    'change the style color of the viewer
     Private Sub GetColor()
         Select Case My.Settings.Color
             Case "Green"
@@ -105,8 +111,9 @@ Public Class Viewer
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Yellow
         End Select
     End Sub
+
+    'activate the Metro UI Light Theme
     Private Sub ActivateWhite()
-        'turn the lights on!
         Theme = MetroFramework.MetroThemeStyle.Light
         timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Light
         timeLabel.Theme = MetroFramework.MetroThemeStyle.Light
@@ -114,6 +121,8 @@ Public Class Viewer
         ArtistLabel.ForeColor = Color.FromArgb(64, 64, 64)
         AlbumLabel.ForeColor = Color.FromArgb(64, 64, 64)
     End Sub
+
+    'Connects with Spotify. Needs to be called before all other SpotifyAPI functions
     Public Sub SpotifyConnect()
         timeLabel.Text = ""
         'check if Spotfiy is ready
@@ -122,18 +131,8 @@ Public Class Viewer
             If (res = DialogResult.Yes) Then
                 'try to start it
                 SpotifyLocalAPI.RunSpotify()
-                Settings.ColorSettingToggle.Enabled = True
-                Settings.ColorStyleBox.Enabled = True
-                Settings.SizeSettingBox.Enabled = True
-                Settings.ProgressStyleBox.Enabled = True
-                Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             Else
-                Settings.ColorSettingToggle.Enabled = True
-                Settings.ColorStyleBox.Enabled = True
-                Settings.SizeSettingBox.Enabled = True
-                Settings.ProgressStyleBox.Enabled = True
-                Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             End If
             Return
@@ -144,18 +143,8 @@ Public Class Viewer
             If (res = DialogResult.Yes) Then
                 'try to start it
                 SpotifyLocalAPI.RunSpotifyWebHelper()
-                Settings.ColorSettingToggle.Enabled = True
-                Settings.ColorStyleBox.Enabled = True
-                Settings.SizeSettingBox.Enabled = True
-                Settings.ProgressStyleBox.Enabled = True
-                Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             Else
-                Settings.ColorSettingToggle.Enabled = True
-                Settings.ColorStyleBox.Enabled = True
-                Settings.SizeSettingBox.Enabled = True
-                Settings.ProgressStyleBox.Enabled = True
-                Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             End If
             Return
@@ -166,11 +155,6 @@ Public Class Viewer
             successful = _spotify.Connect
         Catch ex As Exception
             MsgBox("Can't connect to Spotify. Please restart Spotify or check your connection." & vbNewLine & ex.Message.ToString)
-            Settings.ColorSettingToggle.Enabled = True
-            Settings.ColorStyleBox.Enabled = True
-            Settings.SizeSettingBox.Enabled = True
-            Settings.ProgressStyleBox.Enabled = True
-            Settings.ViewerLaunchBtn.Enabled = True
             Close()
             Return
         End Try
@@ -184,24 +168,31 @@ Public Class Viewer
             If (res = DialogResult.Yes) Then
                 SpotifyConnect()
             Else
-                Settings.ColorSettingToggle.Enabled = True
-                Settings.ColorStyleBox.Enabled = True
-                Settings.SizeSettingBox.Enabled = True
-                Settings.ProgressStyleBox.Enabled = True
-                Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             End If
         End If
     End Sub
+
+    'Pause the work of the SpotifyAPI when the viewer is closed
     Private Sub SpotifyAPISleep(sender As Object, e As EventArgs) Handles Me.FormClosing
+        Settings.ColorSettingToggle.Enabled = True
+        Settings.ColorStyleBox.Enabled = True
+        Settings.SizeSettingBox.Enabled = True
+        Settings.ProgressStyleBox.Enabled = True
+        Settings.ViewerLaunchBtn.Enabled = True
         _spotify.ListenForEvents = False
     End Sub
+
+
     Public Sub UpdateInfos()
         Dim status As StatusResponse = _spotify.GetStatus()
         If status Is Nothing Then Return
         If status.Track IsNot Nothing Then UpdateTrack(status.Track)
     End Sub
+
+
     Public Async Sub UpdateTrack(ByVal track As Track)
+        'get the current track
         _currentTrack = track
         TrackLabel.Text = If(track.IsAd(), "ADVERT", "")
         timeProgressBar.Maximum = track.Length
@@ -213,6 +204,8 @@ Public Class Viewer
         'change text size when the title is longer
         ResponsiveText()
     End Sub
+
+    'change the text size based on the text length
     Private Sub ResponsiveText()
         'Track
         Select Case TrackLabel.Text.Length
@@ -246,7 +239,10 @@ Public Class Viewer
                 AlbumLabel.Font = New Font("Calibri", 10)
         End Select
     End Sub
+
+    'Event gets triggered, when the Track is changed
     Private Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
+        Console.Write("trackchange")
         If InvokeRequired Then
             Invoke(Sub()
                        _spotify_OnTrackChange(sender, e)
@@ -255,15 +251,23 @@ Public Class Viewer
         End If
         UpdateTrack(e.NewTrack)
     End Sub
+
+    'Event gets triggered, when the tracktime changes
     Private Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
-        If InvokeRequired Then
-            Invoke(Sub()
-                       _spotify_OnTrackTimeChange(sender, e)
-                   End Sub)
-            Return
-        End If
-        timeLabel.Text = $"{FormatTime(e.TrackTime)}/{FormatTime(_currentTrack.Length)}"
-        If e.TrackTime < _currentTrack.Length Then timeProgressBar.Value = CInt(e.TrackTime)
+        'Attention: when the track get changed by a third party then this will kill the SpotifyAPI without TryCatch
+        Try
+            Console.Write("tracktime")
+            If InvokeRequired Then
+                Invoke(Sub()
+                           _spotify_OnTrackTimeChange(sender, e)
+                       End Sub)
+                Return
+            End If
+            timeLabel.Text = $"{FormatTime(e.TrackTime)}/{FormatTime(_currentTrack.Length)}"
+            If e.TrackTime < _currentTrack.Length Then timeProgressBar.Value = CInt(e.TrackTime)
+        Catch ex As Exception
+
+        End Try
     End Sub
     Private Shared Function FormatTime(ByVal sec As Double) As String
         Dim span As TimeSpan = TimeSpan.FromSeconds(sec)
@@ -271,4 +275,5 @@ Public Class Viewer
         If secs.Length < 2 Then secs = "0" & secs
         Return mins & ":" + secs
     End Function
+
 End Class
