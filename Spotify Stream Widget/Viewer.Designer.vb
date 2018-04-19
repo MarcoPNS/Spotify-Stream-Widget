@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Viewer
     Inherits MetroFramework.Forms.MetroForm
 
     'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Viewer
     'Hinweis: Die folgende Prozedur ist für den Windows Form-Designer erforderlich.
     'Das Bearbeiten ist mit dem Windows Form-Designer möglich.  
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Viewer))
         Me.timeLabel = New MetroFramework.Controls.MetroLabel()
@@ -29,9 +29,7 @@ Partial Class Viewer
         Me.ArtistLabel = New System.Windows.Forms.Label()
         Me.TrackLabel = New System.Windows.Forms.Label()
         Me.AlbumCover = New System.Windows.Forms.PictureBox()
-        Me.ReloadButton = New System.Windows.Forms.PictureBox()
         CType(Me.AlbumCover, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ReloadButton, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'timeLabel
@@ -96,24 +94,12 @@ Partial Class Viewer
         Me.AlbumCover.TabIndex = 9
         Me.AlbumCover.TabStop = False
         '
-        'ReloadButton
-        '
-        Me.ReloadButton.Image = Global.Spotify_Stream_Widget.My.Resources.Resources.refresh_icon
-        Me.ReloadButton.Location = New System.Drawing.Point(595, 84)
-        Me.ReloadButton.Name = "ReloadButton"
-        Me.ReloadButton.Size = New System.Drawing.Size(30, 26)
-        Me.ReloadButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.ReloadButton.TabIndex = 15
-        Me.ReloadButton.TabStop = False
-        Me.ReloadButton.Visible = False
-        '
         'Viewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(789, 319)
         Me.ControlBox = False
-        Me.Controls.Add(Me.ReloadButton)
         Me.Controls.Add(Me.timeLabel)
         Me.Controls.Add(Me.timeProgressBar)
         Me.Controls.Add(Me.AlbumLabel)
@@ -131,7 +117,6 @@ Partial Class Viewer
         Me.Text = "Viewer"
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
         CType(Me.AlbumCover, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ReloadButton, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -143,5 +128,4 @@ Partial Class Viewer
     Friend WithEvents ArtistLabel As Label
     Friend WithEvents TrackLabel As Label
     Friend WithEvents AlbumCover As PictureBox
-    Friend WithEvents ReloadButton As PictureBox
 End Class

@@ -29,9 +29,7 @@ Partial Class BigViewer
         Me.AlbumLabel = New System.Windows.Forms.Label()
         Me.timeProgressBar = New MetroFramework.Controls.MetroProgressBar()
         Me.timeLabel = New MetroFramework.Controls.MetroLabel()
-        Me.ReloadButton = New System.Windows.Forms.PictureBox()
         CType(Me.AlbumCover, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ReloadButton, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'AlbumCover
@@ -96,23 +94,12 @@ Partial Class BigViewer
         Me.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.timeLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         '
-        'ReloadButton
-        '
-        Me.ReloadButton.Image = Global.Spotify_Stream_Widget.My.Resources.Resources.refresh_icon
-        Me.ReloadButton.Location = New System.Drawing.Point(517, 29)
-        Me.ReloadButton.Name = "ReloadButton"
-        Me.ReloadButton.Size = New System.Drawing.Size(30, 26)
-        Me.ReloadButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.ReloadButton.TabIndex = 15
-        Me.ReloadButton.TabStop = False
-        '
         'BigViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(580, 200)
         Me.ControlBox = False
-        Me.Controls.Add(Me.ReloadButton)
         Me.Controls.Add(Me.timeLabel)
         Me.Controls.Add(Me.timeProgressBar)
         Me.Controls.Add(Me.AlbumLabel)
@@ -128,7 +115,6 @@ Partial Class BigViewer
         Me.Text = "Spotify Viewer"
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
         CType(Me.AlbumCover, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ReloadButton, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -139,5 +125,4 @@ Partial Class BigViewer
     Friend WithEvents AlbumLabel As Label
     Friend WithEvents timeProgressBar As MetroFramework.Controls.MetroProgressBar
     Friend WithEvents timeLabel As MetroFramework.Controls.MetroLabel
-    Friend WithEvents ReloadButton As PictureBox
 End Class

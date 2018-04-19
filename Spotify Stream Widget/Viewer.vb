@@ -21,7 +21,6 @@ Public Class Viewer
         _spotify = New SpotifyLocalAPI()
         AddHandler _spotify.OnTrackChange, AddressOf _spotify_OnTrackChange
         AddHandler _spotify.OnTrackTimeChange, AddressOf _spotify_OnTrackTimeChange
-        AddHandler _spotify.OnPlayStateChange, AddressOf _spotify_OnPlayStateChange
     End Sub
 
     'change the size of the viewer
@@ -35,7 +34,6 @@ Public Class Viewer
                 ArtistLabel.Location = SmallViewer.ArtistLabel.Location
                 timeProgressBar.Location = SmallViewer.timeProgressBar.Location
                 timeProgressBar.Size = SmallViewer.timeProgressBar.Size
-                ReloadButton.Location = SmallViewer.ReloadButton.Location
                 timeLabel.Visible = False
                 AlbumLabel.Visible = False
             Case "Normal"
@@ -46,7 +44,6 @@ Public Class Viewer
                 ArtistLabel.Location = NormalViewer.ArtistLabel.Location
                 timeProgressBar.Location = NormalViewer.timeProgressBar.Location
                 timeProgressBar.Size = NormalViewer.timeProgressBar.Size
-                ReloadButton.Location = NormalViewer.ReloadButton.Location
                 timeLabel.Visible = True
                 timeLabel.Location = NormalViewer.timeLabel.Location
                 timeLabel.Size = NormalViewer.timeLabel.Size
@@ -59,7 +56,6 @@ Public Class Viewer
                 ArtistLabel.Location = BigViewer.ArtistLabel.Location
                 timeProgressBar.Location = BigViewer.timeProgressBar.Location
                 timeProgressBar.Size = BigViewer.timeProgressBar.Size
-                ReloadButton.Location = BigViewer.ReloadButton.Location
                 timeLabel.Visible = True
                 timeLabel.Location = BigViewer.timeLabel.Location
                 timeLabel.Size = BigViewer.timeLabel.Size
@@ -245,9 +241,8 @@ Public Class Viewer
     End Sub
 
     'Event gets triggered, when the Track is changed
-    'TODO: Why does the event not fire when a third party app change the track on spotify? (example: Streamlabs Chatbot)
-    'possible fix to refresh the track on the PlayState Event
     Private Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
+        Console.Write("trackchange")
         If InvokeRequired Then
             Invoke(Sub()
                        _spotify_OnTrackChange(sender, e)
@@ -259,14 +254,20 @@ Public Class Viewer
 
     'Event gets triggered, when the tracktime changes
     Private Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
-        If InvokeRequired Then
-            Invoke(Sub()
-                       _spotify_OnTrackTimeChange(sender, e)
-                   End Sub)
-            Return
-        End If
-        timeLabel.Text = $"{FormatTime(e.TrackTime)}/{FormatTime(_currentTrack.Length)}"
-        If e.TrackTime < _currentTrack.Length Then timeProgressBar.Value = CInt(e.TrackTime)
+        'Attention: when the track get changed by a third party then this will kill the SpotifyAPI without TryCatch
+        Try
+            Console.Write("tracktime")
+            If InvokeRequired Then
+                Invoke(Sub()
+                           _spotify_OnTrackTimeChange(sender, e)
+                       End Sub)
+                Return
+            End If
+            timeLabel.Text = $"{FormatTime(e.TrackTime)}/{FormatTime(_currentTrack.Length)}"
+            If e.TrackTime < _currentTrack.Length Then timeProgressBar.Value = CInt(e.TrackTime)
+        Catch ex As Exception
+
+        End Try
     End Sub
     Private Shared Function FormatTime(ByVal sec As Double) As String
         Dim span As TimeSpan = TimeSpan.FromSeconds(sec)
@@ -275,49 +276,4 @@ Public Class Viewer
         Return mins & ":" + secs
     End Function
 
-    'Event gets triggered, when the PlayState changes.
-    'TODO: Check if this fixed the problem with third party players who change the track on Spotify
-    Private Sub _spotify_OnPlayStateChange(ByVal sender As Object, ByVal e As PlayStateEventArgs)
-        If InvokeRequired Then
-            Invoke(Sub()
-                       _spotify_OnPlayStateChange(sender, e)
-                   End Sub)
-            Return
-        End If
-        If e.Playing = True Then
-            UpdateInfos()
-        Else
-            Return
-        End If
-    End Sub
-
-    'ReloadButton Event
-    'TODO: delete the Reload Button if everything works perfect. 
-    Private Sub ReloadButton_Click(sender As Object, e As EventArgs) Handles ReloadButton.Click
-        UpdateInfos()
-    End Sub
-
-    'show and hide the reload button
-    Private Sub ShowReloadButton(sender As Object, e As EventArgs) Handles MyBase.MouseHover, ReloadButton.MouseHover, TrackLabel.MouseHover, ArtistLabel.MouseHover, AlbumCover.MouseHover
-        If My.Settings.HideReload = True Then
-            Return
-        Else
-            If ReloadButton.Visible = True Then
-                Return
-            Else
-                ReloadButton.Visible = True
-            End If
-        End If
-    End Sub
-    Private Sub HideReloadButton(sender As Object, e As EventArgs) Handles MyBase.MouseLeave, ReloadButton.MouseLeave, TrackLabel.MouseLeave, ArtistLabel.MouseLeave, AlbumCover.MouseLeave
-        If My.Settings.HideReload = True Then
-            Return
-        Else
-            If ReloadButton.Visible = True Then
-                ReloadButton.Visible = False
-            Else
-                Return
-            End If
-        End If
-    End Sub
 End Class

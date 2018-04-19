@@ -28,9 +28,7 @@ Partial Class NormalViewer
         Me.ArtistLabel = New System.Windows.Forms.Label()
         Me.TrackLabel = New System.Windows.Forms.Label()
         Me.AlbumCover = New System.Windows.Forms.PictureBox()
-        Me.ReloadButton = New System.Windows.Forms.PictureBox()
         CType(Me.AlbumCover, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ReloadButton, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'timeLabel
@@ -84,23 +82,12 @@ Partial Class NormalViewer
         Me.AlbumCover.TabIndex = 9
         Me.AlbumCover.TabStop = False
         '
-        'ReloadButton
-        '
-        Me.ReloadButton.Image = Global.Spotify_Stream_Widget.My.Resources.Resources.refresh_icon
-        Me.ReloadButton.Location = New System.Drawing.Point(442, 19)
-        Me.ReloadButton.Name = "ReloadButton"
-        Me.ReloadButton.Size = New System.Drawing.Size(30, 26)
-        Me.ReloadButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.ReloadButton.TabIndex = 15
-        Me.ReloadButton.TabStop = False
-        '
         'NormalViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(503, 151)
         Me.ControlBox = False
-        Me.Controls.Add(Me.ReloadButton)
         Me.Controls.Add(Me.timeLabel)
         Me.Controls.Add(Me.timeProgressBar)
         Me.Controls.Add(Me.ArtistLabel)
@@ -117,7 +104,6 @@ Partial Class NormalViewer
         Me.Text = "Spotify Viewer"
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
         CType(Me.AlbumCover, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ReloadButton, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -128,5 +114,4 @@ Partial Class NormalViewer
     Friend WithEvents ArtistLabel As Label
     Friend WithEvents TrackLabel As Label
     Friend WithEvents AlbumCover As PictureBox
-    Friend WithEvents ReloadButton As PictureBox
 End Class
