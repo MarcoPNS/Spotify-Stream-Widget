@@ -23,7 +23,7 @@ Partial Class Settings
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Settings))
-        Me.ViewerControl = New System.Windows.Forms.Button()
+        Me.ViewerLaunchBtn = New System.Windows.Forms.Button()
         Me.ColorSettingToggle = New MetroFramework.Controls.MetroToggle()
         Me.ColorSettingLabel = New MetroFramework.Controls.MetroLabel()
         Me.CreditLink = New MetroFramework.Controls.MetroLink()
@@ -39,17 +39,18 @@ Partial Class Settings
         Me.ColorStyleLabel = New MetroFramework.Controls.MetroLabel()
         Me.ColorStyleBox = New MetroFramework.Controls.MetroComboBox()
         Me.VersionLabel = New System.Windows.Forms.Label()
+        Me.VersionCheck = New System.ComponentModel.BackgroundWorker()
         Me.CreditPanel.SuspendLayout()
         Me.SuspendLayout()
         '
-        'ViewerControl
+        'ViewerLaunchBtn
         '
-        Me.ViewerControl.Location = New System.Drawing.Point(23, 373)
-        Me.ViewerControl.Name = "ViewerControl"
-        Me.ViewerControl.Size = New System.Drawing.Size(251, 23)
-        Me.ViewerControl.TabIndex = 0
-        Me.ViewerControl.Text = "Open Viewer"
-        Me.ViewerControl.UseVisualStyleBackColor = True
+        Me.ViewerLaunchBtn.Location = New System.Drawing.Point(23, 373)
+        Me.ViewerLaunchBtn.Name = "ViewerLaunchBtn"
+        Me.ViewerLaunchBtn.Size = New System.Drawing.Size(251, 23)
+        Me.ViewerLaunchBtn.TabIndex = 0
+        Me.ViewerLaunchBtn.Text = "Open Viewer"
+        Me.ViewerLaunchBtn.UseVisualStyleBackColor = True
         '
         'ColorSettingToggle
         '
@@ -68,7 +69,7 @@ Partial Class Settings
         'ColorSettingLabel
         '
         Me.ColorSettingLabel.AutoSize = True
-        Me.ColorSettingLabel.Location = New System.Drawing.Point(23, 63)
+        Me.ColorSettingLabel.Location = New System.Drawing.Point(13, 61)
         Me.ColorSettingLabel.Name = "ColorSettingLabel"
         Me.ColorSettingLabel.Size = New System.Drawing.Size(75, 19)
         Me.ColorSettingLabel.TabIndex = 2
@@ -102,7 +103,7 @@ Partial Class Settings
         'SizeSettingLabel
         '
         Me.SizeSettingLabel.AutoSize = True
-        Me.SizeSettingLabel.Location = New System.Drawing.Point(23, 96)
+        Me.SizeSettingLabel.Location = New System.Drawing.Point(13, 96)
         Me.SizeSettingLabel.Name = "SizeSettingLabel"
         Me.SizeSettingLabel.Size = New System.Drawing.Size(75, 19)
         Me.SizeSettingLabel.TabIndex = 5
@@ -112,7 +113,7 @@ Partial Class Settings
         'ProgressStyleLabel
         '
         Me.ProgressStyleLabel.AutoSize = True
-        Me.ProgressStyleLabel.Location = New System.Drawing.Point(23, 127)
+        Me.ProgressStyleLabel.Location = New System.Drawing.Point(13, 131)
         Me.ProgressStyleLabel.Name = "ProgressStyleLabel"
         Me.ProgressStyleLabel.Size = New System.Drawing.Size(111, 19)
         Me.ProgressStyleLabel.TabIndex = 7
@@ -147,9 +148,9 @@ Partial Class Settings
         '
         Me.CreditPanel.Controls.Add(Me.Button1)
         Me.CreditPanel.Controls.Add(Me.CreditsText)
-        Me.CreditPanel.Location = New System.Drawing.Point(23, 63)
+        Me.CreditPanel.Location = New System.Drawing.Point(13, 63)
         Me.CreditPanel.Name = "CreditPanel"
-        Me.CreditPanel.Size = New System.Drawing.Size(251, 304)
+        Me.CreditPanel.Size = New System.Drawing.Size(272, 304)
         Me.CreditPanel.TabIndex = 9
         Me.CreditPanel.Visible = False
         '
@@ -164,11 +165,11 @@ Partial Class Settings
         '
         'CreditsText
         '
-        Me.CreditsText.Location = New System.Drawing.Point(0, 0)
+        Me.CreditsText.Location = New System.Drawing.Point(3, 0)
         Me.CreditsText.Multiline = True
         Me.CreditsText.Name = "CreditsText"
         Me.CreditsText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.CreditsText.Size = New System.Drawing.Size(251, 304)
+        Me.CreditsText.Size = New System.Drawing.Size(269, 304)
         Me.CreditsText.TabIndex = 10
         Me.CreditsText.Text = resources.GetString("CreditsText.Text")
         '
@@ -186,7 +187,7 @@ Partial Class Settings
         'ColorStyleLabel
         '
         Me.ColorStyleLabel.AutoSize = True
-        Me.ColorStyleLabel.Location = New System.Drawing.Point(23, 162)
+        Me.ColorStyleLabel.Location = New System.Drawing.Point(13, 166)
         Me.ColorStyleLabel.Name = "ColorStyleLabel"
         Me.ColorStyleLabel.Size = New System.Drawing.Size(116, 19)
         Me.ColorStyleLabel.TabIndex = 12
@@ -217,13 +218,16 @@ Partial Class Settings
         Me.VersionLabel.TabIndex = 13
         Me.VersionLabel.Text = "version"
         '
+        'VersionCheck
+        '
+        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
-        Me.Controls.Add(Me.VersionLabel)
         Me.Controls.Add(Me.CreditPanel)
+        Me.Controls.Add(Me.VersionLabel)
         Me.Controls.Add(Me.ColorStyleLabel)
         Me.Controls.Add(Me.ColorStyleBox)
         Me.Controls.Add(Me.ReportLink)
@@ -235,7 +239,7 @@ Partial Class Settings
         Me.Controls.Add(Me.CreditLink)
         Me.Controls.Add(Me.ColorSettingLabel)
         Me.Controls.Add(Me.ColorSettingToggle)
-        Me.Controls.Add(Me.ViewerControl)
+        Me.Controls.Add(Me.ViewerLaunchBtn)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Settings"
@@ -251,7 +255,7 @@ Partial Class Settings
 
     End Sub
 
-    Friend WithEvents ViewerControl As Button
+    Friend WithEvents ViewerLaunchBtn As Button
     Friend WithEvents ColorSettingToggle As MetroFramework.Controls.MetroToggle
     Friend WithEvents ColorSettingLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents CreditLink As MetroFramework.Controls.MetroLink
@@ -267,4 +271,5 @@ Partial Class Settings
     Friend WithEvents ColorStyleLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents ColorStyleBox As MetroFramework.Controls.MetroComboBox
     Friend WithEvents VersionLabel As Label
+    Friend WithEvents VersionCheck As System.ComponentModel.BackgroundWorker
 End Class
