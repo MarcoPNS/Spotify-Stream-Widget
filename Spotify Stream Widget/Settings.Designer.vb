@@ -40,8 +40,6 @@ Partial Class Settings
         Me.ColorStyleBox = New MetroFramework.Controls.MetroComboBox()
         Me.VersionLabel = New System.Windows.Forms.Label()
         Me.VersionCheck = New System.ComponentModel.BackgroundWorker()
-        Me.ReloadLabel = New MetroFramework.Controls.MetroLabel()
-        Me.ReloadToggle = New MetroFramework.Controls.MetroToggle()
         Me.CreditPanel.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -150,9 +148,9 @@ Partial Class Settings
         '
         Me.CreditPanel.Controls.Add(Me.Button1)
         Me.CreditPanel.Controls.Add(Me.CreditsText)
-        Me.CreditPanel.Location = New System.Drawing.Point(23, 61)
+        Me.CreditPanel.Location = New System.Drawing.Point(13, 63)
         Me.CreditPanel.Name = "CreditPanel"
-        Me.CreditPanel.Size = New System.Drawing.Size(251, 304)
+        Me.CreditPanel.Size = New System.Drawing.Size(272, 304)
         Me.CreditPanel.TabIndex = 9
         Me.CreditPanel.Visible = False
         '
@@ -167,11 +165,11 @@ Partial Class Settings
         '
         'CreditsText
         '
-        Me.CreditsText.Location = New System.Drawing.Point(0, 0)
+        Me.CreditsText.Location = New System.Drawing.Point(3, 0)
         Me.CreditsText.Multiline = True
         Me.CreditsText.Name = "CreditsText"
         Me.CreditsText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.CreditsText.Size = New System.Drawing.Size(251, 304)
+        Me.CreditsText.Size = New System.Drawing.Size(269, 304)
         Me.CreditsText.TabIndex = 10
         Me.CreditsText.Text = resources.GetString("CreditsText.Text")
         '
@@ -223,38 +221,12 @@ Partial Class Settings
         'VersionCheck
         '
         '
-        'ReloadLabel
-        '
-        Me.ReloadLabel.AutoSize = True
-        Me.ReloadLabel.Location = New System.Drawing.Point(13, 203)
-        Me.ReloadLabel.Name = "ReloadLabel"
-        Me.ReloadLabel.Size = New System.Drawing.Size(164, 19)
-        Me.ReloadLabel.TabIndex = 14
-        Me.ReloadLabel.Text = "Always hide Reload Button"
-        Me.ReloadLabel.Theme = MetroFramework.MetroThemeStyle.Dark
-        '
-        'ReloadToggle
-        '
-        Me.ReloadToggle.AutoSize = True
-        Me.ReloadToggle.Checked = True
-        Me.ReloadToggle.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ReloadToggle.Location = New System.Drawing.Point(183, 203)
-        Me.ReloadToggle.Name = "ReloadToggle"
-        Me.ReloadToggle.Size = New System.Drawing.Size(80, 17)
-        Me.ReloadToggle.Style = MetroFramework.MetroColorStyle.Green
-        Me.ReloadToggle.TabIndex = 15
-        Me.ReloadToggle.Text = "An"
-        Me.ReloadToggle.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.ReloadToggle.UseSelectable = True
-        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
         Me.Controls.Add(Me.CreditPanel)
-        Me.Controls.Add(Me.ReloadToggle)
-        Me.Controls.Add(Me.ReloadLabel)
         Me.Controls.Add(Me.VersionLabel)
         Me.Controls.Add(Me.ColorStyleLabel)
         Me.Controls.Add(Me.ColorStyleBox)
@@ -300,6 +272,4 @@ Partial Class Settings
     Friend WithEvents ColorStyleBox As MetroFramework.Controls.MetroComboBox
     Friend WithEvents VersionLabel As Label
     Friend WithEvents VersionCheck As System.ComponentModel.BackgroundWorker
-    Friend WithEvents ReloadLabel As MetroFramework.Controls.MetroLabel
-    Friend WithEvents ReloadToggle As MetroFramework.Controls.MetroToggle
 End Class
