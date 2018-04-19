@@ -209,6 +209,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\refresh-icon.png" />
     <Content Include="Spot_Stream_Logo.ico" />
   </ItemGroup>
   <ItemGroup>

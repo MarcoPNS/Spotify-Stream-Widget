@@ -34,6 +34,7 @@ Public Class Viewer
                 ArtistLabel.Location = SmallViewer.ArtistLabel.Location
                 timeProgressBar.Location = SmallViewer.timeProgressBar.Location
                 timeProgressBar.Size = SmallViewer.timeProgressBar.Size
+                ReloadButton.Location = SmallViewer.ReloadButton.Location
                 timeLabel.Visible = False
                 AlbumLabel.Visible = False
             Case "Normal"
@@ -44,6 +45,7 @@ Public Class Viewer
                 ArtistLabel.Location = NormalViewer.ArtistLabel.Location
                 timeProgressBar.Location = NormalViewer.timeProgressBar.Location
                 timeProgressBar.Size = NormalViewer.timeProgressBar.Size
+                ReloadButton.Location = NormalViewer.ReloadButton.Location
                 timeLabel.Visible = True
                 timeLabel.Location = NormalViewer.timeLabel.Location
                 timeLabel.Size = NormalViewer.timeLabel.Size
@@ -56,6 +58,7 @@ Public Class Viewer
                 ArtistLabel.Location = BigViewer.ArtistLabel.Location
                 timeProgressBar.Location = BigViewer.timeProgressBar.Location
                 timeProgressBar.Size = BigViewer.timeProgressBar.Size
+                ReloadButton.Location = BigViewer.ReloadButton.Location
                 timeLabel.Visible = True
                 timeLabel.Location = BigViewer.timeLabel.Location
                 timeLabel.Size = BigViewer.timeLabel.Size
@@ -131,18 +134,8 @@ Public Class Viewer
             If (res = DialogResult.Yes) Then
                 'try to start it
                 SpotifyLocalAPI.RunSpotify()
-                Settings.ColorSettingToggle.Enabled = True
-                Settings.ColorStyleBox.Enabled = True
-                Settings.SizeSettingBox.Enabled = True
-                Settings.ProgressStyleBox.Enabled = True
-                Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             Else
-                Settings.ColorSettingToggle.Enabled = True
-                Settings.ColorStyleBox.Enabled = True
-                Settings.SizeSettingBox.Enabled = True
-                Settings.ProgressStyleBox.Enabled = True
-                Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             End If
             Return
@@ -153,18 +146,8 @@ Public Class Viewer
             If (res = DialogResult.Yes) Then
                 'try to start it
                 SpotifyLocalAPI.RunSpotifyWebHelper()
-                Settings.ColorSettingToggle.Enabled = True
-                Settings.ColorStyleBox.Enabled = True
-                Settings.SizeSettingBox.Enabled = True
-                Settings.ProgressStyleBox.Enabled = True
-                Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             Else
-                Settings.ColorSettingToggle.Enabled = True
-                Settings.ColorStyleBox.Enabled = True
-                Settings.SizeSettingBox.Enabled = True
-                Settings.ProgressStyleBox.Enabled = True
-                Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             End If
             Return
@@ -175,11 +158,6 @@ Public Class Viewer
             successful = _spotify.Connect
         Catch ex As Exception
             MsgBox("Can't connect to Spotify. Please restart Spotify or check your connection." & vbNewLine & ex.Message.ToString)
-            Settings.ColorSettingToggle.Enabled = True
-            Settings.ColorStyleBox.Enabled = True
-            Settings.SizeSettingBox.Enabled = True
-            Settings.ProgressStyleBox.Enabled = True
-            Settings.ViewerLaunchBtn.Enabled = True
             Close()
             Return
         End Try
@@ -193,11 +171,6 @@ Public Class Viewer
             If (res = DialogResult.Yes) Then
                 SpotifyConnect()
             Else
-                Settings.ColorSettingToggle.Enabled = True
-                Settings.ColorStyleBox.Enabled = True
-                Settings.SizeSettingBox.Enabled = True
-                Settings.ProgressStyleBox.Enabled = True
-                Settings.ViewerLaunchBtn.Enabled = True
                 Close()
             End If
         End If
@@ -205,6 +178,11 @@ Public Class Viewer
 
     'Pause the work of the SpotifyAPI when the viewer is closed
     Private Sub SpotifyAPISleep(sender As Object, e As EventArgs) Handles Me.FormClosing
+        Settings.ColorSettingToggle.Enabled = True
+        Settings.ColorStyleBox.Enabled = True
+        Settings.SizeSettingBox.Enabled = True
+        Settings.ProgressStyleBox.Enabled = True
+        Settings.ViewerLaunchBtn.Enabled = True
         _spotify.ListenForEvents = False
     End Sub
 
@@ -295,5 +273,31 @@ Public Class Viewer
         Return mins & ":" + secs
     End Function
 
+    Private Sub ReloadButton_Click(sender As Object, e As EventArgs) Handles ReloadButton.Click
+        UpdateInfos()
+    End Sub
 
+    'show and hide the reload button
+    Private Sub ShowReloadButton(sender As Object, e As EventArgs) Handles MyBase.MouseHover, ReloadButton.MouseHover, TrackLabel.MouseHover, ArtistLabel.MouseHover, AlbumCover.MouseHover
+        If My.Settings.HideReload = True Then
+            Return
+        Else
+            If ReloadButton.Visible = True Then
+                Return
+            Else
+                ReloadButton.Visible = True
+            End If
+        End If
+    End Sub
+    Private Sub HideReloadButton(sender As Object, e As EventArgs) Handles MyBase.MouseLeave, ReloadButton.MouseLeave, TrackLabel.MouseLeave, ArtistLabel.MouseLeave, AlbumCover.MouseLeave
+        If My.Settings.HideReload = True Then
+            Return
+        Else
+            If ReloadButton.Visible = True Then
+                ReloadButton.Visible = False
+            Else
+                Return
+            End If
+        End If
+    End Sub
 End Class

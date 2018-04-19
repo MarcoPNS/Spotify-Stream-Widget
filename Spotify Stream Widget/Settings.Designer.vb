@@ -40,6 +40,8 @@ Partial Class Settings
         Me.ColorStyleBox = New MetroFramework.Controls.MetroComboBox()
         Me.VersionLabel = New System.Windows.Forms.Label()
         Me.VersionCheck = New System.ComponentModel.BackgroundWorker()
+        Me.ReloadLabel = New MetroFramework.Controls.MetroLabel()
+        Me.ReloadToggle = New MetroFramework.Controls.MetroToggle()
         Me.CreditPanel.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -69,7 +71,7 @@ Partial Class Settings
         'ColorSettingLabel
         '
         Me.ColorSettingLabel.AutoSize = True
-        Me.ColorSettingLabel.Location = New System.Drawing.Point(23, 63)
+        Me.ColorSettingLabel.Location = New System.Drawing.Point(13, 61)
         Me.ColorSettingLabel.Name = "ColorSettingLabel"
         Me.ColorSettingLabel.Size = New System.Drawing.Size(75, 19)
         Me.ColorSettingLabel.TabIndex = 2
@@ -103,7 +105,7 @@ Partial Class Settings
         'SizeSettingLabel
         '
         Me.SizeSettingLabel.AutoSize = True
-        Me.SizeSettingLabel.Location = New System.Drawing.Point(23, 96)
+        Me.SizeSettingLabel.Location = New System.Drawing.Point(13, 96)
         Me.SizeSettingLabel.Name = "SizeSettingLabel"
         Me.SizeSettingLabel.Size = New System.Drawing.Size(75, 19)
         Me.SizeSettingLabel.TabIndex = 5
@@ -113,7 +115,7 @@ Partial Class Settings
         'ProgressStyleLabel
         '
         Me.ProgressStyleLabel.AutoSize = True
-        Me.ProgressStyleLabel.Location = New System.Drawing.Point(23, 127)
+        Me.ProgressStyleLabel.Location = New System.Drawing.Point(13, 131)
         Me.ProgressStyleLabel.Name = "ProgressStyleLabel"
         Me.ProgressStyleLabel.Size = New System.Drawing.Size(111, 19)
         Me.ProgressStyleLabel.TabIndex = 7
@@ -148,7 +150,7 @@ Partial Class Settings
         '
         Me.CreditPanel.Controls.Add(Me.Button1)
         Me.CreditPanel.Controls.Add(Me.CreditsText)
-        Me.CreditPanel.Location = New System.Drawing.Point(23, 63)
+        Me.CreditPanel.Location = New System.Drawing.Point(23, 61)
         Me.CreditPanel.Name = "CreditPanel"
         Me.CreditPanel.Size = New System.Drawing.Size(251, 304)
         Me.CreditPanel.TabIndex = 9
@@ -187,7 +189,7 @@ Partial Class Settings
         'ColorStyleLabel
         '
         Me.ColorStyleLabel.AutoSize = True
-        Me.ColorStyleLabel.Location = New System.Drawing.Point(23, 162)
+        Me.ColorStyleLabel.Location = New System.Drawing.Point(13, 166)
         Me.ColorStyleLabel.Name = "ColorStyleLabel"
         Me.ColorStyleLabel.Size = New System.Drawing.Size(116, 19)
         Me.ColorStyleLabel.TabIndex = 12
@@ -221,12 +223,38 @@ Partial Class Settings
         'VersionCheck
         '
         '
+        'ReloadLabel
+        '
+        Me.ReloadLabel.AutoSize = True
+        Me.ReloadLabel.Location = New System.Drawing.Point(13, 203)
+        Me.ReloadLabel.Name = "ReloadLabel"
+        Me.ReloadLabel.Size = New System.Drawing.Size(164, 19)
+        Me.ReloadLabel.TabIndex = 14
+        Me.ReloadLabel.Text = "Always hide Reload Button"
+        Me.ReloadLabel.Theme = MetroFramework.MetroThemeStyle.Dark
+        '
+        'ReloadToggle
+        '
+        Me.ReloadToggle.AutoSize = True
+        Me.ReloadToggle.Checked = True
+        Me.ReloadToggle.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ReloadToggle.Location = New System.Drawing.Point(183, 203)
+        Me.ReloadToggle.Name = "ReloadToggle"
+        Me.ReloadToggle.Size = New System.Drawing.Size(80, 17)
+        Me.ReloadToggle.Style = MetroFramework.MetroColorStyle.Green
+        Me.ReloadToggle.TabIndex = 15
+        Me.ReloadToggle.Text = "An"
+        Me.ReloadToggle.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.ReloadToggle.UseSelectable = True
+        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
         Me.Controls.Add(Me.CreditPanel)
+        Me.Controls.Add(Me.ReloadToggle)
+        Me.Controls.Add(Me.ReloadLabel)
         Me.Controls.Add(Me.VersionLabel)
         Me.Controls.Add(Me.ColorStyleLabel)
         Me.Controls.Add(Me.ColorStyleBox)
@@ -272,4 +300,6 @@ Partial Class Settings
     Friend WithEvents ColorStyleBox As MetroFramework.Controls.MetroComboBox
     Friend WithEvents VersionLabel As Label
     Friend WithEvents VersionCheck As System.ComponentModel.BackgroundWorker
+    Friend WithEvents ReloadLabel As MetroFramework.Controls.MetroLabel
+    Friend WithEvents ReloadToggle As MetroFramework.Controls.MetroToggle
 End Class

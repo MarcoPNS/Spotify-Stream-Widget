@@ -14,5 +14,8 @@
     <Setting Name="Color" Type="System.String" Scope="User">
       <Value Profile="(Default)">Green</Value>
     </Setting>
+    <Setting Name="HideReload" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
