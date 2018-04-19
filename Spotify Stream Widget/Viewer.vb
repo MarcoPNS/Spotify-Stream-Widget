@@ -242,7 +242,6 @@ Public Class Viewer
 
     'Event gets triggered, when the Track is changed
     Private Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
-        Console.Write("trackchange")
         If InvokeRequired Then
             Invoke(Sub()
                        _spotify_OnTrackChange(sender, e)
@@ -256,7 +255,6 @@ Public Class Viewer
     Private Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
         'Attention: when the track get changed by a third party then this will kill the SpotifyAPI without TryCatch
         Try
-            Console.Write("tracktime")
             If InvokeRequired Then
                 Invoke(Sub()
                            _spotify_OnTrackTimeChange(sender, e)
