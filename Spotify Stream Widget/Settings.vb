@@ -1,4 +1,4 @@
-﻿Imports System.Threading, System.Net
+﻿Imports System.Net
 Public Class Settings
 
     'load stuff
@@ -8,7 +8,6 @@ Public Class Settings
         'get current settings
         VersionLabel.Text = ProductVersion
         ColorSettingToggle.Checked = My.Settings.DarkMode
-        ReloadToggle.Checked = My.Settings.HideReload
         SizeSettingBox.Text = My.Settings.Size
         ProgressStyleBox.Text = My.Settings.ProgressBarStyle
         ColorStyleBox.Text = My.Settings.Color
@@ -32,7 +31,6 @@ Public Class Settings
         My.Settings.DarkMode = ColorSettingToggle.Checked
         My.Settings.ProgressBarStyle = ProgressStyleBox.Text
         My.Settings.Color = ColorStyleBox.Text
-        My.Settings.HideReload = ReloadToggle.Checked
         My.Settings.Save()
         ColorSettingToggle.Enabled = False
         ColorStyleBox.Enabled = False
