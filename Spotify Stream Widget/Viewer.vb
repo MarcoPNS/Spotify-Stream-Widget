@@ -246,6 +246,7 @@ Public Class Viewer
 
     'Event gets triggered, when the Track is changed
     'TODO: Why does the event not fire when a third party app change the track on spotify? (example: Streamlabs Chatbot)
+    'possible fix to refresh the track on the PlayState Event
     Private Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
         If InvokeRequired Then
             Invoke(Sub()
@@ -290,7 +291,8 @@ Public Class Viewer
         End If
     End Sub
 
-
+    'ReloadButton Event
+    'TODO: delete the Reload Button if everything works perfect. 
     Private Sub ReloadButton_Click(sender As Object, e As EventArgs) Handles ReloadButton.Click
         UpdateInfos()
     End Sub

@@ -1,5 +1,7 @@
 ﻿Imports System.Threading, System.Net
 Public Class Settings
+
+    'load stuff
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'check for new version
         VersionCheck.RunWorkerAsync()
@@ -40,22 +42,21 @@ Public Class Settings
         Viewer.Show()
         Viewer.SpotifyConnect()
     End Sub
+
     'credit stuff
     Private Sub CreditLink_Click(sender As Object, e As EventArgs) Handles CreditLink.Click
         Process.Start("https://twitter.com/MarcoSadowski") 'best guy on earth!
     End Sub
-
     Private Sub MetroLink1_Click(sender As Object, e As EventArgs) Handles CreditsLink.Click
         CreditPanel.Visible = True
     End Sub
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         CreditPanel.Visible = False
     End Sub
-
     Private Sub MetroLink2_Click(sender As Object, e As EventArgs) Handles ReportLink.Click
         Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/issues")
     End Sub
+
     'check for updates
     Private Sub VersionCheck_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles VersionCheck.DoWork
         Try
@@ -63,7 +64,7 @@ Public Class Settings
             Dim ServerResponse As String = New WebClient().DownloadString("https://raw.githubusercontent.com/MarcoPNS/Spotify-Stream-Widget/master/Release/version.md")
             If Version = ServerResponse.Trim({"."c}) Then
             Else
-                Dim res As DialogResult = MessageBox.Show("A new version is availalbe. Do you want to check it out? ", "Spotify", MessageBoxButtons.YesNo)
+                Dim res As DialogResult = MessageBox.Show("A new version is available! & (v" & ServerResponse & ") Do you want to check it out? ", "Spotify", MessageBoxButtons.YesNo)
                 If (res = DialogResult.Yes) Then
                     Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/releases")
                 Else
