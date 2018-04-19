@@ -21,6 +21,7 @@ Public Class Viewer
         _spotify = New SpotifyLocalAPI()
         AddHandler _spotify.OnTrackChange, AddressOf _spotify_OnTrackChange
         AddHandler _spotify.OnTrackTimeChange, AddressOf _spotify_OnTrackTimeChange
+        AddHandler _spotify.OnPlayStateChange, AddressOf _spotify_OnPlayStateChange
     End Sub
 
     'change the size of the viewer
@@ -272,6 +273,23 @@ Public Class Viewer
         If secs.Length < 2 Then secs = "0" & secs
         Return mins & ":" + secs
     End Function
+
+    'Event gets triggered, when the PlayState changes.
+    'TODO: Check if this fixed the problem with third party players who change the track on Spotify
+    Private Sub _spotify_OnPlayStateChange(ByVal sender As Object, ByVal e As PlayStateEventArgs)
+        If InvokeRequired Then
+            Invoke(Sub()
+                       _spotify_OnPlayStateChange(sender, e)
+                   End Sub)
+            Return
+        End If
+        If e.Playing = True Then
+            UpdateInfos()
+        Else
+            Return
+        End If
+    End Sub
+
 
     Private Sub ReloadButton_Click(sender As Object, e As EventArgs) Handles ReloadButton.Click
         UpdateInfos()
