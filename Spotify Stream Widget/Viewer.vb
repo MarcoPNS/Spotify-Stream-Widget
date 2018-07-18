@@ -200,7 +200,18 @@ Public Class Viewer
         TrackLabel.Text = track.TrackResource?.Name
         ArtistLabel.Text = track.ArtistResource?.Name
         AlbumLabel.Text = track.AlbumResource?.Name
-        AlbumCover.Image = If(track.AlbumResource IsNot Nothing, Await track.GetAlbumArtAsync(AlbumArtSize.Size160), Nothing)
+
+        '---------------------------------------
+        'Thanks to @notdabob
+        Try
+            AlbumCover.Image = If(track.AlbumResource IsNot Nothing, Await track.GetAlbumArtAsync(AlbumArtSize.Size160), Nothing)
+        Catch ex As Exception
+            Console.WriteLine("UpdateTrack SpotifyApi GetAlbumArtAsync Exception: " & ex.Message)
+            Dim iDefaultImage As Image = New Bitmap(1, 1)
+            AlbumCover.Image = iDefaultImage
+        End Try
+        '---------------------------------------
+
         'change text size when the title is longer
         ResponsiveText()
     End Sub
