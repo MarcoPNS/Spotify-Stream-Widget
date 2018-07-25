@@ -1,7 +1,8 @@
 # Spotify-Stream-Widget
 A small Tool for Streamers to show the current Track of Spotify to your Viewers! Completly customizable to fit your style.
 
-# THIS TOOL IS NOT WORKING ATM - PLEASE READ THE INFO:
+# Spotify destroyed this tool :(
+Sorry, but this tool is not working at the moment. I try to find out how I can bring the tool back to work. Maybe you can help. On the 19th July 2018 Spotify published an update which kills the local control of Spotify. My tool used this control to get the current playback info. Here is Spotify's offical response:
 
 > Remote control of Spotify’s desktop app has been deprecated in favour of full track playback in the browser. 
 [https://developer.spotify.com/community/news/2018/07/19/new-updates-to-spotify-play-button/](https://developer.spotify.com/community/news/2018/07/19/new-updates-to-spotify-play-button/)
