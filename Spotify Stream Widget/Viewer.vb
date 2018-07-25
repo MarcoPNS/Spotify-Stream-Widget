@@ -1,10 +1,21 @@
-﻿Imports SpotifyAPI.Local, SpotifyAPI.Local.Enums, SpotifyAPI.Local.Models
+﻿'===================================================================
+'       Written by Marco Sadowski 
+'       Last Update: 2018-07-2018
+'       Please add your name after mine if you edit this code <3
+'
+'       Usage of the Viewer Form:
+'       -   This is the main viewer which shows the current track from Spotify 
+'       -   The Viewer uses the SmallViewer, NormalViewer and BigViewer as Template.
+'       -   If you want to change the look of the form then you need to edit the templates, not this form.
+'===================================================================
+
+Imports SpotifyAPI.Local, SpotifyAPI.Local.Enums, SpotifyAPI.Local.Models
 Public Class Viewer
     Private _spotify As SpotifyLocalAPI
     Private _currentTrack As Track
 
     'loading....
-    Public Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ApplySize()
         Select Case My.Settings.ProgressBarStyle
             Case "Blocks"
@@ -27,7 +38,7 @@ Public Class Viewer
     Private Sub ApplySize()
         Select Case My.Settings.Size
             Case "Small"
-                Me.Size = SmallViewer.Size
+                Size = SmallViewer.Size
                 AlbumCover.Size = SmallViewer.AlbumCover.Size
                 AlbumCover.Location = SmallViewer.AlbumCover.Location
                 TrackLabel.Location = SmallViewer.TrackLabel.Location
@@ -37,7 +48,7 @@ Public Class Viewer
                 timeLabel.Visible = False
                 AlbumLabel.Visible = False
             Case "Normal"
-                Me.Size = NormalViewer.Size
+                Size = NormalViewer.Size
                 AlbumCover.Size = NormalViewer.AlbumCover.Size
                 AlbumCover.Location = NormalViewer.AlbumCover.Location
                 TrackLabel.Location = NormalViewer.TrackLabel.Location
@@ -49,7 +60,7 @@ Public Class Viewer
                 timeLabel.Size = NormalViewer.timeLabel.Size
                 AlbumLabel.Visible = False
             Case "Big"
-                Me.Size = BigViewer.Size
+                Size = BigViewer.Size
                 AlbumCover.Size = BigViewer.AlbumCover.Size
                 AlbumCover.Location = BigViewer.AlbumCover.Location
                 TrackLabel.Location = BigViewer.TrackLabel.Location
@@ -174,7 +185,7 @@ Public Class Viewer
     End Sub
 
     'Pause the work of the SpotifyAPI when the viewer is closed
-    Private Sub SpotifyAPISleep(sender As Object, e As EventArgs) Handles Me.FormClosing
+    Private Sub SpotifyApiSleep(sender As Object, e As EventArgs) Handles Me.FormClosing
         Settings.ColorSettingToggle.Enabled = True
         Settings.ColorStyleBox.Enabled = True
         Settings.SizeSettingBox.Enabled = True
@@ -184,14 +195,14 @@ Public Class Viewer
     End Sub
 
 
-    Public Sub UpdateInfos()
+    Private Sub UpdateInfos()
         Dim status As StatusResponse = _spotify.GetStatus()
         If status Is Nothing Then Return
         If status.Track IsNot Nothing Then UpdateTrack(status.Track)
     End Sub
 
 
-    Public Async Sub UpdateTrack(ByVal track As Track)
+    Private Async Sub UpdateTrack(ByVal track As Track)
         'get the current track
         _currentTrack = track
         TrackLabel.Text = If(track.IsAd(), "ADVERT", "")

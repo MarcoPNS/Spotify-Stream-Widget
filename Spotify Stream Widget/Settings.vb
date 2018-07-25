@@ -1,7 +1,18 @@
-﻿Imports System.Net
+﻿'===================================================================
+'       Written by Marco Sadowski 
+'       Last Update: 2018-07-2018
+'       Please add your name after mine if you edit this code <3
+'
+'       Usage of the Settings Form:
+'       -   This is the main form which the user sees when he open the application
+'       -   The user can configure the viewer form here
+'===================================================================
+
+Imports System.Net
 Public Class Settings
 
-    'load stuff
+    'This is the Load Event.
+    '
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'check for new version
         VersionCheck.RunWorkerAsync()
@@ -56,13 +67,13 @@ Public Class Settings
     End Sub
 
     'check for updates
-    Private Sub VersionCheck_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles VersionCheck.DoWork
+    Private Sub VersionCheck_DoWork(sender As Object, e As ComponentModel.DoWorkEventArgs) Handles VersionCheck.DoWork
         Try
-            Dim Version As Integer = Me.ProductVersion.Trim({"."c})
-            Dim ServerResponse As String = New WebClient().DownloadString("https://raw.githubusercontent.com/MarcoPNS/Spotify-Stream-Widget/master/Release/version.md")
-            If Version = ServerResponse.Trim({"."c}) Then
+            Dim version As Integer = ProductVersion.Trim({"."c})
+            Dim serverResponse As String = New WebClient().DownloadString("https://raw.githubusercontent.com/MarcoPNS/Spotify-Stream-Widget/master/Release/version.md")
+            If version = serverResponse.Trim({"."c}) Then
             Else
-                Dim res As DialogResult = MessageBox.Show("A new version is available! Version " & ServerResponse & "Do you want to check it out? ", "Spotify", MessageBoxButtons.YesNo)
+                Dim res As DialogResult = MessageBox.Show("A new version is available! Version " & serverResponse & "Do you want to check it out? ", "Spotify Stream Widget", MessageBoxButtons.YesNo)
                 If (res = DialogResult.Yes) Then
                     Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/releases")
                 Else
