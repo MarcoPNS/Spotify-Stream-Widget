@@ -56,17 +56,18 @@ Public Class Settings
     Private Sub CreditLink_Click(sender As Object, e As EventArgs) Handles CreditLink.Click
         Process.Start("https://twitter.com/MarcoSadowski") 'best guy on earth!
     End Sub
-    Private Sub MetroLink1_Click(sender As Object, e As EventArgs) Handles CreditsLink.Click
+    Private Sub ShowCredits(sender As Object, e As EventArgs) Handles CreditsLink.Click
         CreditPanel.Visible = True
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         CreditPanel.Visible = False
     End Sub
-    Private Sub MetroLink2_Click(sender As Object, e As EventArgs) Handles ReportLink.Click
+    Private Sub ReportProblemLink(sender As Object, e As EventArgs) Handles ReportLink.Click
         Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/issues")
     End Sub
 
-    'check for updates
+    'This is a BackgroundWorker which check for a new version of the app.   
+    'The String with the current version number comes from GitHub.
     Private Sub VersionCheck_DoWork(sender As Object, e As ComponentModel.DoWorkEventArgs) Handles VersionCheck.DoWork
         Try
             Dim version As Integer = ProductVersion.Trim({"."c})

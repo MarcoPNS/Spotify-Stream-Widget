@@ -1,5 +1,5 @@
 ﻿'===================================================================
-'       Written by Marco Sadowski 
+'       Written by Marco Sadowski and @notdabob
 '       Last Update: 2018-07-2018
 '       Please add your name after mine if you edit this code <3
 '
@@ -14,9 +14,24 @@ Public Class Viewer
     Private _spotify As SpotifyLocalAPI
     Private _currentTrack As Track
 
-    'loading....
+    'The Load Event apply the user settings and the event handler for the spotify API
     Private Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ApplyProgressBarStyle()
         ApplySize()
+        If My.Settings.DarkMode = False Then
+            ActivateWhite()
+        End If
+        SetColor()
+        _spotify = New SpotifyLocalAPI()
+        AddHandler _spotify.OnTrackChange, AddressOf _spotify_OnTrackChange
+        AddHandler _spotify.OnTrackTimeChange, AddressOf _spotify_OnTrackTimeChange
+    End Sub
+
+
+#Region "Apply User Settings"
+    'The user settings will be applied in this region. It change this size, change the color and change the theme.
+    'If there is a new option that need to be applied in the viewer then add it in this region.
+    Private Sub ApplyProgressBarStyle()
         Select Case My.Settings.ProgressBarStyle
             Case "Blocks"
                 timeProgressBar.ProgressBarStyle = ProgressBarStyle.Blocks
@@ -25,16 +40,9 @@ Public Class Viewer
             Case "Marquee"
                 timeProgressBar.ProgressBarStyle = ProgressBarStyle.Marquee
         End Select
-        If My.Settings.DarkMode = False Then
-            ActivateWhite()
-        End If
-        GetColor()
-        _spotify = New SpotifyLocalAPI()
-        AddHandler _spotify.OnTrackChange, AddressOf _spotify_OnTrackChange
-        AddHandler _spotify.OnTrackTimeChange, AddressOf _spotify_OnTrackTimeChange
     End Sub
 
-    'change the size of the viewer
+    'copy the location of the objects and the size from the template based on the user settings.
     Private Sub ApplySize()
         Select Case My.Settings.Size
             Case "Small"
@@ -76,7 +84,7 @@ Public Class Viewer
     End Sub
 
     'change the style color of the viewer
-    Private Sub GetColor()
+    Private Sub SetColor()
         Select Case My.Settings.Color
             Case "Green"
                 Style = MetroFramework.MetroColorStyle.Green
@@ -123,7 +131,7 @@ Public Class Viewer
         End Select
     End Sub
 
-    'activate the Metro UI Light Theme
+    'activate the Metro UI Light Theme // normaly it is dark so only needed to be switched when the user want a light overlay
     Private Sub ActivateWhite()
         Theme = MetroFramework.MetroThemeStyle.Light
         timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Light
@@ -132,6 +140,9 @@ Public Class Viewer
         ArtistLabel.ForeColor = Color.FromArgb(64, 64, 64)
         AlbumLabel.ForeColor = Color.FromArgb(64, 64, 64)
     End Sub
+
+#End Region
+
 
     'Connects with Spotify. Needs to be called before all other SpotifyAPI functions
     Public Sub SpotifyConnect()
