@@ -1,6 +1,6 @@
 ﻿'===================================================================
-'       Written by Marco Sadowski and @notdabob
-'       Last Update: 2018-07-31
+'       Written by Marco Sadowski
+'       Last Update: 2019-08-31
 '       Please add your name after mine if you edit this code <3
 '
 '       Usage of the Viewer Form:
@@ -9,10 +9,14 @@
 '       -   If you want to change the look of the form then you need to edit the templates, not this form.
 '===================================================================
 
-Imports SpotifyAPI.Local, SpotifyAPI.Local.Enums, SpotifyAPI.Local.Models
+Imports Unosquare.Swan
+Imports SpotifyAPI.Web, SpotifyAPI.Web.Auth, SpotifyAPI.Web.Enums, SpotifyAPI.Web.Models
 Public Class Viewer
-    Private _spotify As SpotifyLocalAPI
-    Private _currentTrack As Track
+    Private Shared _spotify As SpotifyWebAPI
+    Private _currentTrack As FullTrack
+    Shared ReadOnly ClientId = "2ee62a35a2ec45a4a7fe26b81f7f3681"
+    Private Shared _spotifyAuth As ImplicitGrantAuth = New ImplicitGrantAuth(ClientId, "http://localhost:4002", "http://localhost:4002", Scope.UserReadPlaybackState)
+    Dim playback As PlaybackContext
 
     'The Load Event apply the user settings and the event handler for the spotify API
     Private Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -22,9 +26,6 @@ Public Class Viewer
             ActivateWhite()
         End If
         SetColor()
-        _spotify = New SpotifyLocalAPI()
-        AddHandler _spotify.OnTrackChange, AddressOf _spotify_OnTrackChange
-        AddHandler _spotify.OnTrackTimeChange, AddressOf _spotify_OnTrackTimeChange
     End Sub
 
 
@@ -147,52 +148,23 @@ Public Class Viewer
     'Connects with Spotify. Needs to be called before all other SpotifyAPI functions
     Public Sub SpotifyConnect()
         timeLabel.Text = ""
-        'check if Spotfiy is ready
-        If Not SpotifyLocalAPI.IsSpotifyRunning Then
-            Dim res As DialogResult = MessageBox.Show("Spotify isn't running! Should we try to start it?" & vbNewLine & "If this error still appears after some retrys then please start Spotify.", "Spotify", MessageBoxButtons.YesNo)
-            If (res = DialogResult.Yes) Then
-                'try to start it
-                SpotifyLocalAPI.RunSpotify()
-                Close()
-            Else
-                Close()
-            End If
-            Return
-        End If
-        'check if the WebHelper is running
-        If Not SpotifyLocalAPI.IsSpotifyWebHelperRunning Then
-            Dim res As DialogResult = MessageBox.Show("SpotifyWebHelper isn't running! Should we try to start it?" & vbNewLine & "If this error still appears after some retrys then please check your Spotify settings and activate ""Allow Spotify to be opened from the web"" and restart it.", "Spotify", MessageBoxButtons.YesNo)
-            If (res = DialogResult.Yes) Then
-                'try to start it
-                SpotifyLocalAPI.RunSpotifyWebHelper()
-                Close()
-            Else
-                Close()
-            End If
-            Return
-        End If
-        Dim successful As Boolean
-        'Check if the WebHelper is ready to speak. It can drop some random exception if not. 
-        Try
-            successful = _spotify.Connect
-        Catch ex As Exception
-            MsgBox("Can't connect to Spotify. Please restart Spotify or check your connection." & vbNewLine & ex.Message.ToString)
-            Close()
-            Return
-        End Try
-        If successful Then
-            Settings.ViewerLaunchBtn.Enabled = True
-            Settings.ViewerLaunchBtn.Text = "Close Viewer"
-            UpdateInfos()
-            _spotify.ListenForEvents = True
-        Else
-            Dim res As DialogResult = MessageBox.Show("Couldn't connect to the spotify client. Retry?", "Spotify", MessageBoxButtons.YesNo)
-            If (res = DialogResult.Yes) Then
-                SpotifyConnect()
-            Else
-                Close()
-            End If
-        End If
+        Settings.ViewerLaunchBtn.Text = "Close Viewer"
+        Settings.ViewerLaunchBtn.Enabled = True
+        'Spotify Auth
+        MsgBox("The Widget will open your browser to connect to the Spotify API")
+        AddHandler _spotifyAuth.AuthReceived, AddressOf _spotify_AuthReceived
+        _spotifyAuth.Start()
+        Threading.Thread.Sleep(1000)
+        console.WriteLine(_spotifyAuth.GetUri())
+        UpdateTrack()
+    End Sub
+
+    Private Sub _spotify_AuthReceived(sender, payload)
+        _spotifyAuth.Stop()
+        _spotify = New SpotifyWebAPI() With {
+                .TokenType = payload.TokenType,
+                .AccessToken = payload.AccessToken
+                }
     End Sub
 
     'Pause the work of the SpotifyAPI when the viewer is closed
@@ -202,40 +174,51 @@ Public Class Viewer
         Settings.SizeSettingBox.Enabled = True
         Settings.ProgressStyleBox.Enabled = True
         Settings.ViewerLaunchBtn.Enabled = True
-        _spotify.ListenForEvents = False
+        Settings.ViewerLaunchBtn.Text = "Open Viewer"
     End Sub
 
+    Private Async Sub UpdateTrack()
+        If _spotify Is Nothing Then
+            Threading.Thread.Sleep(1000)
+            UpdateTrack()
+            Return
+        End If
 
-    Private Sub UpdateInfos()
-        Dim status As StatusResponse = _spotify.GetStatus()
-        If status Is Nothing Then Return
-        If status.Track IsNot Nothing Then UpdateTrack(status.Track)
-    End Sub
-
-
-    Private Async Sub UpdateTrack(ByVal track As Track)
         'get the current track
-        _currentTrack = track
-        TrackLabel.Text = If(track.IsAd(), "ADVERT", "")
-        timeProgressBar.Maximum = track.Length
-        If track.IsAd() Then Return
-        TrackLabel.Text = track.TrackResource?.Name
-        ArtistLabel.Text = track.ArtistResource?.Name
-        AlbumLabel.Text = track.AlbumResource?.Name
+        playback = _spotify.GetPlayback()
+        Console.WriteLine(playback.Item.Name)
+        timeProgressBar.Maximum = playback.Item.DurationMs
+        If playback.Item.Error IsNot Nothing Then
+            MsgBox(playback.Item.Error.Message)
+            Return
+        End If
+        TrackLabel.Text = playback.Item.Name
+        Dim artists = ""
+        For Each artist As SimpleArtist In playback.Item.Artists
+            If artists = "" Then
+                artists = artist.Name
+            Else
+                artists = artists + " - " + artist.Name
+            End If
+           
+        Next
+        ArtistLabel.Text = artists
+        AlbumLabel.Text = playback.Item.Album.Name
 
-        '---------------------------------------
-        'Thanks to @notdabob
         Try
-            AlbumCover.Image = If(track.AlbumResource IsNot Nothing, Await track.GetAlbumArtAsync(AlbumArtSize.Size160), Nothing)
+            
+            AlbumCover.Image = If(playback.Item.Album.Images.Item(0).Url IsNot Nothing, GetImageFromUri(playback.Item.Album.Images.Item(1).Url), Nothing)
         Catch ex As Exception
-            Console.WriteLine("UpdateTrack SpotifyApi GetAlbumArtAsync Exception: " & ex.Message)
-            Dim iDefaultImage As Image = New Bitmap(1, 1)
+            Console.WriteLine("AlbumCover Exception: " & ex.Message)
+            Dim iDefaultImage As Drawing.Image = New Bitmap(1, 1)
             AlbumCover.Image = iDefaultImage
         End Try
-        '---------------------------------------
 
         'change text size when the title is longer
         ResponsiveText()
+
+        Threading.Thread.Sleep(1000)
+        UpdateTrack()
     End Sub
 
     'change the text size based on the text length
@@ -273,33 +256,22 @@ Public Class Viewer
         End Select
     End Sub
 
-    'Event gets triggered, when the Track is changed
-    Private Sub _spotify_OnTrackChange(ByVal sender As Object, ByVal e As TrackChangeEventArgs)
-        If InvokeRequired Then
-            Invoke(Sub()
-                       _spotify_OnTrackChange(sender, e)
-                   End Sub)
-            Return
-        End If
-        UpdateTrack(e.NewTrack)
-    End Sub
-
     'Event gets triggered, when the tracktime changes
-    Private Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
-        'Attention: when the track get changed by a third party then this will kill the SpotifyAPI without TryCatch
-        Try
-            If InvokeRequired Then
-                Invoke(Sub()
-                           _spotify_OnTrackTimeChange(sender, e)
-                       End Sub)
-                Return
-            End If
-            timeLabel.Text = $"{FormatTime(e.TrackTime)}/{FormatTime(_currentTrack.Length)}"
-            If e.TrackTime < _currentTrack.Length Then timeProgressBar.Value = CInt(e.TrackTime)
-        Catch ex As Exception
+    'Private Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
+    '    'Attention: when the track get changed by a third party then this will kill the SpotifyAPI without TryCatch
+    '    Try
+    '        If InvokeRequired Then
+    '            Invoke(Sub()
+    '                       _spotify_OnTrackTimeChange(sender, e)
+    '                   End Sub)
+    '            Return
+    '        End If
+    '        timeLabel.Text = $"{FormatTime(e.TrackTime)}/{FormatTime(_currentTrack.Length)}"
+    '        If e.TrackTime < _currentTrack.Length Then timeProgressBar.Value = CInt(e.TrackTime)
+    '    Catch ex As Exception
 
-        End Try
-    End Sub
+    '    End Try
+    'End Sub
     Private Shared Function FormatTime(ByVal sec As Double) As String
         Dim span As TimeSpan = TimeSpan.FromSeconds(sec)
         Dim secs As String = span.Seconds.ToString(), mins As String = span.Minutes.ToString()
@@ -307,4 +279,31 @@ Public Class Viewer
         Return mins & ":" + secs
     End Function
 
+    Private Function GetImageFromUri(ByVal url As String) As Drawing.Image
+
+        Dim retVal As Drawing.Image = Nothing
+        
+        Try
+            If Not String.IsNullOrWhiteSpace(url) Then
+                Dim req As Net.WebRequest = System.Net.WebRequest.Create(url.Trim)
+
+                Using request As Net.WebResponse = req.GetResponse
+                    Using stream As IO.Stream = request.GetResponseStream
+                        retVal = New Bitmap(Drawing.Image.FromStream(stream))
+                    End Using
+                End Using
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(String.Format("An error occurred:{0}{0}{1}", _
+                                          vbCrLf, ex.Message), _
+                            "Exception Thrown", _
+                            MessageBoxButtons.OK, _
+                            MessageBoxIcon.Warning)
+
+        End Try
+
+        Return retVal
+
+    End Function
 End Class

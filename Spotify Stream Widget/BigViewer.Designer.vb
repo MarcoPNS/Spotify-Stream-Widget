@@ -29,8 +29,8 @@ Partial Class BigViewer
         Me.AlbumLabel = New System.Windows.Forms.Label()
         Me.timeProgressBar = New MetroFramework.Controls.MetroProgressBar()
         Me.timeLabel = New MetroFramework.Controls.MetroLabel()
-        CType(Me.AlbumCover, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
+        CType(Me.AlbumCover,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.SuspendLayout
         '
         'AlbumCover
         '
@@ -39,12 +39,12 @@ Partial Class BigViewer
         Me.AlbumCover.Size = New System.Drawing.Size(160, 160)
         Me.AlbumCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.AlbumCover.TabIndex = 0
-        Me.AlbumCover.TabStop = False
+        Me.AlbumCover.TabStop = false
         '
         'TrackLabel
         '
-        Me.TrackLabel.AutoSize = True
-        Me.TrackLabel.Font = New System.Drawing.Font("Calibri", 20.0!)
+        Me.TrackLabel.AutoSize = true
+        Me.TrackLabel.Font = New System.Drawing.Font("Calibri", 20!)
         Me.TrackLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
         Me.TrackLabel.Location = New System.Drawing.Point(196, 29)
         Me.TrackLabel.Name = "TrackLabel"
@@ -54,8 +54,8 @@ Partial Class BigViewer
         '
         'ArtistLabel
         '
-        Me.ArtistLabel.AutoSize = True
-        Me.ArtistLabel.Font = New System.Drawing.Font("Calibri", 16.0!)
+        Me.ArtistLabel.AutoSize = true
+        Me.ArtistLabel.Font = New System.Drawing.Font("Calibri", 16!)
         Me.ArtistLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
         Me.ArtistLabel.Location = New System.Drawing.Point(197, 64)
         Me.ArtistLabel.Name = "ArtistLabel"
@@ -65,8 +65,8 @@ Partial Class BigViewer
         '
         'AlbumLabel
         '
-        Me.AlbumLabel.AutoSize = True
-        Me.AlbumLabel.Font = New System.Drawing.Font("Calibri", 14.0!)
+        Me.AlbumLabel.AutoSize = true
+        Me.AlbumLabel.Font = New System.Drawing.Font("Calibri", 14!)
         Me.AlbumLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
         Me.AlbumLabel.Location = New System.Drawing.Point(198, 99)
         Me.AlbumLabel.Name = "AlbumLabel"
@@ -96,33 +96,33 @@ Partial Class BigViewer
         '
         'BigViewer
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(580, 200)
-        Me.ControlBox = False
+        Me.ControlBox = false
         Me.Controls.Add(Me.timeLabel)
         Me.Controls.Add(Me.timeProgressBar)
         Me.Controls.Add(Me.AlbumLabel)
         Me.Controls.Add(Me.ArtistLabel)
         Me.Controls.Add(Me.TrackLabel)
         Me.Controls.Add(Me.AlbumCover)
-        Me.DisplayHeader = False
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.DisplayHeader = false
+        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.Name = "BigViewer"
         Me.Padding = New System.Windows.Forms.Padding(20, 30, 20, 20)
-        Me.Resizable = False
+        Me.Resizable = false
         Me.Style = MetroFramework.MetroColorStyle.Green
         Me.Text = "Spotify Viewer"
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
-        CType(Me.AlbumCover, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        CType(Me.AlbumCover,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents AlbumCover As PictureBox
     Friend WithEvents TrackLabel As Label
     Friend WithEvents ArtistLabel As Label
     Friend WithEvents AlbumLabel As Label
-    Friend WithEvents timeProgressBar As MetroFramework.Controls.MetroProgressBar
     Friend WithEvents timeLabel As MetroFramework.Controls.MetroLabel
+    Public WithEvents timeProgressBar As MetroFramework.Controls.MetroProgressBar
 End Class

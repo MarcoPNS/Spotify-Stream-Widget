@@ -29,11 +29,6 @@ Public Class Settings
         'close the viewer
         If ViewerLaunchBtn.Text = "Close Viewer" Then
             Viewer.Close()
-            ColorSettingToggle.Enabled = True
-            ColorStyleBox.Enabled = True
-            SizeSettingBox.Enabled = True
-            ProgressStyleBox.Enabled = True
-            ViewerLaunchBtn.Text = "Open Viewer"
             Return
         End If
         ViewerLaunchBtn.Enabled = False
