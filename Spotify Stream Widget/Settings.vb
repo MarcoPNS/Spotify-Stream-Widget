@@ -79,4 +79,5 @@ Public Class Settings
         End Try
         Return
     End Sub
+
 End Class

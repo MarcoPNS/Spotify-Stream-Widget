@@ -9,14 +9,13 @@
 '       -   If you want to change the look of the form then you need to edit the templates, not this form.
 '===================================================================
 
-Imports Unosquare.Swan
 Imports SpotifyAPI.Web, SpotifyAPI.Web.Auth, SpotifyAPI.Web.Enums, SpotifyAPI.Web.Models
 Public Class Viewer
     Private Shared _spotify As SpotifyWebAPI
-    Private _currentTrack As FullTrack
     Shared ReadOnly ClientId = "2ee62a35a2ec45a4a7fe26b81f7f3681"
     Private Shared _spotifyAuth As ImplicitGrantAuth = New ImplicitGrantAuth(ClientId, "http://localhost:4002", "http://localhost:4002", Scope.UserReadPlaybackState)
-    Dim playback As PlaybackContext
+    Dim _playback As PlaybackContext
+    Dim _currentTrackId As String
 
     'The Load Event apply the user settings and the event handler for the spotify API
     Private Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -154,8 +153,7 @@ Public Class Viewer
         MsgBox("The Widget will open your browser to connect to the Spotify API")
         AddHandler _spotifyAuth.AuthReceived, AddressOf _spotify_AuthReceived
         _spotifyAuth.Start()
-        Threading.Thread.Sleep(1000)
-        console.WriteLine(_spotifyAuth.GetUri())
+        _spotifyAuth.OpenBrowser()
         UpdateTrack()
     End Sub
 
@@ -178,23 +176,46 @@ Public Class Viewer
     End Sub
 
     Private Async Sub UpdateTrack()
+
+        'If the API is not authorized yet then _spotify is nothing. 
+        'I don't trigger UpdateTrack() after AuthReceived got fired because I don't want to Invoke everything.
         If _spotify Is Nothing Then
-            Threading.Thread.Sleep(1000)
+            Await Task.Delay(1000)
             UpdateTrack()
             Return
         End If
 
         'get the current track
-        playback = _spotify.GetPlayback()
-        Console.WriteLine(playback.Item.Name)
-        timeProgressBar.Maximum = playback.Item.DurationMs
-        If playback.Item.Error IsNot Nothing Then
-            MsgBox(playback.Item.Error.Message)
+        _playback = _spotify.GetPlayback()
+
+        If _playback.Item Is Nothing Then
+            Await Task.Delay(1000)
+            UpdateTrack()
             Return
         End If
-        TrackLabel.Text = playback.Item.Name
+
+        'update the time
+        timeProgressBar.Maximum = _playback.Item.DurationMs
+        timeLabel.Text = $"{FormatTime(_playback.ProgressMs)}/{FormatTime(_playback.Item.DurationMs)}"
+        If _playback.ProgressMs < _playback.Item.DurationMs Then timeProgressBar.Value = CInt(_playback.ProgressMs)
+
+        'check if the song is the same so the entire UI don't need to update
+        If _currentTrackId = _playback.Item.Uri Then
+            Await Task.Delay(1000)
+            UpdateTrack()
+            Return
+        Else
+            _currentTrackId = _playback.Item.Uri
+        End If
+        
+        If _playback.Item.Error IsNot Nothing Then
+            MsgBox(_playback.Item.Error.Message)
+            Return
+        End If
+
+        TrackLabel.Text = _playback.Item.Name
         Dim artists = ""
-        For Each artist As SimpleArtist In playback.Item.Artists
+        For Each artist As SimpleArtist In _playback.Item.Artists
             If artists = "" Then
                 artists = artist.Name
             Else
@@ -203,21 +224,25 @@ Public Class Viewer
            
         Next
         ArtistLabel.Text = artists
-        AlbumLabel.Text = playback.Item.Album.Name
+        AlbumLabel.Text = _playback.Item.Album.Name
 
-        Try
+        If _playback.Item.Album.Images.Count > 0 Then
+            Try
             
-            AlbumCover.Image = If(playback.Item.Album.Images.Item(0).Url IsNot Nothing, GetImageFromUri(playback.Item.Album.Images.Item(1).Url), Nothing)
-        Catch ex As Exception
-            Console.WriteLine("AlbumCover Exception: " & ex.Message)
-            Dim iDefaultImage As Drawing.Image = New Bitmap(1, 1)
-            AlbumCover.Image = iDefaultImage
-        End Try
+                AlbumCover.Image = If(_playback.Item.Album.Images.Item(0).Url IsNot Nothing, GetImageFromUri(_playback.Item.Album.Images.Item(1).Url), Nothing)
+            Catch ex As Exception
+                Console.WriteLine("AlbumCover Exception: " & ex.Message)
+                Dim iDefaultImage As Drawing.Image = New Bitmap(1, 1)
+                AlbumCover.Image = iDefaultImage
+            End Try
+        Else 
+            AlbumCover.Image = My.Resources.albumArt
+        End If
 
         'change text size when the title is longer
         ResponsiveText()
 
-        Threading.Thread.Sleep(1000)
+        Await Task.Delay(1000)
         UpdateTrack()
     End Sub
 
@@ -256,24 +281,8 @@ Public Class Viewer
         End Select
     End Sub
 
-    'Event gets triggered, when the tracktime changes
-    'Private Sub _spotify_OnTrackTimeChange(ByVal sender As Object, ByVal e As TrackTimeChangeEventArgs)
-    '    'Attention: when the track get changed by a third party then this will kill the SpotifyAPI without TryCatch
-    '    Try
-    '        If InvokeRequired Then
-    '            Invoke(Sub()
-    '                       _spotify_OnTrackTimeChange(sender, e)
-    '                   End Sub)
-    '            Return
-    '        End If
-    '        timeLabel.Text = $"{FormatTime(e.TrackTime)}/{FormatTime(_currentTrack.Length)}"
-    '        If e.TrackTime < _currentTrack.Length Then timeProgressBar.Value = CInt(e.TrackTime)
-    '    Catch ex As Exception
-
-    '    End Try
-    'End Sub
-    Private Shared Function FormatTime(ByVal sec As Double) As String
-        Dim span As TimeSpan = TimeSpan.FromSeconds(sec)
+    Private Shared Function FormatTime(ByVal ms As Double) As String
+        Dim span As TimeSpan = TimeSpan.FromMilliseconds(ms)
         Dim secs As String = span.Seconds.ToString(), mins As String = span.Minutes.ToString()
         If secs.Length < 2 Then secs = "0" & secs
         Return mins & ":" + secs
@@ -285,7 +294,7 @@ Public Class Viewer
         
         Try
             If Not String.IsNullOrWhiteSpace(url) Then
-                Dim req As Net.WebRequest = System.Net.WebRequest.Create(url.Trim)
+                Dim req As Net.WebRequest = Net.WebRequest.Create(url.Trim)
 
                 Using request As Net.WebResponse = req.GetResponse
                     Using stream As IO.Stream = request.GetResponseStream
@@ -295,12 +304,7 @@ Public Class Viewer
             End If
 
         Catch ex As Exception
-            MessageBox.Show(String.Format("An error occurred:{0}{0}{1}", _
-                                          vbCrLf, ex.Message), _
-                            "Exception Thrown", _
-                            MessageBoxButtons.OK, _
-                            MessageBoxIcon.Warning)
-
+            MessageBox.Show(String.Format("An error occurred:{0}{0}{1}", vbCrLf, ex.Message), "Exception Thrown", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
 
         Return retVal
