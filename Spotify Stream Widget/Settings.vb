@@ -9,11 +9,13 @@
 '===================================================================
 
 Imports System.Net
+Imports Spotify_Stream_Widget.Logger
 Public Class Settings
 
     'This is the Load Event.
     '
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Log("Application started")
         'check for new version
         VersionCheck.RunWorkerAsync()
         'get current settings
@@ -28,6 +30,7 @@ Public Class Settings
     Private Sub StartViewer(sender As Object, e As EventArgs) Handles ViewerLaunchBtn.Click
         'close the viewer
         If ViewerLaunchBtn.Text = "Close Viewer" Then
+            Log("Viewer closed")
             Viewer.Close()
             Return
         End If
@@ -76,6 +79,7 @@ Public Class Settings
                 End If
             End If
         Catch ex As Exception
+            Log(3, "VersionCheck_DoWork() Exception: " & ex.ToString())
         End Try
         Return
     End Sub

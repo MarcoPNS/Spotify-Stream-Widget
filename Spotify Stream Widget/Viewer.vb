@@ -10,6 +10,7 @@
 '===================================================================
 
 Imports SpotifyAPI.Web, SpotifyAPI.Web.Auth, SpotifyAPI.Web.Enums, SpotifyAPI.Web.Models
+Imports Spotify_Stream_Widget.Logger
 Public Class Viewer
     Private Shared _spotify As SpotifyWebAPI
     Shared ReadOnly ClientId = "2ee62a35a2ec45a4a7fe26b81f7f3681"
@@ -228,10 +229,10 @@ Public Class Viewer
 
         If _playback.Item.Album.Images.Count > 0 Then
             Try
-            
+
                 AlbumCover.Image = If(_playback.Item.Album.Images.Item(0).Url IsNot Nothing, GetImageFromUri(_playback.Item.Album.Images.Item(1).Url), Nothing)
             Catch ex As Exception
-                Console.WriteLine("AlbumCover Exception: " & ex.Message)
+                Log(3, "AlbumCover Exception: " & ex.ToString())
                 Dim iDefaultImage As Drawing.Image = New Bitmap(1, 1)
                 AlbumCover.Image = iDefaultImage
             End Try
@@ -291,7 +292,7 @@ Public Class Viewer
     Private Function GetImageFromUri(ByVal url As String) As Drawing.Image
 
         Dim retVal As Drawing.Image = Nothing
-        
+
         Try
             If Not String.IsNullOrWhiteSpace(url) Then
                 Dim req As Net.WebRequest = Net.WebRequest.Create(url.Trim)
@@ -304,6 +305,7 @@ Public Class Viewer
             End If
 
         Catch ex As Exception
+            Log(3, "GetImageFromUri() Exception: " & ex.ToString())
             MessageBox.Show(String.Format("An error occurred:{0}{0}{1}", vbCrLf, ex.Message), "Exception Thrown", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
 
