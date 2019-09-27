@@ -181,16 +181,23 @@ Public Class Viewer
         'If the API is not authorized yet then _spotify is nothing. 
         'I don't trigger UpdateTrack() after AuthReceived got fired because I don't want to Invoke everything.
         If _spotify Is Nothing Then
-            Await Task.Delay(1000)
+            Await Task.Delay(5000)
             UpdateTrack()
             Return
         End If
 
         'get the current track
         _playback = _spotify.GetPlayback()
+        
+        If _playback.HasError() Then
+            Log(2, "Error Status: " & _playback.Error.Status & " Msg: " & _playback.Error.Message)
+            Await Task.Delay(5000)
+            UpdateTrack()
+            Return
+        End If
 
         If _playback.Item Is Nothing Then
-            Await Task.Delay(1000)
+            Await Task.Delay(5000)
             UpdateTrack()
             Return
         End If
@@ -202,7 +209,7 @@ Public Class Viewer
 
         'check if the song is the same so the entire UI don't need to update
         If _currentTrackId = _playback.Item.Uri Then
-            Await Task.Delay(1000)
+            Await Task.Delay(2000)
             UpdateTrack()
             Return
         Else
