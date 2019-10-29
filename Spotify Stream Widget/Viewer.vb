@@ -174,9 +174,14 @@ Public Class Viewer
         Settings.ProgressStyleBox.Enabled = True
         Settings.ViewerLaunchBtn.Enabled = True
         Settings.ViewerLaunchBtn.Text = "Open Viewer"
+        Console.WriteLine(_spotifyAuth.State.ToString())
+
     End Sub
 
     Private Async Sub UpdateTrack()
+
+        'Kill it if the Viewer is closed.
+        If Settings.ViewerLaunchBtn.Text = "Open Viewer" Then Return
 
         'If the API is not authorized yet then _spotify is nothing. 
         'I don't trigger UpdateTrack() after AuthReceived got fired because I don't want to Invoke everything.
