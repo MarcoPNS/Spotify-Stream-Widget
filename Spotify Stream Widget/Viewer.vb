@@ -187,9 +187,19 @@ Public Class Viewer
         End If
 
         'get the current track
-        _playback = _spotify.GetPlayback()
-        
-        If _playback.HasError() Then
+        'could fail if you do not have a internet connection
+        Try
+            _playback = _spotify.GetPlayback()
+        Catch ex As Exception
+            Log(3, "GetPlayback() Exception: " & ex.ToString())
+            MsgBox("There was a problem with reaching the Spotify API. Please check your network connection and try again." + vbNewLine + "GetPlayback() Exception: " + ex.Message)
+            Close()
+
+            Return
+        End Try
+
+        'With HasError() you can check the error that got back of the spotify API.
+        If _playback.HasError() Or _playback.Item.Error IsNot Nothing Then
             Log(2, "Error Status: " & _playback.Error.Status & " Msg: " & _playback.Error.Message)
             Await Task.Delay(5000)
             UpdateTrack()
@@ -214,11 +224,6 @@ Public Class Viewer
             Return
         Else
             _currentTrackId = _playback.Item.Uri
-        End If
-        
-        If _playback.Item.Error IsNot Nothing Then
-            MsgBox(_playback.Item.Error.Message)
-            Return
         End If
 
         TrackLabel.Text = _playback.Item.Name
@@ -289,6 +294,8 @@ Public Class Viewer
         End Select
     End Sub
 
+
+
     Private Shared Function FormatTime(ByVal ms As Double) As String
         Dim span As TimeSpan = TimeSpan.FromMilliseconds(ms)
         Dim secs As String = span.Seconds.ToString(), mins As String = span.Minutes.ToString()
@@ -319,4 +326,30 @@ Public Class Viewer
         Return retVal
 
     End Function
+
+
+#Region "Form Dragging Function"
+    'original: https://stackoverflow.com/a/24235555/9290012
+    Dim _drag As Boolean
+    Dim _mousex As Integer
+    Dim _mousey As Integer
+
+    Private Sub MoveForm_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseDown, TrackLabel.MouseDown, ArtistLabel.MouseDown, AlbumCover.MouseDown, AlbumLabel.MouseDown, timeLabel.MouseDown, timeProgressBar.MouseDown
+        _drag = True
+        _mousex = Windows.Forms.Cursor.Position.X - Me.Left
+        _mousey = Windows.Forms.Cursor.Position.Y - Me.Top
+    End Sub
+
+    Private Sub MoveForm_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseUp, TrackLabel.MouseUp, ArtistLabel.MouseUp, AlbumCover.MouseUp, AlbumLabel.MouseUp, timeLabel.MouseUp, timeProgressBar.MouseUp
+        _drag = False
+    End Sub
+
+    Private Sub MoveForm_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseMove, TrackLabel.MouseMove, ArtistLabel.MouseMove, AlbumCover.MouseMove, AlbumLabel.MouseMove, timeLabel.MouseMove, timeProgressBar.MouseMove
+        If _drag Then
+            Me.Top = Windows.Forms.Cursor.Position.Y - _mousey
+            Me.Left = Windows.Forms.Cursor.Position.X - _mousex
+        End If
+    End Sub
+#End Region
+
 End Class
