@@ -13,7 +13,7 @@ Imports SpotifyAPI.Web, SpotifyAPI.Web.Auth, SpotifyAPI.Web.Enums, SpotifyAPI.We
 Imports Spotify_Stream_Widget.Logger
 Public Class Viewer
     Private Shared _spotify As SpotifyWebAPI
-    Shared ReadOnly ClientId = "2ee62a35a2ec45a4a7fe26b81f7f3681"
+    Shared ReadOnly ClientId = My.Settings.SpotifyApiKey
     Private Shared _spotifyAuth As ImplicitGrantAuth = New ImplicitGrantAuth(ClientId, "http://localhost:4002", "http://localhost:4002", Scope.UserReadPlaybackState)
     Dim _playback As PlaybackContext
     Dim _currentTrackId As String
