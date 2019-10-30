@@ -218,13 +218,15 @@ Public Class Viewer
         End If
 
         'update the time
-        timeProgressBar.Maximum = _playback.Item.DurationMs
-        timeLabel.Text = $"{FormatTime(_playback.ProgressMs)}/{FormatTime(_playback.Item.DurationMs)}"
-        If _playback.ProgressMs < _playback.Item.DurationMs Then timeProgressBar.Value = CInt(_playback.ProgressMs)
+        UpdateProgressBar(CInt(_playback.ProgressMs), CInt(_playback.Item.DurationMs))
 
-        'check if the song is the same so the entire UI don't need to update
+        'check if the song is the same so the entire UI don't need to update. It also fake some seconds.
         If _currentTrackId = _playback.Item.Uri Then
-            Await Task.Delay(2000)
+            Await Task.Delay(1000)
+            UpdateProgressBar(CInt(_playback.ProgressMs) + 1000, CInt(_playback.Item.DurationMs))
+            Await Task.Delay(1000)
+            UpdateProgressBar(CInt(_playback.ProgressMs) + 2000, CInt(_playback.Item.DurationMs))
+            Await Task.Delay(1000)
             UpdateTrack()
             Return
         Else
@@ -239,7 +241,7 @@ Public Class Viewer
             Else
                 artists = artists + " - " + artist.Name
             End If
-           
+
         Next
         ArtistLabel.Text = artists
         AlbumLabel.Text = _playback.Item.Album.Name
@@ -253,7 +255,7 @@ Public Class Viewer
                 Dim iDefaultImage As Drawing.Image = New Bitmap(1, 1)
                 AlbumCover.Image = iDefaultImage
             End Try
-        Else 
+        Else
             AlbumCover.Image = My.Resources.albumArt
         End If
 
@@ -262,6 +264,12 @@ Public Class Viewer
 
         Await Task.Delay(1000)
         UpdateTrack()
+    End Sub
+
+    Private Sub UpdateProgressBar(cur As Integer, max As Integer)
+        timeProgressBar.Maximum = max
+        If cur < max Then timeProgressBar.Value = cur
+        timeLabel.Text = $"{FormatTime(cur)}/{FormatTime(max)}"
     End Sub
 
     'change the text size based on the text length
