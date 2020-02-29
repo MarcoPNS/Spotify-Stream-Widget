@@ -34,6 +34,7 @@ Partial Class Viewer
         '
         'timeLabel
         '
+        Me.timeLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(171, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(171, Byte), Integer))
         Me.timeLabel.Location = New System.Drawing.Point(275, 214)
         Me.timeLabel.Name = "timeLabel"
         Me.timeLabel.Size = New System.Drawing.Size(350, 19)
@@ -54,9 +55,9 @@ Partial Class Viewer
         '
         'AlbumLabel
         '
-        Me.AlbumLabel.AutoSize = true
-        Me.AlbumLabel.Font = New System.Drawing.Font("Calibri", 14!)
-        Me.AlbumLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
+        Me.AlbumLabel.AutoSize = True
+        Me.AlbumLabel.Font = New System.Drawing.Font("Calibri", 14.0!)
+        Me.AlbumLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(171, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(171, Byte), Integer))
         Me.AlbumLabel.Location = New System.Drawing.Point(276, 154)
         Me.AlbumLabel.Name = "AlbumLabel"
         Me.AlbumLabel.Size = New System.Drawing.Size(153, 23)
@@ -65,9 +66,9 @@ Partial Class Viewer
         '
         'ArtistLabel
         '
-        Me.ArtistLabel.AutoSize = true
-        Me.ArtistLabel.Font = New System.Drawing.Font("Calibri", 16!)
-        Me.ArtistLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
+        Me.ArtistLabel.AutoSize = True
+        Me.ArtistLabel.Font = New System.Drawing.Font("Calibri", 16.0!)
+        Me.ArtistLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(171, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(171, Byte), Integer))
         Me.ArtistLabel.Location = New System.Drawing.Point(275, 119)
         Me.ArtistLabel.Name = "ArtistLabel"
         Me.ArtistLabel.Size = New System.Drawing.Size(174, 27)
@@ -76,9 +77,9 @@ Partial Class Viewer
         '
         'TrackLabel
         '
-        Me.TrackLabel.AutoSize = true
-        Me.TrackLabel.Font = New System.Drawing.Font("Calibri", 20!)
-        Me.TrackLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace
+        Me.TrackLabel.AutoSize = True
+        Me.TrackLabel.Font = New System.Drawing.Font("Calibri", 20.0!)
+        Me.TrackLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(171, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(171, Byte), Integer))
         Me.TrackLabel.Location = New System.Drawing.Point(274, 84)
         Me.TrackLabel.Name = "TrackLabel"
         Me.TrackLabel.Size = New System.Drawing.Size(205, 33)

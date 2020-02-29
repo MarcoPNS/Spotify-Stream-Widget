@@ -11,6 +11,7 @@
 Imports System.Net
 Imports Spotify_Stream_Widget.Logger
 Public Class Settings
+    Dim _viewerActive As Boolean = False
 
     'This is the Load Event.
     '
@@ -21,32 +22,17 @@ Public Class Settings
         'get current settings
         VersionLabel.Text = ProductVersion
         ColorSettingToggle.Checked = My.Settings.DarkMode
+        ExportSettingToggle.Checked = My.Settings.ExportMode
         SizeSettingBox.Text = My.Settings.Size
         ProgressStyleBox.Text = My.Settings.ProgressBarStyle
         ColorStyleBox.Text = My.Settings.Color
+        Viewer.Show()
     End Sub
 
     'start event
-    Private Sub StartViewer(sender As Object, e As EventArgs) Handles ViewerLaunchBtn.Click
-        'close the viewer
-        If ViewerLaunchBtn.Text = "Close Viewer" Then
-            Log("Viewer closed")
-            Viewer.Close()
-            Return
-        End If
-        ViewerLaunchBtn.Enabled = False
-        'save settings
-        My.Settings.Size = SizeSettingBox.Text
-        My.Settings.DarkMode = ColorSettingToggle.Checked
-        My.Settings.ProgressBarStyle = ProgressStyleBox.Text
-        My.Settings.Color = ColorStyleBox.Text
-        My.Settings.Save()
-        ColorSettingToggle.Enabled = False
-        ColorStyleBox.Enabled = False
-        SizeSettingBox.Enabled = False
-        ProgressStyleBox.Enabled = False
+    Private Sub ConnectToSpotify(sender As Object, e As EventArgs) Handles SpotifyConnectBtn.Click
+        SpotifyConnectBtn.Enabled = False
         'load viewer
-        Viewer.Show()
         Viewer.SpotifyConnect()
     End Sub
 
@@ -84,4 +70,31 @@ Public Class Settings
         Return
     End Sub
 
+    Private Sub ColorSettingToggle_CheckedChanged(sender As Object, e As EventArgs) Handles ColorSettingToggle.CheckedChanged
+        My.Settings.DarkMode = ColorSettingToggle.Checked
+        My.Settings.Save()
+        If My.Settings.DarkMode = False Then
+            Viewer.ApplyLightning(1)
+        Else
+            Viewer.ApplyLightning(0)
+        End If
+    End Sub
+
+    Private Sub SizeSettingBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SizeSettingBox.SelectedIndexChanged
+        My.Settings.Size = SizeSettingBox.Text
+        My.Settings.Save()
+        Viewer.ApplySize()
+    End Sub
+
+    Private Sub ProgressStyleBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ProgressStyleBox.SelectedIndexChanged
+        My.Settings.ProgressBarStyle = ProgressStyleBox.Text
+        My.Settings.Save()
+        Viewer.ApplyProgressBarStyle()
+    End Sub
+
+    Private Sub ColorStyleBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ColorStyleBox.SelectedIndexChanged
+        My.Settings.Color = ColorStyleBox.Text
+        My.Settings.Save()
+        Viewer.SetColor()
+    End Sub
 End Class

@@ -23,7 +23,7 @@ Public Class Viewer
         ApplyProgressBarStyle()
         ApplySize()
         If My.Settings.DarkMode = False Then
-            ActivateWhite()
+            ApplyLightning(1)
         End If
         SetColor()
     End Sub
@@ -32,7 +32,7 @@ Public Class Viewer
 #Region "Apply User Settings"
     'The user settings will be applied in this region. It change this size, change the color and change the theme.
     'If there is a new option that need to be applied in the viewer then add it in this region.
-    Private Sub ApplyProgressBarStyle()
+    Public Sub ApplyProgressBarStyle()
         Select Case My.Settings.ProgressBarStyle
             Case "Blocks"
                 timeProgressBar.ProgressBarStyle = ProgressBarStyle.Blocks
@@ -44,7 +44,7 @@ Public Class Viewer
     End Sub
 
     'copy the location of the objects and the size from the template based on the user settings.
-    Private Sub ApplySize()
+    Public Sub ApplySize()
         Select Case My.Settings.Size
             Case "Small"
                 Size = SmallViewer.Size
@@ -85,7 +85,7 @@ Public Class Viewer
     End Sub
 
     'change the style color of the viewer
-    Private Sub SetColor()
+    Public Sub SetColor()
         Select Case My.Settings.Color
             Case "Green"
                 Style = MetroFramework.MetroColorStyle.Green
@@ -130,16 +130,28 @@ Public Class Viewer
                 Style = MetroFramework.MetroColorStyle.Yellow
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Yellow
         End Select
+        Refresh()
     End Sub
 
     'activate the Metro UI Light Theme // normaly it is dark so only needed to be switched when the user want a light overlay
-    Private Sub ActivateWhite()
-        Theme = MetroFramework.MetroThemeStyle.Light
-        timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Light
-        timeLabel.Theme = MetroFramework.MetroThemeStyle.Light
-        TrackLabel.ForeColor = Color.FromArgb(64, 64, 64)
-        ArtistLabel.ForeColor = Color.FromArgb(64, 64, 64)
-        AlbumLabel.ForeColor = Color.FromArgb(64, 64, 64)
+    Public Sub ApplyLightning(mode As Integer)
+        If mode = 1 Then
+            Theme = MetroFramework.MetroThemeStyle.Light
+            timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Light
+            timeLabel.Theme = MetroFramework.MetroThemeStyle.Light
+            TrackLabel.ForeColor = Color.FromArgb(64, 64, 64)
+            ArtistLabel.ForeColor = Color.FromArgb(64, 64, 64)
+            AlbumLabel.ForeColor = Color.FromArgb(64, 64, 64)
+        Else
+            Theme = MetroFramework.MetroThemeStyle.Dark
+            timeProgressBar.Theme = MetroFramework.MetroThemeStyle.Dark
+            timeLabel.Theme = MetroFramework.MetroThemeStyle.Dark
+            TrackLabel.ForeColor = Color.FromArgb(171, 171, 171)
+            ArtistLabel.ForeColor = Color.FromArgb(171, 171, 171)
+            AlbumLabel.ForeColor = Color.FromArgb(171, 171, 171)
+
+        End If
+        Refresh()
     End Sub
 
 #End Region
@@ -148,8 +160,8 @@ Public Class Viewer
     'Connects with Spotify. Needs to be called before all other SpotifyAPI functions
     Public Sub SpotifyConnect()
         timeLabel.Text = ""
-        Settings.ViewerLaunchBtn.Text = "Close Viewer"
-        Settings.ViewerLaunchBtn.Enabled = True
+        Settings.SpotifyConnectBtn.Text = "Close Viewer"
+        Settings.SpotifyConnectBtn.Enabled = True
         'Spotify Auth
         MsgBox("The Widget will open your browser to connect to the Spotify API")
         AddHandler _spotifyAuth.AuthReceived, AddressOf _spotify_AuthReceived
@@ -172,8 +184,8 @@ Public Class Viewer
         Settings.ColorStyleBox.Enabled = True
         Settings.SizeSettingBox.Enabled = True
         Settings.ProgressStyleBox.Enabled = True
-        Settings.ViewerLaunchBtn.Enabled = True
-        Settings.ViewerLaunchBtn.Text = "Open Viewer"
+        Settings.SpotifyConnectBtn.Enabled = True
+        Settings.SpotifyConnectBtn.Text = "Open Viewer"
         Console.WriteLine(_spotifyAuth.State.ToString())
 
     End Sub
@@ -181,7 +193,7 @@ Public Class Viewer
     Private Async Sub UpdateTrack()
 
         'Kill it if the Viewer is closed.
-        If Settings.ViewerLaunchBtn.Text = "Open Viewer" Then Return
+        If Settings.SpotifyConnectBtn.Text = "Open Viewer" Then Return
 
         'If the API is not authorized yet then _spotify is nothing. 
         'I don't trigger UpdateTrack() after AuthReceived got fired because I don't want to Invoke everything.
@@ -204,7 +216,7 @@ Public Class Viewer
         End Try
 
         'With HasError() you can check the error that got back of the spotify API.
-        If _playback.HasError() Or _playback.Item.Error IsNot Nothing Then
+        If _playback.HasError() Then
             Log(2, "Error Status: " & _playback.Error.Status & " Msg: " & _playback.Error.Message)
             Await Task.Delay(5000)
             UpdateTrack()
