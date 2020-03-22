@@ -134,14 +134,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="PictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="ExportFolderBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAANVJREFUOE/lkiESwkAMRdchkZUcgSMgkUgkEolE4io5Qo9QWYms7BGQSCQW/tuy
-        ne50WybYvpk3bEITlqRunizkQV4S7qSZUr4n5MdMUFS3x4iVvEu+P8lNQp4ZQMGtPQ7oNx1zLyNIjjWE
-        TKZut5XUVjLiV8MpkrX9JBu/ypckb/Ehz9IHoSHDJ2ZJ5CzSkIt0DZkVCc5WWB61DUFoyPtIci2tsBj6
-        sCx/eH4/mZ8VXhtqCx8JAmQGLMXCUlLHhRiZh/8dmv7rUXYwM+YXtmU1l/PFuQ/AoHTMSkfRvQAAAABJ
-        RU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAABGdBTUEAALGPC/xhBQAAADxJREFUOE9j
+        oD/4////USDGBi5AlWAHIBVQJgrAJQ4HIAVkgMPkavw/qhEPGBiNhyFMksAhaPqhG2BgAACGflCthC0o
+        5gAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

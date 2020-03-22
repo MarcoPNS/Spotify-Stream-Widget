@@ -1,8 +1,8 @@
-# Spotify-Stream-Widget
+# Stream Widget for Spotify
 A small Tool for Streamers to show the current Track of Spotify to your Viewers! Completly customizable to fit your style.
 
 
-## Screenshots
+## How it looks like?
 ![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/master/img/screen.jpg?raw=true "Screenshot")
 ![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/master/img/2018-04-14%2012_05_32-.jpg?raw=true "Screenshot")
 ![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/master/img/screen2.jpg?raw=true "Screenshot")
@@ -11,10 +11,9 @@ A small Tool for Streamers to show the current Track of Spotify to your Viewers!
 
 ## How to use it?
 1. Download the tool
-2. Please make sure that Spotify is running on the Computer and the SpotifyWebHelper is activated.
-3. Start the Tool
-4. Customize the Viewer and open the Viewer
-5. Now you can add the window "Spotify Viewer" on your Stream using OBS, XSplit or similiar.
+2. Start the Tool
+3. Customize the Viewer and authentificate with your Spotify Account.
+4. Now you can add the window "Spotify Viewer" on your Stream using OBS, XSplit or similiar.
 
 ## Donate
 PayPal: [https://www.paypal.me/MarcoSadowski](https://www.paypal.me/MarcoSadowski)

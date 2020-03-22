@@ -42,9 +42,9 @@ Partial Class Settings
         Me.VersionCheck = New System.ComponentModel.BackgroundWorker()
         Me.ExportSettingLabel = New MetroFramework.Controls.MetroLabel()
         Me.ExportSettingToggle = New MetroFramework.Controls.MetroToggle()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ExportFolderBtn = New System.Windows.Forms.PictureBox()
         Me.CreditPanel.SuspendLayout
-        CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.ExportFolderBtn,System.ComponentModel.ISupportInitialize).BeginInit
         Me.SuspendLayout
         '
         'SpotifyConnectBtn
@@ -152,11 +152,11 @@ Partial Class Settings
         '
         Me.CreditPanel.Controls.Add(Me.Button1)
         Me.CreditPanel.Controls.Add(Me.CreditsText)
-        Me.CreditPanel.Location = New System.Drawing.Point(126, 373)
+        Me.CreditPanel.Location = New System.Drawing.Point(146, 335)
         Me.CreditPanel.Name = "CreditPanel"
         Me.CreditPanel.Size = New System.Drawing.Size(272, 304)
         Me.CreditPanel.TabIndex = 9
-        Me.CreditPanel.Visible = false
+        Me.CreditPanel.Visible = False
         '
         'Button1
         '
@@ -165,12 +165,12 @@ Partial Class Settings
         Me.Button1.Size = New System.Drawing.Size(75, 24)
         Me.Button1.TabIndex = 10
         Me.Button1.Text = "Close"
-        Me.Button1.UseVisualStyleBackColor = true
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'CreditsText
         '
-        Me.CreditsText.Location = New System.Drawing.Point(3, 0)
-        Me.CreditsText.Multiline = true
+        Me.CreditsText.Location = New System.Drawing.Point(2, 2)
+        Me.CreditsText.Multiline = True
         Me.CreditsText.Name = "CreditsText"
         Me.CreditsText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.CreditsText.Size = New System.Drawing.Size(269, 304)
@@ -184,13 +184,13 @@ Partial Class Settings
         Me.ReportLink.Size = New System.Drawing.Size(88, 18)
         Me.ReportLink.TabIndex = 10
         Me.ReportLink.Text = "Report a bug"
-        Me.ReportLink.UseCustomBackColor = true
-        Me.ReportLink.UseSelectable = true
-        Me.ReportLink.UseStyleColors = true
+        Me.ReportLink.UseCustomBackColor = True
+        Me.ReportLink.UseSelectable = True
+        Me.ReportLink.UseStyleColors = True
         '
         'ColorStyleLabel
         '
-        Me.ColorStyleLabel.AutoSize = true
+        Me.ColorStyleLabel.AutoSize = True
         Me.ColorStyleLabel.Location = New System.Drawing.Point(13, 175)
         Me.ColorStyleLabel.Name = "ColorStyleLabel"
         Me.ColorStyleLabel.Size = New System.Drawing.Size(116, 19)
@@ -200,7 +200,7 @@ Partial Class Settings
         '
         'ColorStyleBox
         '
-        Me.ColorStyleBox.FormattingEnabled = true
+        Me.ColorStyleBox.FormattingEnabled = True
         Me.ColorStyleBox.ItemHeight = 23
         Me.ColorStyleBox.Items.AddRange(New Object() {"Green", "Black", "White", "Silver", "Blue", "Lime", "Teal", "Orange", "Brown", "Pink", "Magenta", "Purple", "Red", "Yellow"})
         Me.ColorStyleBox.Location = New System.Drawing.Point(161, 175)
@@ -209,12 +209,12 @@ Partial Class Settings
         Me.ColorStyleBox.Style = MetroFramework.MetroColorStyle.Green
         Me.ColorStyleBox.TabIndex = 11
         Me.ColorStyleBox.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.ColorStyleBox.UseSelectable = true
+        Me.ColorStyleBox.UseSelectable = True
         '
         'VersionLabel
         '
-        Me.VersionLabel.AutoSize = true
-        Me.VersionLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 6!)
+        Me.VersionLabel.AutoSize = True
+        Me.VersionLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!)
         Me.VersionLabel.ForeColor = System.Drawing.SystemColors.ButtonFace
         Me.VersionLabel.Location = New System.Drawing.Point(255, 49)
         Me.VersionLabel.Name = "VersionLabel"
@@ -227,7 +227,7 @@ Partial Class Settings
         '
         'ExportSettingLabel
         '
-        Me.ExportSettingLabel.AutoSize = true
+        Me.ExportSettingLabel.AutoSize = True
         Me.ExportSettingLabel.Location = New System.Drawing.Point(13, 210)
         Me.ExportSettingLabel.Name = "ExportSettingLabel"
         Me.ExportSettingLabel.Size = New System.Drawing.Size(90, 19)
@@ -237,8 +237,8 @@ Partial Class Settings
         '
         'ExportSettingToggle
         '
-        Me.ExportSettingToggle.AutoSize = true
-        Me.ExportSettingToggle.Checked = true
+        Me.ExportSettingToggle.AutoSize = True
+        Me.ExportSettingToggle.Checked = True
         Me.ExportSettingToggle.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ExportSettingToggle.Location = New System.Drawing.Point(183, 215)
         Me.ExportSettingToggle.Name = "ExportSettingToggle"
@@ -247,24 +247,24 @@ Partial Class Settings
         Me.ExportSettingToggle.TabIndex = 14
         Me.ExportSettingToggle.Text = "An"
         Me.ExportSettingToggle.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.ExportSettingToggle.UseSelectable = true
+        Me.ExportSettingToggle.UseSelectable = True
         '
-        'PictureBox1
+        'ExportFolderBtn
         '
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"),System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(158, 213)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(20, 20)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.PictureBox1.TabIndex = 16
-        Me.PictureBox1.TabStop = false
+        Me.ExportFolderBtn.Image = CType(resources.GetObject("ExportFolderBtn.Image"), System.Drawing.Image)
+        Me.ExportFolderBtn.Location = New System.Drawing.Point(162, 215)
+        Me.ExportFolderBtn.Name = "ExportFolderBtn"
+        Me.ExportFolderBtn.Size = New System.Drawing.Size(14, 16)
+        Me.ExportFolderBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.ExportFolderBtn.TabIndex = 16
+        Me.ExportFolderBtn.TabStop = False
         '
         'Settings
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.ExportFolderBtn)
         Me.Controls.Add(Me.ExportSettingLabel)
         Me.Controls.Add(Me.ExportSettingToggle)
         Me.Controls.Add(Me.CreditPanel)
@@ -281,17 +281,17 @@ Partial Class Settings
         Me.Controls.Add(Me.ColorSettingLabel)
         Me.Controls.Add(Me.ColorSettingToggle)
         Me.Controls.Add(Me.SpotifyConnectBtn)
-        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
-        Me.MaximizeBox = false
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "Settings"
-        Me.Resizable = false
+        Me.Resizable = False
         Me.Style = MetroFramework.MetroColorStyle.Green
-        Me.Text = "Spotify Widget Settings"
+        Me.Text = "Widget for Spotify"
         Me.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.CreditPanel.ResumeLayout(false)
         Me.CreditPanel.PerformLayout
-        CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.ExportFolderBtn,System.ComponentModel.ISupportInitialize).EndInit
         Me.ResumeLayout(false)
         Me.PerformLayout
 
@@ -315,5 +315,5 @@ End Sub
     Friend WithEvents ExportSettingLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents ExportSettingToggle As MetroFramework.Controls.MetroToggle
     Friend WithEvents SpotifyConnectBtn As Button
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents ExportFolderBtn As PictureBox
 End Class

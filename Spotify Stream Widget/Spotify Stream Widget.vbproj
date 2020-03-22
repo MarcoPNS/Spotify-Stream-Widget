@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>Spotify_Stream_Widget.My.MyApplication</StartupObject>
     <RootNamespace>Spotify_Stream_Widget</RootNamespace>
-    <AssemblyName>Spotify Stream Widget</AssemblyName>
+    <AssemblyName>Stream Widget for Spotify</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -37,7 +37,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Spotify Stream Widget.xml</DocumentationFile>
+    <DocumentationFile>Stream Widget for Spotify.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -47,7 +47,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Spotify Stream Widget.xml</DocumentationFile>
+    <DocumentationFile>Stream Widget for Spotify.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>

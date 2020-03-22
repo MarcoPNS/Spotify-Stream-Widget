@@ -1,6 +1,6 @@
 ﻿'===================================================================
 '       Written by Marco Sadowski 
-'       Last Update: 2018-07-31
+'       Last Update: 2020-03-22
 '       Please add your name after mine if you edit this code <3
 '
 '       Usage of the Settings Form:
@@ -8,6 +8,7 @@
 '       -   The user can configure the viewer form here
 '===================================================================
 
+Imports System.IO
 Imports System.Net
 Imports Spotify_Stream_Widget.Logger
 Public Class Settings
@@ -96,5 +97,23 @@ Public Class Settings
         My.Settings.Color = ColorStyleBox.Text
         My.Settings.Save()
         Viewer.SetColor()
+    End Sub
+
+    Private Sub ExportFolderBtn_Click(sender As Object, e As EventArgs) Handles ExportFolderBtn.Click
+        Process.Start("explorer.exe", Application.StartupPath + "/exported-details/")
+    End Sub
+
+    Private Sub ExportSettingToggle_CheckedChanged(sender As Object, e As EventArgs) Handles ExportSettingToggle.CheckedChanged
+        If Directory.Exists(Application.StartupPath + "/exported-details/") = False Then
+            Try
+                Directory.CreateDirectory(Application.StartupPath + "/exported-details/")
+            Catch ex As Exception
+                Log(3, ex.ToString())
+                MsgBox("Can't create Directory for the exported Details. Please check the permissions of the application folder and try again. More Details can be found in the log file.")
+                Exit Sub
+            End Try
+        End If
+        My.Settings.ExportMode = ExportSettingToggle.Checked
+        My.Settings.Save()
     End Sub
 End Class
