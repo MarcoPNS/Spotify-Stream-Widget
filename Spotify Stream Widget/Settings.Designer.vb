@@ -42,8 +42,10 @@ Partial Class Settings
         Me.VersionCheck = New System.ComponentModel.BackgroundWorker()
         Me.ExportSettingLabel = New MetroFramework.Controls.MetroLabel()
         Me.ExportSettingToggle = New MetroFramework.Controls.MetroToggle()
-        Me.CreditPanel.SuspendLayout()
-        Me.SuspendLayout()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.CreditPanel.SuspendLayout
+        CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.SuspendLayout
         '
         'SpotifyConnectBtn
         '
@@ -52,12 +54,12 @@ Partial Class Settings
         Me.SpotifyConnectBtn.Size = New System.Drawing.Size(251, 23)
         Me.SpotifyConnectBtn.TabIndex = 0
         Me.SpotifyConnectBtn.Text = "Connect to Spotify"
-        Me.SpotifyConnectBtn.UseVisualStyleBackColor = True
+        Me.SpotifyConnectBtn.UseVisualStyleBackColor = true
         '
         'ColorSettingToggle
         '
-        Me.ColorSettingToggle.AutoSize = True
-        Me.ColorSettingToggle.Checked = True
+        Me.ColorSettingToggle.AutoSize = true
+        Me.ColorSettingToggle.Checked = true
         Me.ColorSettingToggle.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ColorSettingToggle.Location = New System.Drawing.Point(183, 75)
         Me.ColorSettingToggle.Name = "ColorSettingToggle"
@@ -66,11 +68,11 @@ Partial Class Settings
         Me.ColorSettingToggle.TabIndex = 1
         Me.ColorSettingToggle.Text = "An"
         Me.ColorSettingToggle.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.ColorSettingToggle.UseSelectable = True
+        Me.ColorSettingToggle.UseSelectable = true
         '
         'ColorSettingLabel
         '
-        Me.ColorSettingLabel.AutoSize = True
+        Me.ColorSettingLabel.AutoSize = true
         Me.ColorSettingLabel.Location = New System.Drawing.Point(13, 70)
         Me.ColorSettingLabel.Name = "ColorSettingLabel"
         Me.ColorSettingLabel.Size = New System.Drawing.Size(75, 19)
@@ -85,13 +87,13 @@ Partial Class Settings
         Me.CreditLink.Size = New System.Drawing.Size(251, 18)
         Me.CreditLink.TabIndex = 3
         Me.CreditLink.Text = "Made by Marco Sadowski"
-        Me.CreditLink.UseCustomBackColor = True
-        Me.CreditLink.UseSelectable = True
-        Me.CreditLink.UseStyleColors = True
+        Me.CreditLink.UseCustomBackColor = true
+        Me.CreditLink.UseSelectable = true
+        Me.CreditLink.UseStyleColors = true
         '
         'SizeSettingBox
         '
-        Me.SizeSettingBox.FormattingEnabled = True
+        Me.SizeSettingBox.FormattingEnabled = true
         Me.SizeSettingBox.ItemHeight = 23
         Me.SizeSettingBox.Items.AddRange(New Object() {"Small", "Normal", "Big"})
         Me.SizeSettingBox.Location = New System.Drawing.Point(161, 105)
@@ -100,11 +102,11 @@ Partial Class Settings
         Me.SizeSettingBox.Style = MetroFramework.MetroColorStyle.Green
         Me.SizeSettingBox.TabIndex = 4
         Me.SizeSettingBox.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.SizeSettingBox.UseSelectable = True
+        Me.SizeSettingBox.UseSelectable = true
         '
         'SizeSettingLabel
         '
-        Me.SizeSettingLabel.AutoSize = True
+        Me.SizeSettingLabel.AutoSize = true
         Me.SizeSettingLabel.Location = New System.Drawing.Point(13, 105)
         Me.SizeSettingLabel.Name = "SizeSettingLabel"
         Me.SizeSettingLabel.Size = New System.Drawing.Size(75, 19)
@@ -114,7 +116,7 @@ Partial Class Settings
         '
         'ProgressStyleLabel
         '
-        Me.ProgressStyleLabel.AutoSize = True
+        Me.ProgressStyleLabel.AutoSize = true
         Me.ProgressStyleLabel.Location = New System.Drawing.Point(13, 140)
         Me.ProgressStyleLabel.Name = "ProgressStyleLabel"
         Me.ProgressStyleLabel.Size = New System.Drawing.Size(111, 19)
@@ -124,7 +126,7 @@ Partial Class Settings
         '
         'ProgressStyleBox
         '
-        Me.ProgressStyleBox.FormattingEnabled = True
+        Me.ProgressStyleBox.FormattingEnabled = true
         Me.ProgressStyleBox.ItemHeight = 23
         Me.ProgressStyleBox.Items.AddRange(New Object() {"Blocks", "Continuous", "Marquee"})
         Me.ProgressStyleBox.Location = New System.Drawing.Point(161, 140)
@@ -133,7 +135,7 @@ Partial Class Settings
         Me.ProgressStyleBox.Style = MetroFramework.MetroColorStyle.Green
         Me.ProgressStyleBox.TabIndex = 6
         Me.ProgressStyleBox.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.ProgressStyleBox.UseSelectable = True
+        Me.ProgressStyleBox.UseSelectable = true
         '
         'CreditsLink
         '
@@ -142,9 +144,9 @@ Partial Class Settings
         Me.CreditsLink.Size = New System.Drawing.Size(115, 18)
         Me.CreditsLink.TabIndex = 8
         Me.CreditsLink.Text = "Credits and License"
-        Me.CreditsLink.UseCustomBackColor = True
-        Me.CreditsLink.UseSelectable = True
-        Me.CreditsLink.UseStyleColors = True
+        Me.CreditsLink.UseCustomBackColor = true
+        Me.CreditsLink.UseSelectable = true
+        Me.CreditsLink.UseStyleColors = true
         '
         'CreditPanel
         '
@@ -154,7 +156,7 @@ Partial Class Settings
         Me.CreditPanel.Name = "CreditPanel"
         Me.CreditPanel.Size = New System.Drawing.Size(272, 304)
         Me.CreditPanel.TabIndex = 9
-        Me.CreditPanel.Visible = False
+        Me.CreditPanel.Visible = false
         '
         'Button1
         '
@@ -163,12 +165,12 @@ Partial Class Settings
         Me.Button1.Size = New System.Drawing.Size(75, 24)
         Me.Button1.TabIndex = 10
         Me.Button1.Text = "Close"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.UseVisualStyleBackColor = true
         '
         'CreditsText
         '
         Me.CreditsText.Location = New System.Drawing.Point(3, 0)
-        Me.CreditsText.Multiline = True
+        Me.CreditsText.Multiline = true
         Me.CreditsText.Name = "CreditsText"
         Me.CreditsText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.CreditsText.Size = New System.Drawing.Size(269, 304)
@@ -182,13 +184,13 @@ Partial Class Settings
         Me.ReportLink.Size = New System.Drawing.Size(88, 18)
         Me.ReportLink.TabIndex = 10
         Me.ReportLink.Text = "Report a bug"
-        Me.ReportLink.UseCustomBackColor = True
-        Me.ReportLink.UseSelectable = True
-        Me.ReportLink.UseStyleColors = True
+        Me.ReportLink.UseCustomBackColor = true
+        Me.ReportLink.UseSelectable = true
+        Me.ReportLink.UseStyleColors = true
         '
         'ColorStyleLabel
         '
-        Me.ColorStyleLabel.AutoSize = True
+        Me.ColorStyleLabel.AutoSize = true
         Me.ColorStyleLabel.Location = New System.Drawing.Point(13, 175)
         Me.ColorStyleLabel.Name = "ColorStyleLabel"
         Me.ColorStyleLabel.Size = New System.Drawing.Size(116, 19)
@@ -198,7 +200,7 @@ Partial Class Settings
         '
         'ColorStyleBox
         '
-        Me.ColorStyleBox.FormattingEnabled = True
+        Me.ColorStyleBox.FormattingEnabled = true
         Me.ColorStyleBox.ItemHeight = 23
         Me.ColorStyleBox.Items.AddRange(New Object() {"Green", "Black", "White", "Silver", "Blue", "Lime", "Teal", "Orange", "Brown", "Pink", "Magenta", "Purple", "Red", "Yellow"})
         Me.ColorStyleBox.Location = New System.Drawing.Point(161, 175)
@@ -207,12 +209,12 @@ Partial Class Settings
         Me.ColorStyleBox.Style = MetroFramework.MetroColorStyle.Green
         Me.ColorStyleBox.TabIndex = 11
         Me.ColorStyleBox.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.ColorStyleBox.UseSelectable = True
+        Me.ColorStyleBox.UseSelectable = true
         '
         'VersionLabel
         '
-        Me.VersionLabel.AutoSize = True
-        Me.VersionLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!)
+        Me.VersionLabel.AutoSize = true
+        Me.VersionLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 6!)
         Me.VersionLabel.ForeColor = System.Drawing.SystemColors.ButtonFace
         Me.VersionLabel.Location = New System.Drawing.Point(255, 49)
         Me.VersionLabel.Name = "VersionLabel"
@@ -225,7 +227,7 @@ Partial Class Settings
         '
         'ExportSettingLabel
         '
-        Me.ExportSettingLabel.AutoSize = True
+        Me.ExportSettingLabel.AutoSize = true
         Me.ExportSettingLabel.Location = New System.Drawing.Point(13, 210)
         Me.ExportSettingLabel.Name = "ExportSettingLabel"
         Me.ExportSettingLabel.Size = New System.Drawing.Size(90, 19)
@@ -235,8 +237,8 @@ Partial Class Settings
         '
         'ExportSettingToggle
         '
-        Me.ExportSettingToggle.AutoSize = True
-        Me.ExportSettingToggle.Checked = True
+        Me.ExportSettingToggle.AutoSize = true
+        Me.ExportSettingToggle.Checked = true
         Me.ExportSettingToggle.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ExportSettingToggle.Location = New System.Drawing.Point(183, 215)
         Me.ExportSettingToggle.Name = "ExportSettingToggle"
@@ -245,13 +247,24 @@ Partial Class Settings
         Me.ExportSettingToggle.TabIndex = 14
         Me.ExportSettingToggle.Text = "An"
         Me.ExportSettingToggle.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.ExportSettingToggle.UseSelectable = True
+        Me.ExportSettingToggle.UseSelectable = true
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"),System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(158, 213)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(20, 20)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureBox1.TabIndex = 16
+        Me.PictureBox1.TabStop = false
         '
         'Settings
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.ExportSettingLabel)
         Me.Controls.Add(Me.ExportSettingToggle)
         Me.Controls.Add(Me.CreditPanel)
@@ -268,16 +281,17 @@ Partial Class Settings
         Me.Controls.Add(Me.ColorSettingLabel)
         Me.Controls.Add(Me.ColorSettingToggle)
         Me.Controls.Add(Me.SpotifyConnectBtn)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximizeBox = False
+        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
+        Me.MaximizeBox = false
         Me.Name = "Settings"
-        Me.Resizable = False
+        Me.Resizable = false
         Me.Style = MetroFramework.MetroColorStyle.Green
         Me.Text = "Spotify Widget Settings"
         Me.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.CreditPanel.ResumeLayout(false)
         Me.CreditPanel.PerformLayout
+        CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).EndInit
         Me.ResumeLayout(false)
         Me.PerformLayout
 
@@ -301,4 +315,5 @@ End Sub
     Friend WithEvents ExportSettingLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents ExportSettingToggle As MetroFramework.Controls.MetroToggle
     Friend WithEvents SpotifyConnectBtn As Button
+    Friend WithEvents PictureBox1 As PictureBox
 End Class
