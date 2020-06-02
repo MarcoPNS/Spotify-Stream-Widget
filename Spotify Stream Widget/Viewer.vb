@@ -207,6 +207,7 @@ Public Class Viewer
         'could fail if you do not have a internet connection
         Try
             _playback = _spotify.GetPlayback()
+            My.Settings.ApiCalls += 1
         Catch ex As Exception
             Log(3, "GetPlayback() Exception: " & ex.ToString())
             MsgBox("There was a problem with reaching the Spotify API. Please check your network connection and try again." + vbNewLine + "GetPlayback() Exception: " + ex.Message)
@@ -279,9 +280,12 @@ Public Class Viewer
     End Sub
 
     Private Sub UpdateProgressBar(cur As Integer, max As Integer)
+        'check if one of the values are below 0
+        If cur < 0 Or max < 0 Then Exit Sub
         timeProgressBar.Maximum = max
         If cur < max Then timeProgressBar.Value = cur
         timeLabel.Text = $"{FormatTime(cur)}/{FormatTime(max)}"
+
     End Sub
 
     'change the text size based on the text length

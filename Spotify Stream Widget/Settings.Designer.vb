@@ -68,11 +68,11 @@ Partial Class Settings
         Me.ColorSettingToggle.TabIndex = 1
         Me.ColorSettingToggle.Text = "An"
         Me.ColorSettingToggle.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.ColorSettingToggle.UseSelectable = true
+        Me.ColorSettingToggle.UseSelectable = True
         '
         'ColorSettingLabel
         '
-        Me.ColorSettingLabel.AutoSize = true
+        Me.ColorSettingLabel.AutoSize = True
         Me.ColorSettingLabel.Location = New System.Drawing.Point(13, 70)
         Me.ColorSettingLabel.Name = "ColorSettingLabel"
         Me.ColorSettingLabel.Size = New System.Drawing.Size(75, 19)
@@ -87,13 +87,13 @@ Partial Class Settings
         Me.CreditLink.Size = New System.Drawing.Size(251, 18)
         Me.CreditLink.TabIndex = 3
         Me.CreditLink.Text = "Made by Marco Sadowski"
-        Me.CreditLink.UseCustomBackColor = true
-        Me.CreditLink.UseSelectable = true
-        Me.CreditLink.UseStyleColors = true
+        Me.CreditLink.UseCustomBackColor = True
+        Me.CreditLink.UseSelectable = True
+        Me.CreditLink.UseStyleColors = True
         '
         'SizeSettingBox
         '
-        Me.SizeSettingBox.FormattingEnabled = true
+        Me.SizeSettingBox.FormattingEnabled = True
         Me.SizeSettingBox.ItemHeight = 23
         Me.SizeSettingBox.Items.AddRange(New Object() {"Small", "Normal", "Big"})
         Me.SizeSettingBox.Location = New System.Drawing.Point(161, 105)
@@ -102,11 +102,11 @@ Partial Class Settings
         Me.SizeSettingBox.Style = MetroFramework.MetroColorStyle.Green
         Me.SizeSettingBox.TabIndex = 4
         Me.SizeSettingBox.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.SizeSettingBox.UseSelectable = true
+        Me.SizeSettingBox.UseSelectable = True
         '
         'SizeSettingLabel
         '
-        Me.SizeSettingLabel.AutoSize = true
+        Me.SizeSettingLabel.AutoSize = True
         Me.SizeSettingLabel.Location = New System.Drawing.Point(13, 105)
         Me.SizeSettingLabel.Name = "SizeSettingLabel"
         Me.SizeSettingLabel.Size = New System.Drawing.Size(75, 19)
@@ -116,7 +116,7 @@ Partial Class Settings
         '
         'ProgressStyleLabel
         '
-        Me.ProgressStyleLabel.AutoSize = true
+        Me.ProgressStyleLabel.AutoSize = True
         Me.ProgressStyleLabel.Location = New System.Drawing.Point(13, 140)
         Me.ProgressStyleLabel.Name = "ProgressStyleLabel"
         Me.ProgressStyleLabel.Size = New System.Drawing.Size(111, 19)
@@ -126,7 +126,7 @@ Partial Class Settings
         '
         'ProgressStyleBox
         '
-        Me.ProgressStyleBox.FormattingEnabled = true
+        Me.ProgressStyleBox.FormattingEnabled = True
         Me.ProgressStyleBox.ItemHeight = 23
         Me.ProgressStyleBox.Items.AddRange(New Object() {"Blocks", "Continuous", "Marquee"})
         Me.ProgressStyleBox.Location = New System.Drawing.Point(161, 140)
@@ -135,7 +135,7 @@ Partial Class Settings
         Me.ProgressStyleBox.Style = MetroFramework.MetroColorStyle.Green
         Me.ProgressStyleBox.TabIndex = 6
         Me.ProgressStyleBox.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.ProgressStyleBox.UseSelectable = true
+        Me.ProgressStyleBox.UseSelectable = True
         '
         'CreditsLink
         '
@@ -144,9 +144,9 @@ Partial Class Settings
         Me.CreditsLink.Size = New System.Drawing.Size(115, 18)
         Me.CreditsLink.TabIndex = 8
         Me.CreditsLink.Text = "Credits and License"
-        Me.CreditsLink.UseCustomBackColor = true
-        Me.CreditsLink.UseSelectable = true
-        Me.CreditsLink.UseStyleColors = true
+        Me.CreditsLink.UseCustomBackColor = True
+        Me.CreditsLink.UseSelectable = True
+        Me.CreditsLink.UseStyleColors = True
         '
         'CreditPanel
         '

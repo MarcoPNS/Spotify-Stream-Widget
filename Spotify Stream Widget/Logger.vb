@@ -16,7 +16,7 @@ Module Logger
                 lvlText = " [EXCEPTION] "
         End Select
         If Debugger.IsAttached Then
-            Debug.WriteLine(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") & lvlText & logMsg)
+            Debug.WriteLine(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") & " Call " & My.Settings.ApiCalls & lvlText & logMsg)
         End If
         Try
             If Directory.Exists(outputFolder) = False Then

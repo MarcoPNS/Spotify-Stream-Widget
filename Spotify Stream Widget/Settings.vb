@@ -57,12 +57,11 @@ Public Class Settings
         Try
             Dim version As Integer = ProductVersion.Trim({"."c})
             Dim serverResponse As String = New WebClient().DownloadString("https://raw.githubusercontent.com/MarcoPNS/Spotify-Stream-Widget/master/Release/version.md")
-            If version = serverResponse.Trim({"."c}) Then
-            Else
+            If Not version = serverResponse.Trim({"."c}) Then
+
                 Dim res As DialogResult = MessageBox.Show("A new version is available! Version " & serverResponse & "Do you want to check it out? ", "Spotify Stream Widget", MessageBoxButtons.YesNo)
                 If (res = DialogResult.Yes) Then
                     Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/releases")
-                Else
                 End If
             End If
         Catch ex As Exception
