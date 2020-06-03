@@ -1,6 +1,6 @@
 ﻿'===================================================================
 '       Written by Marco Sadowski
-'       Last Update: 2019-09-27
+'       Last Update: 2020-06-03
 '       Please add your name after mine if you edit this code <3
 '
 '       Usage of the Viewer Form:
@@ -13,15 +13,17 @@ Imports SpotifyAPI.Web, SpotifyAPI.Web.Auth, SpotifyAPI.Web.Enums, SpotifyAPI.We
 Imports Spotify_Stream_Widget.Logger
 Public Class Viewer
     Private Shared _spotify As SpotifyWebAPI
-    Shared ReadOnly ClientId = My.Settings.SpotifyApiKey
-    Private Shared _spotifyAuth As ImplicitGrantAuth = New ImplicitGrantAuth(ClientId, "http://localhost:4002", "http://localhost:4002", Scope.UserReadPlaybackState)
+    Private Shared _spotifyAuth As TokenSwapAuth = New TokenSwapAuth("https://spotify-token-swap.camefrom.space/", "http://localhost:4002", Scope.UserReadPlaybackState)
     Dim _playback As PlaybackContext
     Dim _currentTrackId As String
+    Dim _authorized As Boolean = False
+    Dim _previousToken As Token
 
     'The Load Event apply the user settings and the event handler for the spotify API
     Private Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ApplyProgressBarStyle()
         ApplySize()
+        timeLabel.Text = "Don't forget to connect with Spotify."
         If My.Settings.DarkMode = False Then
             ApplyLightning(1)
         End If
@@ -160,8 +162,9 @@ Public Class Viewer
     'Connects with Spotify. Needs to be called before all other SpotifyAPI functions
     Public Sub SpotifyConnect()
         timeLabel.Text = ""
-        Settings.SpotifyConnectBtn.Text = "Close Viewer"
-        Settings.SpotifyConnectBtn.Enabled = True
+        Settings.StatusLabel.Text = "Status: Connecting..."
+        Settings.StatusLabel.ForeColor = Color.Yellow
+        Settings.SpotifyConnectBtn.Enabled = False
         'Spotify Auth
         MsgBox("The Widget will open your browser to connect to the Spotify API")
         AddHandler _spotifyAuth.AuthReceived, AddressOf _spotify_AuthReceived
@@ -170,24 +173,23 @@ Public Class Viewer
         UpdateTrack()
     End Sub
 
-    Private Sub _spotify_AuthReceived(sender, payload)
-        _spotifyAuth.Stop()
+    'Handler for the auth process
+    Private Async Sub _spotify_AuthReceived(sender, e)
+        _previousToken = Await _spotifyAuth.ExchangeCodeAsync(e.Code)
+
         _spotify = New SpotifyWebAPI() With {
-                .TokenType = payload.TokenType,
-                .AccessToken = payload.AccessToken
-                }
+            .TokenType = _previousToken.TokenType,
+            .AccessToken = _previousToken.AccessToken
+            }
+
+        AddHandler _spotifyAuth.OnAccessTokenExpired, AddressOf _spotify_AccessTokenExpired
+        _authorized = True
+        _spotifyAuth.Stop()
     End Sub
 
-    'Pause the work of the SpotifyAPI when the viewer is closed
-    Private Sub SpotifyApiSleep(sender As Object, e As EventArgs) Handles Me.FormClosing
-        Settings.ColorSettingToggle.Enabled = True
-        Settings.ColorStyleBox.Enabled = True
-        Settings.SizeSettingBox.Enabled = True
-        Settings.ProgressStyleBox.Enabled = True
-        Settings.SpotifyConnectBtn.Enabled = True
-        Settings.SpotifyConnectBtn.Text = "Open Viewer"
-        Console.WriteLine(_spotifyAuth.State.ToString())
-
+    Private Async Sub _spotify_AccessTokenExpired(sender, e)
+        _spotify.AccessToken = (Await _spotifyAuth.RefreshAuthAsync(_previousToken.RefreshToken)).AccessToken
+        Log("Auth refreshed")
     End Sub
 
     Private Async Sub UpdateTrack()
@@ -206,8 +208,23 @@ Public Class Viewer
         'get the current track
         'could fail if you do not have a internet connection
         Try
-            _playback = _spotify.GetPlayback()
-            My.Settings.ApiCalls += 1
+            'check if new token is needed
+            If _previousToken.IsExpired() Then
+                Log("Token expired")
+                'We have a Event that handle the swap. This is just a notification.
+                Settings.StatusLabel.Text = "Status: Connection lost. Try to refresh..."
+                Settings.StatusLabel.ForeColor = Color.Yellow
+                Await Task.Delay(5000)
+                UpdateTrack()
+                Return
+            Else
+                Settings.StatusLabel.Text = "Status: Connected"
+                Settings.StatusLabel.ForeColor = Color.LimeGreen
+                _playback = _spotify.GetPlayback()
+                'Debug Info
+                My.Settings.ApiCalls += 1
+            End If
+
         Catch ex As Exception
             Log(3, "GetPlayback() Exception: " & ex.ToString())
             MsgBox("There was a problem with reaching the Spotify API. Please check your network connection and try again." + vbNewLine + "GetPlayback() Exception: " + ex.Message)
@@ -235,11 +252,12 @@ Public Class Viewer
 
         'check if the song is the same so the entire UI don't need to update. It also fake some seconds.
         If _currentTrackId = _playback.Item.Uri Then
-            Await Task.Delay(1000)
-            UpdateProgressBar(CInt(_playback.ProgressMs) + 1000, CInt(_playback.Item.DurationMs))
-            Await Task.Delay(1000)
-            UpdateProgressBar(CInt(_playback.ProgressMs) + 2000, CInt(_playback.Item.DurationMs))
-            Await Task.Delay(1000)
+            Dim fakeSeconds As Integer = 0
+            Do While fakeSeconds <= 6
+                UpdateProgressBar(timeProgressBar.Value + 1000, CInt(_playback.Item.DurationMs))
+                Await Task.Delay(1000)
+                fakeSeconds += 1
+            Loop
             UpdateTrack()
             Return
         Else
@@ -265,8 +283,8 @@ Public Class Viewer
                 AlbumCover.Image = If(_playback.Item.Album.Images.Item(0).Url IsNot Nothing, GetImageFromUri(_playback.Item.Album.Images.Item(1).Url), Nothing)
             Catch ex As Exception
                 Log(3, "AlbumCover Exception: " & ex.ToString())
-                Dim iDefaultImage As Drawing.Image = New Bitmap(1, 1)
-                AlbumCover.Image = iDefaultImage
+                Dim dummyImage As Drawing.Image = New Bitmap(1, 1)
+                AlbumCover.Image = dummyImage
             End Try
         Else
             AlbumCover.Image = My.Resources.albumArt
@@ -275,10 +293,23 @@ Public Class Viewer
         'change text size when the title is longer
         ResponsiveText()
 
+        'export all details
+        If My.Settings.ExportMode Then ExportData(_playback.Item.Name, _playback.Item.Album.Name, artists, AlbumCover.Image)
+
         Await Task.Delay(1000)
         UpdateTrack()
     End Sub
 
+    Private Sub ExportData(track As String, album As String, artists As String, albumCover As Drawing.Image)
+        Try
+            My.Computer.FileSystem.WriteAllText(Application.StartupPath + "/exported-details/track.txt", track, False)
+            My.Computer.FileSystem.WriteAllText(Application.StartupPath + "/exported-details/album.txt", album, False)
+            My.Computer.FileSystem.WriteAllText(Application.StartupPath + "/exported-details/artists.txt", artists, False)
+            albumCover.Save(Application.StartupPath + "/exported-details/albumCover.png")
+        Catch ex As Exception
+            Log(3, "ExportData Exception: " & ex.ToString())
+        End Try
+    End Sub
     Private Sub UpdateProgressBar(cur As Integer, max As Integer)
         'check if one of the values are below 0
         If cur < 0 Or max < 0 Then Exit Sub
@@ -380,5 +411,9 @@ Public Class Viewer
         End If
     End Sub
 #End Region
+
+    Private Sub CloseApp(sender As Object, e As EventArgs) Handles Me.FormClosing
+        Application.Exit()
+    End Sub
 
 End Class

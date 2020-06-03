@@ -99,7 +99,7 @@ Public Class Settings
     End Sub
 
     Private Sub ExportFolderBtn_Click(sender As Object, e As EventArgs) Handles ExportFolderBtn.Click
-        Process.Start("explorer.exe", Application.StartupPath + "/exported-details/")
+        Process.Start(Application.StartupPath + "/exported-details/")
     End Sub
 
     Private Sub ExportSettingToggle_CheckedChanged(sender As Object, e As EventArgs) Handles ExportSettingToggle.CheckedChanged
@@ -114,5 +114,9 @@ Public Class Settings
         End If
         My.Settings.ExportMode = ExportSettingToggle.Checked
         My.Settings.Save()
+    End Sub
+
+    Private Sub CloseApp(sender As Object, e As EventArgs) Handles Me.FormClosing
+        Application.Exit()
     End Sub
 End Class

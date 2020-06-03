@@ -14,14 +14,14 @@
     <Setting Name="Color" Type="System.String" Scope="User">
       <Value Profile="(Default)">Green</Value>
     </Setting>
-    <Setting Name="SpotifyApiKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2ee62a35a2ec45a4a7fe26b81f7f3681</Value>
-    </Setting>
     <Setting Name="ExportMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ApiCalls" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="AuthToken" Type="SpotifyAPI.Web.Models.Token" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

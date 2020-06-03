@@ -104,18 +104,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("2ee62a35a2ec45a4a7fe26b81f7f3681")>  _
-        Public Property SpotifyApiKey() As String
-            Get
-                Return CType(Me("SpotifyApiKey"),String)
-            End Get
-            Set
-                Me("SpotifyApiKey") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
         Public Property ExportMode() As Boolean
             Get
@@ -135,6 +123,17 @@ Namespace My
             End Get
             Set
                 Me("ApiCalls") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property AuthToken() As Global.SpotifyAPI.Web.Models.Token
+            Get
+                Return CType(Me("AuthToken"),Global.SpotifyAPI.Web.Models.Token)
+            End Get
+            Set
+                Me("AuthToken") = value
             End Set
         End Property
     End Class

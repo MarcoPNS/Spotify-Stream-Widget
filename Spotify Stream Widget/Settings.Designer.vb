@@ -43,9 +43,10 @@ Partial Class Settings
         Me.ExportSettingLabel = New MetroFramework.Controls.MetroLabel()
         Me.ExportSettingToggle = New MetroFramework.Controls.MetroToggle()
         Me.ExportFolderBtn = New System.Windows.Forms.PictureBox()
-        Me.CreditPanel.SuspendLayout
-        CType(Me.ExportFolderBtn,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SuspendLayout
+        Me.StatusLabel = New MetroFramework.Controls.MetroLabel()
+        Me.CreditPanel.SuspendLayout()
+        CType(Me.ExportFolderBtn, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
         '
         'SpotifyConnectBtn
         '
@@ -54,12 +55,12 @@ Partial Class Settings
         Me.SpotifyConnectBtn.Size = New System.Drawing.Size(251, 23)
         Me.SpotifyConnectBtn.TabIndex = 0
         Me.SpotifyConnectBtn.Text = "Connect to Spotify"
-        Me.SpotifyConnectBtn.UseVisualStyleBackColor = true
+        Me.SpotifyConnectBtn.UseVisualStyleBackColor = True
         '
         'ColorSettingToggle
         '
-        Me.ColorSettingToggle.AutoSize = true
-        Me.ColorSettingToggle.Checked = true
+        Me.ColorSettingToggle.AutoSize = True
+        Me.ColorSettingToggle.Checked = True
         Me.ColorSettingToggle.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ColorSettingToggle.Location = New System.Drawing.Point(183, 75)
         Me.ColorSettingToggle.Name = "ColorSettingToggle"
@@ -87,6 +88,7 @@ Partial Class Settings
         Me.CreditLink.Size = New System.Drawing.Size(251, 18)
         Me.CreditLink.TabIndex = 3
         Me.CreditLink.Text = "Made by Marco Sadowski"
+        Me.CreditLink.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.CreditLink.UseCustomBackColor = True
         Me.CreditLink.UseSelectable = True
         Me.CreditLink.UseStyleColors = True
@@ -144,6 +146,7 @@ Partial Class Settings
         Me.CreditsLink.Size = New System.Drawing.Size(115, 18)
         Me.CreditsLink.TabIndex = 8
         Me.CreditsLink.Text = "Credits and License"
+        Me.CreditsLink.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.CreditsLink.UseCustomBackColor = True
         Me.CreditsLink.UseSelectable = True
         Me.CreditsLink.UseStyleColors = True
@@ -152,7 +155,7 @@ Partial Class Settings
         '
         Me.CreditPanel.Controls.Add(Me.Button1)
         Me.CreditPanel.Controls.Add(Me.CreditsText)
-        Me.CreditPanel.Location = New System.Drawing.Point(146, 335)
+        Me.CreditPanel.Location = New System.Drawing.Point(13, 68)
         Me.CreditPanel.Name = "CreditPanel"
         Me.CreditPanel.Size = New System.Drawing.Size(272, 304)
         Me.CreditPanel.TabIndex = 9
@@ -184,6 +187,7 @@ Partial Class Settings
         Me.ReportLink.Size = New System.Drawing.Size(88, 18)
         Me.ReportLink.TabIndex = 10
         Me.ReportLink.Text = "Report a bug"
+        Me.ReportLink.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.ReportLink.UseCustomBackColor = True
         Me.ReportLink.UseSelectable = True
         Me.ReportLink.UseStyleColors = True
@@ -259,15 +263,29 @@ Partial Class Settings
         Me.ExportFolderBtn.TabIndex = 16
         Me.ExportFolderBtn.TabStop = False
         '
+        'StatusLabel
+        '
+        Me.StatusLabel.AutoSize = True
+        Me.StatusLabel.FontSize = MetroFramework.MetroLabelSize.Small
+        Me.StatusLabel.ForeColor = System.Drawing.Color.Red
+        Me.StatusLabel.Location = New System.Drawing.Point(22, 357)
+        Me.StatusLabel.Name = "StatusLabel"
+        Me.StatusLabel.Size = New System.Drawing.Size(119, 15)
+        Me.StatusLabel.TabIndex = 17
+        Me.StatusLabel.Text = "Status: Not connected"
+        Me.StatusLabel.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.StatusLabel.UseCustomForeColor = True
+        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(297, 441)
+        Me.Controls.Add(Me.CreditPanel)
+        Me.Controls.Add(Me.StatusLabel)
         Me.Controls.Add(Me.ExportFolderBtn)
         Me.Controls.Add(Me.ExportSettingLabel)
         Me.Controls.Add(Me.ExportSettingToggle)
-        Me.Controls.Add(Me.CreditPanel)
         Me.Controls.Add(Me.VersionLabel)
         Me.Controls.Add(Me.ColorStyleLabel)
         Me.Controls.Add(Me.ColorStyleBox)
@@ -316,4 +334,5 @@ End Sub
     Friend WithEvents ExportSettingToggle As MetroFramework.Controls.MetroToggle
     Friend WithEvents SpotifyConnectBtn As Button
     Friend WithEvents ExportFolderBtn As PictureBox
+    Friend WithEvents StatusLabel As MetroFramework.Controls.MetroLabel
 End Class
