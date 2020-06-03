@@ -23,7 +23,7 @@ Module Logger
                 Directory.CreateDirectory(outputFolder)
             End If
             Using sw As StreamWriter = File.AppendText(outputFolder & Date.Now.ToString("yyyy-MM-dd") & ".log")
-                sw.WriteLine(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") & lvlText & logMsg)
+                sw.WriteLine(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") & " Call " & My.Settings.ApiCalls & lvlText & logMsg)
             End Using
         Catch ex As Exception
                 Debug.WriteLine(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") & " [EXCEPTION] Can't create log file. " & ex.ToString())

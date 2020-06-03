@@ -182,14 +182,8 @@ Public Class Viewer
             .AccessToken = _previousToken.AccessToken
             }
 
-        AddHandler _spotifyAuth.OnAccessTokenExpired, AddressOf _spotify_AccessTokenExpired
         _authorized = True
         _spotifyAuth.Stop()
-    End Sub
-
-    Private Async Sub _spotify_AccessTokenExpired(sender, e)
-        _spotify.AccessToken = (Await _spotifyAuth.RefreshAuthAsync(_previousToken.RefreshToken)).AccessToken
-        Log("Auth refreshed")
     End Sub
 
     Private Async Sub UpdateTrack()
@@ -214,6 +208,8 @@ Public Class Viewer
                 'We have a Event that handle the swap. This is just a notification.
                 Settings.StatusLabel.Text = "Status: Connection lost. Try to refresh..."
                 Settings.StatusLabel.ForeColor = Color.Yellow
+                _spotify.AccessToken = (Await _spotifyAuth.RefreshAuthAsync(_previousToken.RefreshToken)).AccessToken
+                Log("Auth refreshed")
                 Await Task.Delay(5000)
                 UpdateTrack()
                 Return
