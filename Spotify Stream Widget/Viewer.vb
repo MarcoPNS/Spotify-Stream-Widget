@@ -11,6 +11,8 @@
 
 Imports SpotifyAPI.Web, SpotifyAPI.Web.Auth, SpotifyAPI.Web.Enums, SpotifyAPI.Web.Models
 Imports Spotify_Stream_Widget.Logger
+Imports Unosquare.Swan
+
 Public Class Viewer
     Private Shared _spotify As SpotifyWebAPI
     Private Shared _spotifyAuth As TokenSwapAuth = New TokenSwapAuth("https://spotify-token-swap.camefrom.space/", "http://localhost:4002", Scope.UserReadPlaybackState)
@@ -168,6 +170,7 @@ Public Class Viewer
         'Spotify Auth
         MsgBox("The Widget will open your browser to connect to the Spotify API")
         AddHandler _spotifyAuth.AuthReceived, AddressOf _spotify_AuthReceived
+        AddHandler _spotifyAuth.OnAccessTokenExpired, AddressOf _spotify_OnAccessTokenExpired
         _spotifyAuth.Start()
         _spotifyAuth.OpenBrowser()
         UpdateTrack()
@@ -184,6 +187,14 @@ Public Class Viewer
 
         _authorized = True
         _spotifyAuth.Stop()
+    End Sub
+
+    Private Async Sub _spotify_OnAccessTokenExpired(sender, e)
+        Dim _newToken = Await _spotifyAuth.RefreshAuthAsync(_previousToken.RefreshToken)
+        _spotify.AccessToken = _newToken.AccessToken
+        _previousToken.AccessToken = _newToken.AccessToken
+        _previousToken.CreateDate = _newToken.CreateDate
+        Log("Auth refreshed: " & _spotify.AccessToken)
     End Sub
 
     Private Async Sub UpdateTrack()
@@ -203,13 +214,13 @@ Public Class Viewer
         'could fail if you do not have a internet connection
         Try
             'check if new token is needed
+
+
             If _previousToken.IsExpired() Then
                 Log("Token expired")
-                'We have a Event that handle the swap. This is just a notification.
                 Settings.StatusLabel.Text = "Status: Connection lost. Try to refresh..."
                 Settings.StatusLabel.ForeColor = Color.Yellow
-                _spotify.AccessToken = (Await _spotifyAuth.RefreshAuthAsync(_previousToken.RefreshToken)).AccessToken
-                Log("Auth refreshed")
+                _spotify_OnAccessTokenExpired("", "")
                 Await Task.Delay(5000)
                 UpdateTrack()
                 Return
