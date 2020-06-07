@@ -284,6 +284,7 @@ Public Class Viewer
         ArtistLabel.Text = artists
         AlbumLabel.Text = _playback.Item.Album.Name
 
+
         If _playback.Item.Album.Images.Count > 0 Then
             Try
 
@@ -296,6 +297,12 @@ Public Class Viewer
         Else
             AlbumCover.Image = My.Resources.albumArt
         End If
+
+        'Refresh the elements
+        AlbumCover.Refresh()
+        ArtistLabel.Refresh()
+        AlbumLabel.Refresh()
+        TrackLabel.Refresh()
 
         'change text size when the title is longer
         ResponsiveText()
@@ -387,7 +394,8 @@ Public Class Viewer
 
         Catch ex As Exception
             Log(3, "GetImageFromUri() Exception: " & ex.ToString())
-            MessageBox.Show(String.Format("An error occurred:{0}{0}{1}", vbCrLf, ex.Message), "Exception Thrown", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            'if it fail to get the image then just take the dummy image. 
+            retVal = My.Resources.albumArt
         End Try
 
         Return retVal

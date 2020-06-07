@@ -17,7 +17,7 @@ Public Class Settings
     'This is the Load Event.
     '
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Log("Application started")
+        Log("Application started - v" + ProductVersion)
         'check for new version
         VersionCheck.RunWorkerAsync()
         'get current settings
@@ -57,12 +57,16 @@ Public Class Settings
         Try
             Dim version As Integer = ProductVersion.Trim({"."c})
             Dim serverResponse As String = New WebClient().DownloadString("https://raw.githubusercontent.com/MarcoPNS/Spotify-Stream-Widget/master/Release/version.md")
-            If Not version = serverResponse.Trim({"."c}) Then
+            If serverResponse.Length = 7 Then
+                If Not version = serverResponse.Trim({"."c}) Then
 
-                Dim res As DialogResult = MessageBox.Show("A new version is available! Version " & serverResponse & "Do you want to check it out? ", "Spotify Stream Widget", MessageBoxButtons.YesNo)
-                If (res = DialogResult.Yes) Then
-                    Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/releases")
+                    Dim res As DialogResult = MessageBox.Show("A new version is available! Version " & serverResponse & vbNewLine & "Do you want to check it out? ", "Spotify Stream Widget", MessageBoxButtons.YesNo)
+                    If (res = DialogResult.Yes) Then
+                        Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/releases")
+                    End If
                 End If
+            Else
+                Log(3, "VersionCheck with invalid serverResponse: " & serverResponse)
             End If
         Catch ex As Exception
             Log(3, "VersionCheck_DoWork() Exception: " & ex.ToString())
