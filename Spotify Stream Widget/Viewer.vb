@@ -1,17 +1,16 @@
 ﻿'===================================================================
 '       Written by Marco Sadowski
-'       Last Update: 2020-06-03
+'       Last Update: 2020-06-07
 '       Please add your name after mine if you edit this code <3
 '
 '       Usage of the Viewer Form:
 '       -   This is the main viewer which shows the current track from Spotify 
 '       -   The Viewer uses the SmallViewer, NormalViewer and BigViewer as Template.
-'       -   If you want to change the look of the form then you need to edit the templates, not this form.
+'       -   If you want to change the look of the form then you need to edit the template forms, not this form.
 '===================================================================
 
 Imports SpotifyAPI.Web, SpotifyAPI.Web.Auth, SpotifyAPI.Web.Enums, SpotifyAPI.Web.Models
 Imports Spotify_Stream_Widget.Logger
-Imports Unosquare.Swan
 
 Public Class Viewer
     Private Shared _spotify As SpotifyWebAPI
@@ -86,6 +85,10 @@ Public Class Viewer
                 AlbumLabel.Visible = True
                 AlbumLabel.Location = BigViewer.AlbumLabel.Location
         End Select
+
+        'force refresh
+        Me.Refresh()
+
     End Sub
 
     'change the style color of the viewer
@@ -155,7 +158,7 @@ Public Class Viewer
             AlbumLabel.ForeColor = Color.FromArgb(171, 171, 171)
 
         End If
-        Refresh()
+        RefreshElements()
     End Sub
 
 #End Region
@@ -261,7 +264,9 @@ Public Class Viewer
         If _currentTrackId = _playback.Item.Uri Then
             Dim fakeSeconds As Integer = 0
             Do While fakeSeconds <= 6
-                UpdateProgressBar(timeProgressBar.Value + 1000, CInt(_playback.Item.DurationMs))
+                If _playback.IsPlaying Then
+                    UpdateProgressBar(timeProgressBar.Value + 1000, CInt(_playback.Item.DurationMs))
+                End If
                 Await Task.Delay(1000)
                 fakeSeconds += 1
             Loop
@@ -299,10 +304,7 @@ Public Class Viewer
         End If
 
         'Refresh the elements
-        AlbumCover.Refresh()
-        ArtistLabel.Refresh()
-        AlbumLabel.Refresh()
-        TrackLabel.Refresh()
+        RefreshElements()
 
         'change text size when the title is longer
         ResponsiveText()
@@ -431,4 +433,18 @@ Public Class Viewer
         Application.Exit()
     End Sub
 
+    'the viewer need to be in normal state, even if the configurator is hidden.
+    Private Sub CatchMinimized(sender As Object, e As EventArgs) Handles Me.Resize
+        If Me.WindowState = FormWindowState.Minimized Then
+            Me.WindowState = FormWindowState.Normal
+        End If
+    End Sub
+
+    Private Sub RefreshElements()
+        Me.Refresh()
+        AlbumCover.Refresh()
+        ArtistLabel.Refresh()
+        AlbumLabel.Refresh()
+        TrackLabel.Refresh()
+    End Sub
 End Class

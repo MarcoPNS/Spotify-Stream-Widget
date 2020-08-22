@@ -22,6 +22,7 @@ Partial Class Settings
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Settings))
         Me.SpotifyConnectBtn = New System.Windows.Forms.Button()
         Me.ColorSettingToggle = New MetroFramework.Controls.MetroToggle()
@@ -44,6 +45,7 @@ Partial Class Settings
         Me.ExportSettingToggle = New MetroFramework.Controls.MetroToggle()
         Me.ExportFolderBtn = New System.Windows.Forms.PictureBox()
         Me.StatusLabel = New MetroFramework.Controls.MetroLabel()
+        Me.ToolTips = New System.Windows.Forms.ToolTip(Me.components)
         Me.CreditPanel.SuspendLayout()
         CType(Me.ExportFolderBtn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -137,6 +139,7 @@ Partial Class Settings
         Me.ProgressStyleBox.Style = MetroFramework.MetroColorStyle.Green
         Me.ProgressStyleBox.TabIndex = 6
         Me.ProgressStyleBox.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.ToolTips.SetToolTip(Me.ProgressStyleBox, "Change the Style of the ProgressBar - Use Marquee to save CPU%")
         Me.ProgressStyleBox.UseSelectable = True
         '
         'CreditsLink
@@ -155,7 +158,7 @@ Partial Class Settings
         '
         Me.CreditPanel.Controls.Add(Me.Button1)
         Me.CreditPanel.Controls.Add(Me.CreditsText)
-        Me.CreditPanel.Location = New System.Drawing.Point(13, 68)
+        Me.CreditPanel.Location = New System.Drawing.Point(94, 295)
         Me.CreditPanel.Name = "CreditPanel"
         Me.CreditPanel.Size = New System.Drawing.Size(272, 304)
         Me.CreditPanel.TabIndex = 9
@@ -238,6 +241,8 @@ Partial Class Settings
         Me.ExportSettingLabel.TabIndex = 15
         Me.ExportSettingLabel.Text = "Export Details"
         Me.ExportSettingLabel.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.ToolTips.SetToolTip(Me.ExportSettingLabel, "This mode exports all song details as file. You can embed the files inside your s" &
+        "treaming software.")
         '
         'ExportSettingToggle
         '
@@ -262,6 +267,7 @@ Partial Class Settings
         Me.ExportFolderBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
         Me.ExportFolderBtn.TabIndex = 16
         Me.ExportFolderBtn.TabStop = False
+        Me.ToolTips.SetToolTip(Me.ExportFolderBtn, "Open the Export Destination")
         '
         'StatusLabel
         '
@@ -275,6 +281,13 @@ Partial Class Settings
         Me.StatusLabel.Text = "Status: Not connected"
         Me.StatusLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.StatusLabel.UseCustomForeColor = True
+        '
+        'ToolTips
+        '
+        Me.ToolTips.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(177, Byte), Integer), CType(CType(89, Byte), Integer))
+        Me.ToolTips.ForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer))
+        Me.ToolTips.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.ToolTips.ToolTipTitle = "Info"
         '
         'Settings
         '
@@ -335,4 +348,5 @@ End Sub
     Friend WithEvents SpotifyConnectBtn As Button
     Friend WithEvents ExportFolderBtn As PictureBox
     Friend WithEvents StatusLabel As MetroFramework.Controls.MetroLabel
+    Friend WithEvents ToolTips As ToolTip
 End Class

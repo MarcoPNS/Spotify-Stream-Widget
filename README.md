@@ -1,6 +1,7 @@
 # Stream Widget for Spotify
 A small Tool for Streamers to show the current Track of Spotify to your Viewers! Completly customizable to fit your style.
 
+## [Download this Tool now!](https://github.com/MarcoPNS/Spotify-Stream-Widget/releases)
 
 ### UPDATE: Now with live edit!
 ![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/master/img/widget-for-spotify-presentation.gif?raw=true "Gif")
@@ -13,8 +14,6 @@ Stream Widget for Spotify has a export mode. You can activate it in the settings
 You can find the files in the `\exported-details` folder.
 
 Info: The timestamp of the song will not be exported.
-
-## [Download this Tool now!](https://github.com/MarcoPNS/Spotify-Stream-Widget/releases)
 
 ## How to use it?
 1. Download the tool
@@ -33,6 +32,6 @@ Such wow! Much amaze!
 [Create a Issue if something went wrong](https://github.com/MarcoPNS/Spotify-Stream-Widget/issues)
 
 ## Credits
-Made by [Marco Sadowski](https://twitter.com/MarcoSadowski)
+Made by Marco Sadowski - Follow me on [Twitch](https://www.twitch.tv/marcnado) or [Twitter](https://twitter.com/MarcoSadowski)
 
 This application use [Metroframework by Dennis Magno](https://github.com/dennismagno/metroframework-modern-ui) and [SpotifyAPI-NET by Jonas Dellinger](https://github.com/JohnnyCrazy/SpotifyAPI-NET)

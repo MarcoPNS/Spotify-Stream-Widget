@@ -1,6 +1,6 @@
 ﻿'===================================================================
 '       Written by Marco Sadowski 
-'       Last Update: 2020-03-22
+'       Last Update: 2020-06-07
 '       Please add your name after mine if you edit this code <3
 '
 '       Usage of the Settings Form:
@@ -8,14 +8,9 @@
 '       -   The user can configure the viewer form here
 '===================================================================
 
-Imports System.IO
-Imports System.Net
-Imports Spotify_Stream_Widget.Logger
+Imports System.IO, System.Net, System.Text.RegularExpressions
 Public Class Settings
-    Dim _viewerActive As Boolean = False
-
     'This is the Load Event.
-    '
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Log("Application started - v" + ProductVersion)
         'check for new version
@@ -55,10 +50,11 @@ Public Class Settings
     'The String with the current version number comes from GitHub.
     Private Sub VersionCheck_DoWork(sender As Object, e As ComponentModel.DoWorkEventArgs) Handles VersionCheck.DoWork
         Try
-            Dim version As Integer = ProductVersion.Trim({"."c})
+            Dim version As Integer = Int32.Parse(Regex.Replace(ProductVersion, "\D", ""))
             Dim serverResponse As String = New WebClient().DownloadString("https://raw.githubusercontent.com/MarcoPNS/Spotify-Stream-Widget/master/Release/version.md")
             If serverResponse.Length = 7 Then
-                If Not version = serverResponse.Trim({"."c}) Then
+                Dim onlineVersion As Integer = Int32.Parse(Regex.Replace(serverResponse, "\D", ""))
+                If Not version >= onlineVersion Then
 
                     Dim res As DialogResult = MessageBox.Show("A new version is available! Version " & serverResponse & vbNewLine & "Do you want to check it out? ", "Spotify Stream Widget", MessageBoxButtons.YesNo)
                     If (res = DialogResult.Yes) Then
@@ -123,4 +119,5 @@ Public Class Settings
     Private Sub CloseApp(sender As Object, e As EventArgs) Handles Me.FormClosing
         Application.Exit()
     End Sub
+
 End Class
