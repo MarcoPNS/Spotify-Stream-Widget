@@ -1,5 +1,5 @@
 # Stream Widget for Spotify
-A small Tool for Streamers to show the current Track of Spotify to your Viewers! Completly customizable to fit your style.
+A small Tool for Streamers to show the current Track of Spotify to your Viewers! Completely customizable to fit your style.
 
 ## [Download this Tool now!](https://github.com/MarcoPNS/Spotify-Stream-Widget/releases)
 
