@@ -116,11 +116,14 @@ Public Class Settings
         My.Settings.Save()
     End Sub
 
+    'choose local file folder from dialog, then init manager in Viewer
     Private Sub ChooseLocalDir()
         If (FolderBrowserDialog1.ShowDialog() = DialogResult.OK) Then
             'set label showing directory
             Dim dir = FolderBrowserDialog1.SelectedPath
             LocalDirValueLabel.Text = dir
+
+            Viewer.InitLocalDir(dir)
         End If
     End Sub
 

@@ -19,6 +19,7 @@ Public Class Viewer
     Dim _currentTrackId As String
     Dim _authorized As Boolean = False
     Dim _previousToken As Token
+    Dim _localSongManager As LocalSongManager = Nothing
 
     'The Load Event apply the user settings and the event handler for the spotify API
     Private Sub Viewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -291,6 +292,7 @@ Public Class Viewer
 
 
         If _playback.Item.Album.Images.Count > 0 Then
+            'Fetch album cover image from Spotify url
             Try
 
                 AlbumCover.Image = If(_playback.Item.Album.Images.Item(0).Url IsNot Nothing, GetImageFromUri(_playback.Item.Album.Images.Item(1).Url), Nothing)
@@ -300,7 +302,16 @@ Public Class Viewer
                 AlbumCover.Image = dummyImage
             End Try
         Else
-            AlbumCover.Image = My.Resources.albumArt
+            'Search local dir for song and read album cover image from file
+            Try
+
+                AlbumCover.Image = _localSongManager.ImageForSong(_playback.Item.Name, _playback.Item.Artists(0).Name)
+
+            Catch ex As Exception
+
+                Log(3, "AlbumCover Exception: " & ex.ToString())
+                AlbumCover.Image = My.Resources.albumArt
+            End Try
         End If
 
         'Refresh the elements
@@ -370,7 +381,9 @@ Public Class Viewer
         End Select
     End Sub
 
-
+    Public Sub InitLocalDir(dir)
+        _localSongManager = New LocalSongManager(dir)
+    End Sub
 
     Private Shared Function FormatTime(ByVal ms As Double) As String
         Dim span As TimeSpan = TimeSpan.FromMilliseconds(ms)

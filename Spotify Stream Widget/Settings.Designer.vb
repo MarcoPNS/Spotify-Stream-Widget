@@ -302,7 +302,7 @@ Partial Class Settings
         Me.LocalDirLabel.TabIndex = 18
         Me.LocalDirLabel.Text = "Local Songs Folder"
         Me.LocalDirLabel.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.ToolTips.SetToolTip(Me.LocalDirLabel, "Choose the directory containing local Spotify song files.")
+        Me.ToolTips.SetToolTip(Me.LocalDirLabel, "Choose the folder containing local Spotify song files.")
         '
         'LocalDirBtn
         '
@@ -313,7 +313,7 @@ Partial Class Settings
         Me.LocalDirBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
         Me.LocalDirBtn.TabIndex = 16
         Me.LocalDirBtn.TabStop = False
-        Me.ToolTips.SetToolTip(Me.LocalDirBtn, "Choose the directory containing local Spotify song files.")
+        Me.ToolTips.SetToolTip(Me.LocalDirBtn, "Choose the folder containing local Spotify song files.")
         '
         'LocalDirValueLabel
         '
