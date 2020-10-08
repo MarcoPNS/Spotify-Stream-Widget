@@ -1,6 +1,6 @@
 ﻿'===================================================================
-'       Written by Marco Sadowski 
-'       Last Update: 2020-06-07
+'       Written by Marco Sadowski, J. Wong
+'       Last Update: 2020-10-08
 '       Please add your name after mine if you edit this code <3
 '
 '       Usage of the Settings Form:
@@ -114,6 +114,22 @@ Public Class Settings
         End If
         My.Settings.ExportMode = ExportSettingToggle.Checked
         My.Settings.Save()
+    End Sub
+
+    Private Sub ChooseLocalDir()
+        If (FolderBrowserDialog1.ShowDialog() = DialogResult.OK) Then
+            'set label showing directory
+            Dim dir = FolderBrowserDialog1.SelectedPath
+            LocalDirValueLabel.Text = dir
+        End If
+    End Sub
+
+    Private Sub LocalDirBtn_Click(sender As Object, e As EventArgs) Handles LocalDirBtn.Click
+        ChooseLocalDir()
+    End Sub
+
+    Private Sub LocalDirValueLabel_Click(sender As Object, e As EventArgs) Handles LocalDirValueLabel.Click
+        ChooseLocalDir()
     End Sub
 
     Private Sub CloseApp(sender As Object, e As EventArgs) Handles Me.FormClosing

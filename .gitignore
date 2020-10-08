@@ -239,3 +239,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# personal workflow
+commit.txt
