@@ -123,7 +123,11 @@ Public Class Settings
             Dim dir = FolderBrowserDialog1.SelectedPath
             LocalDirValueLabel.Text = dir
 
+            '   ideally uses this proposed async for live updates like other settings toggles, but too hard to implement for now.
+            '   Await Viewer.InitLocalDir(dir)
+            '   Viewer.Refresh()
             Viewer.InitLocalDir(dir)
+
         End If
     End Sub
 
