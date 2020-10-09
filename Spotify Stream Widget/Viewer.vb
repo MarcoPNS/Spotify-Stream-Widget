@@ -1,6 +1,6 @@
 ﻿'===================================================================
-'       Written by Marco Sadowski
-'       Last Update: 2020-06-07
+'       Written by Marco Sadowski, J. Wong
+'       Last Update: 2020-10-08
 '       Please add your name after mine if you edit this code <3
 '
 '       Usage of the Viewer Form:

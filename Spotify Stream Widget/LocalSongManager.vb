@@ -4,10 +4,11 @@ Public Class LocalSongManager
     'The purpose of this class is to give cover images for local songs because they aren't given by Spotify.
     'To Use: Initialize with a directory path containing the local songs that will be played on Spotify
     '( eg C:/Users/user/Music/ )
-    'Then call ImageForSong(title, artist) to get the album cover if there's a matching local song and it has a cover. 
+    'Then call ImageForSong(title, artist) to get the album cover if there's a matching local song. 
 
     Dim _dict As New Dictionary(Of String, String)
     Dim _validExtensions As HashSet(Of String) = New HashSet(Of String)({".aa", ".aax", ".aac", ".aiff", ".ape", ".dsf", ".flac", ".m4a", ".m4b", ".m4p", ".mp3", ".mpc", ".mpp", ".ogg", ".oga", ".wav", ".wma", ".wv", ".webm"})
+    '   extensions from taglib docs: https://github.com/mono/taglib-sharp
 
     Public Sub New(dir As String)
         InitLocalDir(dir)
@@ -21,7 +22,6 @@ Public Class LocalSongManager
         For Each filepath In IO.Directory.GetFiles(dir, "*.*").Where(Function(f) IsAudio(f))
 
             Try
-
                 Dim title = "<None>"    'Technically this placeholder could cause problems if there's a song/artist called <None>...
                 Dim artist = "<None>"
 
@@ -74,7 +74,7 @@ Public Class LocalSongManager
 
     Private Function Serialized(title As String, artist As String) As String
         'For safer coverage, use album as well or at least instead of artist
-        'Eg. an artist may cover a particular song twice and have same title
+        'Eg. an artist may cover a particular song twice and have same title, resulting in nonunique serialization
         Return title + artist
     End Function
 
@@ -100,7 +100,7 @@ Public Class LocalSongManager
     End Function
 
     Private Function DictToString(dict As Dictionary(Of String, String)) As String
-        'For debugging
+        'For debugging.
         Return String.Join(" -- ", dict.Select(Function(kvp) String.Format("{0},{1}", kvp.Key, kvp.Value)).ToArray())
     End Function
 
