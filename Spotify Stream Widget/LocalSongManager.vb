@@ -1,6 +1,4 @@
-﻿Imports Spotify_Stream_Widget.Logger
-
-Public Class LocalSongManager
+﻿Public Class LocalSongManager
     'The purpose of this class is to give cover images for local songs because they aren't given by Spotify.
     'To Use: Initialize with a directory path containing the local songs that will be played on Spotify
     '( eg C:/Users/user/Music/ )
@@ -15,24 +13,32 @@ Public Class LocalSongManager
     End Sub
 
     Public Sub InitLocalDir(dir As String)
-        'Given a directory path, set list of local song files (will searched thru later by Viewer)
-        'Should be async, but too much of a hassle. 
-        'Only UX annoyance will be that thumbnail won't update live when local dir is set.
+        'Given a directory path, set list of local song files (will be searched thru later by Viewer)
+        'Should be async - UX annoyance is that thumbnail won't update live when local dir is set.
 
-        For Each filepath In IO.Directory.GetFiles(dir, "*.*").Where(Function(f) IsAudio(f))
+        For Each filepath In IO.Directory.GetFiles(dir, "*.*", IO.SearchOption.AllDirectories).Where(Function(f) IsAudio(f))
 
             Try
-                Dim title = "<None>"    'Technically this placeholder could cause problems if there's a song/artist called <None>...
-                Dim artist = "<None>"
+                Dim title = ""
+                Dim artist = ""
 
                 Dim file As TagLib.File = TagLib.File.Create(filepath)
-                title = file.Tag.Title
 
-                'most likely cause of error when local file has no artist metadata
-                If file.Tag.Performers.Length > 0 Then
-                    artist = file.Tag.Performers(0)
+                'covering errors when local file has no title/artist metadata:
+                'most songs files without a title or artist won't have a cover image anyways,
+                'so this is not very useful.
+
+                If Not file.Tag.Title = "" Then
+                    title = file.Tag.Title
                 Else
-                    Log(3, "Song at " + filepath + " has no artist")
+                    title = IO.Path.GetFileNameWithoutExtension(filepath)   'same thing spotify does with no title metadata
+                    Log(3, "File at " + filepath + " has no title; using filename.")
+                End If
+
+                If file.Tag.Performers.Length > 0 Then
+                    artist = file.Tag.Performers(0)     'probably should String.Join("," Performers) for multiple artists...
+                Else
+                    Log(3, "File at " + filepath + " has no artist.")
                 End If
 
                 Dim key = Serialized(title, artist)
@@ -92,7 +98,7 @@ Public Class LocalSongManager
         Catch ex As Exception
 
             retval = My.Resources.albumArt
-            Log(3, "Couldn't getting cover image from local song at " + path)
+            Log(3, "Couldn't get cover image from local song at " + path)
         End Try
 
         Return retval
@@ -101,7 +107,7 @@ Public Class LocalSongManager
 
     Private Function DictToString(dict As Dictionary(Of String, String)) As String
         'For debugging.
-        Return String.Join(" -- ", dict.Select(Function(kvp) String.Format("{0},{1}", kvp.Key, kvp.Value)).ToArray())
+        Return String.Join(" -- ", dict.Select(Function(kvp) String.Format("{0}, {1}", kvp.Key, kvp.Value)).ToArray())
     End Function
 
     Private Function IsAudio(filepath) As Boolean
