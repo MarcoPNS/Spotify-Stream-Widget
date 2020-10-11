@@ -49,9 +49,10 @@ Partial Class Settings
         Me.LocalDirLabel = New MetroFramework.Controls.MetroLabel()
         Me.LocalDirBtn = New System.Windows.Forms.PictureBox()
         Me.LocalDirValueLabel = New MetroFramework.Controls.MetroLabel()
-        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.FolderDialog = New System.Windows.Forms.FolderBrowserDialog()
         Me.CreditPanel.SuspendLayout()
         CType(Me.ExportFolderBtn, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LocalDirBtn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SpotifyConnectBtn
@@ -73,7 +74,7 @@ Partial Class Settings
         Me.ColorSettingToggle.Size = New System.Drawing.Size(80, 17)
         Me.ColorSettingToggle.Style = MetroFramework.MetroColorStyle.Green
         Me.ColorSettingToggle.TabIndex = 1
-        Me.ColorSettingToggle.Text = "An"
+        Me.ColorSettingToggle.Text = "On"
         Me.ColorSettingToggle.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.ColorSettingToggle.UseSelectable = True
         '
@@ -258,7 +259,7 @@ Partial Class Settings
         Me.ExportSettingToggle.Size = New System.Drawing.Size(80, 17)
         Me.ExportSettingToggle.Style = MetroFramework.MetroColorStyle.Green
         Me.ExportSettingToggle.TabIndex = 14
-        Me.ExportSettingToggle.Text = "An"
+        Me.ExportSettingToggle.Text = "On"
         Me.ExportSettingToggle.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.ExportSettingToggle.UseSelectable = True
         '
@@ -298,7 +299,7 @@ Partial Class Settings
         Me.LocalDirLabel.AutoSize = True
         Me.LocalDirLabel.Location = New System.Drawing.Point(13, 245)
         Me.LocalDirLabel.Name = "LocalDirLabel"
-        Me.LocalDirLabel.Size = New System.Drawing.Size(121, 19)
+        Me.LocalDirLabel.Size = New System.Drawing.Size(120, 19)
         Me.LocalDirLabel.TabIndex = 18
         Me.LocalDirLabel.Text = "Local Songs Folder"
         Me.LocalDirLabel.Theme = MetroFramework.MetroThemeStyle.Dark
@@ -306,7 +307,7 @@ Partial Class Settings
         '
         'LocalDirBtn
         '
-        Me.LocalDirBtn.Image = CType(resources.GetObject("ExportFolderBtn.Image"), System.Drawing.Image)
+        Me.LocalDirBtn.Image = CType(resources.GetObject("LocalDirBtn.Image"), System.Drawing.Image)
         Me.LocalDirBtn.Location = New System.Drawing.Point(162, 245)
         Me.LocalDirBtn.Name = "LocalDirBtn"
         Me.LocalDirBtn.Size = New System.Drawing.Size(14, 16)
@@ -359,10 +360,11 @@ Partial Class Settings
         Me.Text = "Widget for Spotify"
         Me.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.CreditPanel.ResumeLayout(false)
-        Me.CreditPanel.PerformLayout
-        CType(Me.ExportFolderBtn,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ResumeLayout(false)
+        Me.CreditPanel.ResumeLayout(False)
+        Me.CreditPanel.PerformLayout()
+        CType(Me.ExportFolderBtn, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LocalDirBtn, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
         Me.PerformLayout
 
 End Sub
@@ -391,5 +393,5 @@ End Sub
     Friend WithEvents LocalDirLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents LocalDirBtn As PictureBox
     Friend WithEvents LocalDirValueLabel As MetroFramework.Controls.MetroLabel
-    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
+    Friend WithEvents FolderDialog As FolderBrowserDialog
 End Class

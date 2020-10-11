@@ -22,6 +22,10 @@ Public Class Settings
         SizeSettingBox.Text = My.Settings.Size
         ProgressStyleBox.Text = My.Settings.ProgressBarStyle
         ColorStyleBox.Text = My.Settings.Color
+        If Not String.IsNullOrEmpty(My.Settings.LocalDir) Then
+            Viewer.InitLocalDir(My.Settings.LocalDir)
+            LocalDirValueLabel.Text = My.Settings.LocalDir
+        End If
         Viewer.Show()
     End Sub
 
@@ -118,12 +122,13 @@ Public Class Settings
 
     'choose local file folder from dialog, then init manager in Viewer
     Private Sub ChooseLocalDir()
-        If (FolderBrowserDialog1.ShowDialog() = DialogResult.OK) Then
-            'set label showing directory
-            Dim dir = FolderBrowserDialog1.SelectedPath
-            LocalDirValueLabel.Text = dir
+        If (FolderDialog.ShowDialog() = DialogResult.OK) Then
+            Dim dir = FolderDialog.SelectedPath
 
-            '   ideally uses this proposed async for live updates like other settings toggles, but too hard to implement for now.
+            LocalDirValueLabel.Text = dir   'set label showing directory
+            My.Settings.LocalDir = dir      'set path in app settings to persist after this session
+
+            '   ideally uses async for live updates like other settings toggles:
             '   Await Viewer.InitLocalDir(dir)
             '   Viewer.Refresh()
             Viewer.InitLocalDir(dir)

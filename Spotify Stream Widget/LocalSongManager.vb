@@ -21,14 +21,11 @@
             Try
                 Dim title = ""
                 Dim artist = ""
-
                 Dim file As TagLib.File = TagLib.File.Create(filepath)
 
                 'covering errors when local file has no title/artist metadata:
-                'most songs files without a title or artist won't have a cover image anyways,
-                'so this is not very useful.
 
-                If Not file.Tag.Title = "" Then
+                If Not String.IsNullOrEmpty(file.Tag.Title) Then
                     title = file.Tag.Title
                 Else
                     title = IO.Path.GetFileNameWithoutExtension(filepath)   'same thing spotify does with no title metadata

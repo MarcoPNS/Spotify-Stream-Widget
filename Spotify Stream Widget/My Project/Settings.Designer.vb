@@ -136,6 +136,18 @@ Namespace My
                 Me("AuthToken") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property LocalDir() As String
+            Get
+                Return CType(Me("LocalDir"),String)
+            End Get
+            Set
+                Me("LocalDir") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

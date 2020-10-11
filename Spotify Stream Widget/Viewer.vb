@@ -304,9 +304,10 @@ Public Class Viewer
         Else
             'Search local dir for song and read album cover image from file
             Try
-
-                AlbumCover.Image = _localSongManager.ImageForSong(_playback.Item.Name, _playback.Item.Artists(0).Name)
-
+                AlbumCover.Image = If(_localSongManager Is Nothing,
+                                      My.Resources.albumArt,
+                                       _localSongManager.ImageForSong(_playback.Item.Name,
+                                                                      _playback.Item.Artists(0).Name))
             Catch ex As Exception
 
                 Log(3, "AlbumCover Exception: " & ex.ToString())
