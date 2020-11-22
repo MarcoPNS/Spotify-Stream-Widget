@@ -36,6 +36,8 @@ Public Class Viewer
     'The user settings will be applied in this region. It change this size, change the color and change the theme.
     'If there is a new option that need to be applied in the viewer then add it in this region.
     Public Sub ApplyProgressBarStyle()
+        'default to visable
+        timeProgressBar.Visible = True
         Select Case My.Settings.ProgressBarStyle
             Case "Blocks"
                 timeProgressBar.ProgressBarStyle = ProgressBarStyle.Blocks
