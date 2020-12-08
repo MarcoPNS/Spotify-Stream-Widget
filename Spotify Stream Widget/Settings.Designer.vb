@@ -132,7 +132,7 @@ Partial Class Settings
         '
         Me.ProgressStyleBox.FormattingEnabled = True
         Me.ProgressStyleBox.ItemHeight = 23
-        Me.ProgressStyleBox.Items.AddRange(New Object() {"Blocks", "Continuous", "Marquee", "Disabled"})
+        Me.ProgressStyleBox.Items.AddRange(New Object() {"Blocks", "Continuous", "Marquee", "Off"})
         Me.ProgressStyleBox.Location = New System.Drawing.Point(161, 140)
         Me.ProgressStyleBox.Name = "ProgressStyleBox"
         Me.ProgressStyleBox.Size = New System.Drawing.Size(102, 29)

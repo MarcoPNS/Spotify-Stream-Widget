@@ -45,7 +45,7 @@ Public Class Viewer
                 timeProgressBar.ProgressBarStyle = ProgressBarStyle.Continuous
             Case "Marquee"
                 timeProgressBar.ProgressBarStyle = ProgressBarStyle.Marquee
-            Case "Disabled"
+            Case "Off"
                 timeProgressBar.Visible = False
         End Select
     End Sub
