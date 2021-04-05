@@ -1,6 +1,6 @@
 ﻿'===================================================================
-'       Written by Marco Sadowski 
-'       Last Update: 2020-06-07
+'       Written by Marco Sadowski, J. Wong
+'       Last Update: 2020-10-08
 '       Please add your name after mine if you edit this code <3
 '
 '       Usage of the Settings Form:
@@ -22,6 +22,10 @@ Public Class Settings
         SizeSettingBox.Text = My.Settings.Size
         ProgressStyleBox.Text = My.Settings.ProgressBarStyle
         ColorStyleBox.Text = My.Settings.Color
+        If Not String.IsNullOrEmpty(My.Settings.LocalDir) Then
+            Viewer.InitLocalDir(My.Settings.LocalDir)
+            LocalDirValueLabel.Text = My.Settings.LocalDir
+        End If
         Viewer.Show()
     End Sub
 
@@ -114,6 +118,30 @@ Public Class Settings
         End If
         My.Settings.ExportMode = ExportSettingToggle.Checked
         My.Settings.Save()
+    End Sub
+
+    'choose local file folder from dialog, then init manager in Viewer
+    Private Sub ChooseLocalDir()
+        If (FolderDialog.ShowDialog() = DialogResult.OK) Then
+            Dim dir = FolderDialog.SelectedPath
+
+            LocalDirValueLabel.Text = dir   'set label showing directory
+            My.Settings.LocalDir = dir      'set path in app settings to persist after this session
+
+            '   ideally uses async for live updates like other settings toggles:
+            '   Await Viewer.InitLocalDir(dir)
+            '   Viewer.Refresh()
+            Viewer.InitLocalDir(dir)
+
+        End If
+    End Sub
+
+    Private Sub LocalDirBtn_Click(sender As Object, e As EventArgs) Handles LocalDirBtn.Click
+        ChooseLocalDir()
+    End Sub
+
+    Private Sub LocalDirValueLabel_Click(sender As Object, e As EventArgs) Handles LocalDirValueLabel.Click
+        ChooseLocalDir()
     End Sub
 
     Private Sub CloseApp(sender As Object, e As EventArgs) Handles Me.FormClosing

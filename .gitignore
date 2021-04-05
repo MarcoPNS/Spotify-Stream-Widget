@@ -239,4 +239,8 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# personal workflow
+commit.txt
+pull_request_notes/
 .idea/
