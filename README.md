@@ -4,10 +4,10 @@ A small Tool for Streamers to show the current Track of Spotify to your Viewers!
 ## [Download this Tool now!](https://github.com/MarcoPNS/Spotify-Stream-Widget/releases)
 
 ### UPDATE: Now with live edit!
-![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/master/img/widget-for-spotify-presentation.gif?raw=true "Gif")
-![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/master/img/screen.jpg?raw=true "Screenshot")
-![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/master/img/screen2.jpg?raw=true "Screenshot")
-![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/master/img/screen3.jpg?raw=true "Screenshot")
+![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/widget-for-spotify-presentation.gif?raw=true "Gif")
+![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/screen.jpg?raw=true "Screenshot")
+![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/screen2.jpg?raw=true "Screenshot")
+![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/screen3.jpg?raw=true "Screenshot")
 
 ### Export Mode
 Stream Widget for Spotify has a export mode. You can activate it in the settings. It will export all track informations to files that you can use to create your own overlay.
