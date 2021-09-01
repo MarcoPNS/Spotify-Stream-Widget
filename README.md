@@ -14,7 +14,7 @@ I also updated some packages but SpotifyAPI-NET is still running on 5.1.1
 4. For OBS, add a window capture and capture `Spotify Viewer`
 
 ## Having issues?
-[You can create a issue here!](https://github.com/Dankyss/Spotify-Stream-Widget/issues)
+[You can create a issue ticket here!](https://github.com/Dankyss/Spotify-Stream-Widget/issues)
 
 ## Credits
 Originally made by [Marco Sadowski](https://github.com/MarcoPNS/Spotify-Stream-Widget)
