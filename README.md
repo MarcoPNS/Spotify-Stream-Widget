@@ -17,9 +17,8 @@ I also updated some packages but SpotifyAPI-NET is still running on 5.1.1
 [You can create a issue ticket here!](https://github.com/Dankyss/Spotify-Stream-Widget/issues)
 
 ## Credits
-Originally made by [Marco Sadowski](https://github.com/MarcoPNS/Spotify-Stream-Widget)
-
-This application use [Metroframework by Dennis Magno](https://github.com/dennismagno/metroframework-modern-ui) and [SpotifyAPI-NET by Jonas Dellinger](https://github.com/JohnnyCrazy/SpotifyAPI-NET)
+Stream Widget for Spotify originally made by [Marco Sadowski](https://github.com/MarcoPNS/Spotify-Stream-Widget)
+Also using [Metroframework by Dennis Magno](https://github.com/dennismagno/metroframework-modern-ui) and [SpotifyAPI-NET by Jonas Dellinger](https://github.com/JohnnyCrazy/SpotifyAPI-NET)
 
 ### Showcase
 ![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/widget-for-spotify-presentation.gif?raw=true "Gif")
