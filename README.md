@@ -7,12 +7,6 @@ I also updated some packages but SpotifyAPI-NET is still running on 5.1.1
 
 ## [Download](https://github.com/Dankyss/Spotify-Stream-Widget/releases)
 
-### Showcase
-![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/widget-for-spotify-presentation.gif?raw=true "Gif")
-![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/screen.jpg?raw=true "Screenshot")
-![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/screen2.jpg?raw=true "Screenshot")
-![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/screen3.jpg?raw=true "Screenshot")
-
 ## How to use it?
 1. Download from the releases tab
 2. Start `Stream Widget for Spotify.exe`
@@ -27,3 +21,9 @@ I also updated some packages but SpotifyAPI-NET is still running on 5.1.1
 Originally made by [Marco Sadowski](https://github.com/MarcoPNS/Spotify-Stream-Widget)
 
 This application use [Metroframework by Dennis Magno](https://github.com/dennismagno/metroframework-modern-ui) and [SpotifyAPI-NET by Jonas Dellinger](https://github.com/JohnnyCrazy/SpotifyAPI-NET)
+
+### Showcase
+![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/widget-for-spotify-presentation.gif?raw=true "Gif")
+![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/screen.jpg?raw=true "Screenshot")
+![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/screen2.jpg?raw=true "Screenshot")
+![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/screen3.jpg?raw=true "Screenshot")
