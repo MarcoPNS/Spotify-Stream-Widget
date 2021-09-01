@@ -141,6 +141,9 @@ Public Class Viewer
             Case "Yellow"
                 Style = MetroFramework.MetroColorStyle.Yellow
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Yellow
+            Case "Custom"
+                Style = MetroFramework.MetroColorStyle.Silver
+                timeProgressBar.Style = MetroFramework.MetroColorStyle.Silver
         End Select
         Refresh()
     End Sub

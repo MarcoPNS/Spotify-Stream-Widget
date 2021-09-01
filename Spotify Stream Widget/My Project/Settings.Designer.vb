@@ -126,17 +126,17 @@ Namespace My
             End Set
         End Property
         
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        <Global.System.Configuration.UserScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>
         Public Property AuthToken() As Global.SpotifyAPI.Web.Models.Token
             Get
-                Return CType(Me("AuthToken"),Global.SpotifyAPI.Web.Models.Token)
+                Return CType(Me("AuthToken"), Global.SpotifyAPI.Web.Models.Token)
             End Get
             Set
-                Me("AuthToken") = value
+                Me("AuthToken") = Value
             End Set
         End Property
-        
+
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
