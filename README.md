@@ -1,37 +1,29 @@
 # Stream Widget for Spotify
-A small Tool for Streamers to show the current Track of Spotify to your Viewers! Completly customizable to fit your style.
+A good looking Spotify overlay for streaming
 
-## [Download this Tool now!](https://github.com/MarcoPNS/Spotify-Stream-Widget/releases)
+## What did I change?
+I made the colour themes and light/dark mode sync with the settings window so its not just the viewer!
+I also updated some packages but SpotifyAPI-NET is still running on 5.1.1
 
-### UPDATE: Now with live edit!
-![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/widget-for-spotify-presentation.gif?raw=true "Gif")
-![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/screen.jpg?raw=true "Screenshot")
-![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/screen2.jpg?raw=true "Screenshot")
-![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/screen3.jpg?raw=true "Screenshot")
+## [Download](https://github.com/Dankyss/Spotify-Stream-Widget/releases)
 
-### Export Mode
-Stream Widget for Spotify has a export mode. You can activate it in the settings. It will export all track informations to files that you can use to create your own overlay.
-You can find the files in the `\exported-details` folder.
-
-Info: The timestamp of the song will not be exported.
+### Showcase
+![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/widget-for-spotify-presentation.gif?raw=true "Gif")
+![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/screen.jpg?raw=true "Screenshot")
+![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/screen2.jpg?raw=true "Screenshot")
+![alt text](https://github.com/Dankyss/Spotify-Stream-Widget/blob/main/img/screen3.jpg?raw=true "Screenshot")
 
 ## How to use it?
-1. Download the tool
-2. Start the Tool
-3. Customize the Viewer and authentificate with your Spotify Account.
-4. Add the window "Spotify Viewer" to your Stream using OBS, XSplit or similiar.
-
-## Donate
-PayPal: [https://www.paypal.me/MarcoSadowski](https://www.paypal.me/MarcoSadowski)
-
-Dogecoin: [D9Amrvp3sGvk9aBepRtiGuZJgHV2zFaYZh](https://dogechain.info/address/D9Amrvp3sGvk9aBepRtiGuZJgHV2zFaYZh)
-Such wow! Much amaze!
+1. Download from the releases tab
+2. Start `Stream Widget for Spotify.exe`
+3. Customize the way you want and authenticate with Spotify
+4. For OBS, add a window capture and capture `Spotify Viewer`
 
 ## Troubleshooting
 
 [Create a Issue if something went wrong](https://github.com/MarcoPNS/Spotify-Stream-Widget/issues)
 
 ## Credits
-Made by Marco Sadowski - Follow me on [Twitch](https://www.twitch.tv/marcnado) or [Twitter](https://twitter.com/MarcoSadowski)
+Originally made by [Marco Sadowski](https://github.com/MarcoPNS/Spotify-Stream-Widget)
 
 This application use [Metroframework by Dennis Magno](https://github.com/dennismagno/metroframework-modern-ui) and [SpotifyAPI-NET by Jonas Dellinger](https://github.com/JohnnyCrazy/SpotifyAPI-NET)
