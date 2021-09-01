@@ -26,5 +26,5 @@ Stream Widget for Spotify originally made by [Marco Sadowski](https://github.com
 Also using [Metroframework by Dennis Magno](https://github.com/dennismagno/metroframework-modern-ui) and [SpotifyAPI-NET by Jonas Dellinger](https://github.com/JohnnyCrazy/SpotifyAPI-NET).<br/>
 
 ### Showcase
-<img src="https://raw.githubusercontent.com/Dankyss/Spotify-Stream-Widget/main/img/screen2.png" alt="Dark Mode" width="995" height="516" />
-<img src="https://raw.githubusercontent.com/Dankyss/Spotify-Stream-Widget/main/img/screen1.png" alt="Dark Mode" width="995" height="516" />
+<img src="https://raw.githubusercontent.com/Dankyss/Spotify-Stream-Widget/main/img/screen2.png" alt="Dark Mode"/>
+<img src="https://raw.githubusercontent.com/Dankyss/Spotify-Stream-Widget/main/img/screen1.png" alt="Light Mode"/>
