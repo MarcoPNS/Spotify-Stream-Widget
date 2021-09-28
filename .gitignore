@@ -239,4 +239,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# JetBrains
 .idea/
