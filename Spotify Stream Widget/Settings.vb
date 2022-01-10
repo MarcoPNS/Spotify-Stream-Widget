@@ -168,7 +168,7 @@ Public Class Settings
         Process.Start("https://twitter.com/MarcoSadowski") 'best guy on earth!
     End Sub
     Private Sub ReportProblemLink(sender As Object, e As EventArgs) Handles ReportLink.Click
-        Process.Start("https://github.com/Dankyss/Spotify-Stream-Widget/issues")
+        Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/issues")
     End Sub
 
     'This is a BackgroundWorker which check for a new version of the app.   
@@ -176,14 +176,14 @@ Public Class Settings
     Private Sub VersionCheck_DoWork(sender As Object, e As ComponentModel.DoWorkEventArgs) Handles VersionCheck.DoWork
         Try
             Dim version As Integer = Int32.Parse(Regex.Replace(ProductVersion, "\D", ""))
-            Dim serverResponse As String = New WebClient().DownloadString("https://raw.githubusercontent.com/Dankyss/Spotify-Stream-Widget/main/Release/version.md")
+            Dim serverResponse As String = New WebClient().DownloadString("https://raw.githubusercontent.com/MarcoPNS/Spotify-Stream-Widget/main/Release/version.md")
             If serverResponse.Length = 7 Then
                 Dim onlineVersion As Integer = Int32.Parse(Regex.Replace(serverResponse, "\D", ""))
                 If Not version >= onlineVersion Then
 
                     Dim res As DialogResult = MessageBox.Show("A new version is available! Version " & serverResponse & vbNewLine & "Do you want to check it out? ", "Spotify Stream Widget", MessageBoxButtons.YesNo)
                     If (res = DialogResult.Yes) Then
-                        Process.Start("https://github.com/Dankyss/Spotify-Stream-Widget/releases")
+                        Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/releases")
                     End If
                 End If
             Else

@@ -68,7 +68,7 @@ Partial Class Splash
         Me.Credits.Size = New System.Drawing.Size(374, 29)
         Me.Credits.Style = MetroFramework.MetroColorStyle.White
         Me.Credits.TabIndex = 2
-        Me.Credits.Text = "Made by Marco Sadowski and Dankyss"
+        Me.Credits.Text = "Made by Marco Sadowski"
         Me.Credits.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.Credits.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.Credits.UseCustomBackColor = True
@@ -85,7 +85,7 @@ Partial Class Splash
         Me.Copyright.Size = New System.Drawing.Size(374, 29)
         Me.Copyright.Style = MetroFramework.MetroColorStyle.White
         Me.Copyright.TabIndex = 3
-        Me.Copyright.Text = "© Marco Sadowski and Dankyss 2021"
+        Me.Copyright.Text = "© Marco Sadowski 2021"
         Me.Copyright.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.Copyright.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.Copyright.UseCustomBackColor = True

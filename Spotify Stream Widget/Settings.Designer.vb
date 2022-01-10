@@ -96,7 +96,7 @@ Partial Class Settings
         Me.CreditLink.Name = "CreditLink"
         Me.CreditLink.Size = New System.Drawing.Size(251, 18)
         Me.CreditLink.TabIndex = 3
-        Me.CreditLink.Text = "Made by Marco Sadowski and Dankyss"
+        Me.CreditLink.Text = "Made by Marco Sadowski"
         Me.CreditLink.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.CreditLink.UseCustomBackColor = True
         Me.CreditLink.UseSelectable = True

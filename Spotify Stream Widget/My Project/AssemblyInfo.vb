@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Stream Widget for Spotify")>
 <Assembly: AssemblyDescription("A good looking Spotify overlay for streaming.")>
-<Assembly: AssemblyCompany("Dankyss & Marco Sadowski")>
+<Assembly: AssemblyCompany("Marco Sadowski")>
 <Assembly: AssemblyProduct("Stream Widget for Spotify")>
-<Assembly: AssemblyCopyright("Dankyss & Marco Sadowski © 2021")>
+<Assembly: AssemblyCopyright("Marco Sadowski © 2021")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
