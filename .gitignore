@@ -242,3 +242,4 @@ ModelManifest.xml
 
 # JetBrains
 .idea/
+.DS_Store
