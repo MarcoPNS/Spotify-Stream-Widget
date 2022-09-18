@@ -33,9 +33,15 @@ Such wow! Much amaze!
 
 ## Credits
 Made by [Marco Sadowski](https://twitter.com/MarcoSadowski) - Follow me on [Twitch](https://www.twitch.tv/marcnado) or [Twitter](https://twitter.com/MarcoSadowski)
+
 Contributers:
+
 [Dankyss](https://github.com/Dankyss), 
+
 [J Wong](https://github.com/wong-justin), 
+
 [Corey Durthaler](https://github.com/cdurth), 
-[Not Bob](https://github.com/notdabob)<br/>
+
+[Not Bob](https://github.com/notdabob)
+
 Also using [Metroframework by Dennis Magno](https://github.com/dennismagno/metroframework-modern-ui) and [SpotifyAPI-NET by Jonas Dellinger](https://github.com/JohnnyCrazy/SpotifyAPI-NET).
