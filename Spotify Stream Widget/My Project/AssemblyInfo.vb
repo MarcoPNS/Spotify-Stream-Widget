@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Werte der Assemblyattribute überprüfen
 
 <Assembly: AssemblyTitle("Stream Widget for Spotify")>
-<Assembly: AssemblyDescription("A small Tool for Streamers to show the current Track on Spotify to your Viewers!")>
+<Assembly: AssemblyDescription("A small Tool for Streamers to show the current Track on Spotify to your Viewers")>
 <Assembly: AssemblyCompany("Marco Sadowski")>
 <Assembly: AssemblyProduct("Stream Widget for Spotify")>
 <Assembly: AssemblyCopyright("Marco Sadowski © 2020")>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.4.1.0")>
-<Assembly: AssemblyFileVersion("1.4.1.0")>
+<Assembly: AssemblyVersion("1.4.2.0")>
+<Assembly: AssemblyFileVersion("1.4.2.0")>
