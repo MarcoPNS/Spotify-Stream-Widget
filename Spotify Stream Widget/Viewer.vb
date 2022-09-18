@@ -98,49 +98,67 @@ Public Class Viewer
 
     'change the style color of the viewer
     Public Sub SetColor()
-        Select Case My.Settings.Color
+        'Set ProgressBar Color
+        Select Case My.Settings.ProgressColor
             Case "Green"
-                Style = MetroFramework.MetroColorStyle.Green
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Green
             Case "Black"
-                Style = MetroFramework.MetroColorStyle.Black
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Black
             Case "White"
-                Style = MetroFramework.MetroColorStyle.White
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.White
             Case "Silver"
-                Style = MetroFramework.MetroColorStyle.Silver
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Silver
             Case "Blue"
-                Style = MetroFramework.MetroColorStyle.Blue
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Blue
             Case "Lime"
-                Style = MetroFramework.MetroColorStyle.Lime
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Lime
             Case "Teal"
-                Style = MetroFramework.MetroColorStyle.Teal
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Teal
             Case "Orange"
-                Style = MetroFramework.MetroColorStyle.Orange
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Orange
             Case "Brown"
-                Style = MetroFramework.MetroColorStyle.Brown
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Brown
             Case "Pink"
-                Style = MetroFramework.MetroColorStyle.Pink
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Pink
             Case "Magenta"
-                Style = MetroFramework.MetroColorStyle.Magenta
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Magenta
             Case "Purple"
-                Style = MetroFramework.MetroColorStyle.Purple
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Purple
             Case "Red"
-                Style = MetroFramework.MetroColorStyle.Red
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Red
             Case "Yellow"
-                Style = MetroFramework.MetroColorStyle.Yellow
                 timeProgressBar.Style = MetroFramework.MetroColorStyle.Yellow
+        End Select
+        'Set Window Color
+        Select Case My.Settings.WindowColor
+            Case "Green"
+                Style = MetroFramework.MetroColorStyle.Green
+            Case "Black"
+                Style = MetroFramework.MetroColorStyle.Black
+            Case "White"
+                Style = MetroFramework.MetroColorStyle.White
+            Case "Silver"
+                Style = MetroFramework.MetroColorStyle.Silver
+            Case "Blue"
+                Style = MetroFramework.MetroColorStyle.Blue
+            Case "Lime"
+                Style = MetroFramework.MetroColorStyle.Lime
+            Case "Teal"
+                Style = MetroFramework.MetroColorStyle.Teal
+            Case "Orange"
+                Style = MetroFramework.MetroColorStyle.Orange
+            Case "Brown"
+                Style = MetroFramework.MetroColorStyle.Brown
+            Case "Pink"
+                Style = MetroFramework.MetroColorStyle.Pink
+            Case "Magenta"
+                Style = MetroFramework.MetroColorStyle.Magenta
+            Case "Purple"
+                Style = MetroFramework.MetroColorStyle.Purple
+            Case "Red"
+                Style = MetroFramework.MetroColorStyle.Red
+            Case "Yellow"
+                Style = MetroFramework.MetroColorStyle.Yellow
         End Select
         Refresh()
     End Sub
@@ -198,11 +216,19 @@ Public Class Viewer
     End Sub
 
     Private Async Sub _spotify_OnAccessTokenExpired(sender, e)
-        Dim _newToken = Await _spotifyAuth.RefreshAuthAsync(_previousToken.RefreshToken)
-        _spotify.AccessToken = _newToken.AccessToken
-        _previousToken.AccessToken = _newToken.AccessToken
-        _previousToken.CreateDate = _newToken.CreateDate
-        Log("Auth refreshed: " & _spotify.AccessToken)
+        Try
+            Dim _newToken = Await _spotifyAuth.RefreshAuthAsync(_previousToken.RefreshToken)
+            _spotify.AccessToken = _newToken.AccessToken
+            _previousToken.AccessToken = _newToken.AccessToken
+            _previousToken.CreateDate = _newToken.CreateDate
+            Log("Auth refreshed: " & _spotify.AccessToken)
+        Catch ex As Exception
+            Log(3, "_spotify_OnAccessTokenExpired() Exception: " & ex.ToString())
+            MsgBox("There was a problem with reaching the Spotify API. Please check your network connection and try again." + vbNewLine + "_spotify_OnAccessTokenExpired() Exception: " + ex.Message)
+            Close()
+
+            Return
+        End Try
     End Sub
 
     Private Async Sub UpdateTrack()

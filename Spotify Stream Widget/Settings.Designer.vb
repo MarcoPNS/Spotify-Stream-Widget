@@ -37,8 +37,8 @@ Partial Class Settings
         Me.Button1 = New System.Windows.Forms.Button()
         Me.CreditsText = New System.Windows.Forms.TextBox()
         Me.ReportLink = New MetroFramework.Controls.MetroLink()
-        Me.ColorStyleLabel = New MetroFramework.Controls.MetroLabel()
-        Me.ColorStyleBox = New MetroFramework.Controls.MetroComboBox()
+        Me.ProgressColorStyleLabel = New MetroFramework.Controls.MetroLabel()
+        Me.ProgressColorStyleBox = New MetroFramework.Controls.MetroComboBox()
         Me.VersionLabel = New System.Windows.Forms.Label()
         Me.VersionCheck = New System.ComponentModel.BackgroundWorker()
         Me.ExportSettingLabel = New MetroFramework.Controls.MetroLabel()
@@ -50,6 +50,8 @@ Partial Class Settings
         Me.LocalDirBtn = New System.Windows.Forms.PictureBox()
         Me.LocalDirValueLabel = New MetroFramework.Controls.MetroLabel()
         Me.FolderDialog = New System.Windows.Forms.FolderBrowserDialog()
+        Me.WindowColorStyleLabel = New MetroFramework.Controls.MetroLabel()
+        Me.WindowColorStyleBox = New MetroFramework.Controls.MetroComboBox()
         Me.CreditPanel.SuspendLayout()
         CType(Me.ExportFolderBtn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LocalDirBtn, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,7 +76,7 @@ Partial Class Settings
         Me.ColorSettingToggle.Size = New System.Drawing.Size(80, 17)
         Me.ColorSettingToggle.Style = MetroFramework.MetroColorStyle.Green
         Me.ColorSettingToggle.TabIndex = 1
-        Me.ColorSettingToggle.Text = "On"
+        Me.ColorSettingToggle.Text = "An"
         Me.ColorSettingToggle.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.ColorSettingToggle.UseSelectable = True
         '
@@ -163,10 +165,10 @@ Partial Class Settings
         '
         Me.CreditPanel.Controls.Add(Me.Button1)
         Me.CreditPanel.Controls.Add(Me.CreditsText)
-        Me.CreditPanel.Location = New System.Drawing.Point(94, 295)
+        Me.CreditPanel.Location = New System.Drawing.Point(10, 27)
         Me.CreditPanel.Name = "CreditPanel"
-        Me.CreditPanel.Size = New System.Drawing.Size(272, 304)
-        Me.CreditPanel.TabIndex = 9
+        Me.CreditPanel.Size = New System.Drawing.Size(275, 391)
+        Me.CreditPanel.TabIndex = 99
         Me.CreditPanel.Visible = False
         '
         'Button1
@@ -184,7 +186,7 @@ Partial Class Settings
         Me.CreditsText.Multiline = True
         Me.CreditsText.Name = "CreditsText"
         Me.CreditsText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.CreditsText.Size = New System.Drawing.Size(269, 304)
+        Me.CreditsText.Size = New System.Drawing.Size(269, 386)
         Me.CreditsText.TabIndex = 10
         Me.CreditsText.Text = resources.GetString("CreditsText.Text")
         '
@@ -200,28 +202,28 @@ Partial Class Settings
         Me.ReportLink.UseSelectable = True
         Me.ReportLink.UseStyleColors = True
         '
-        'ColorStyleLabel
+        'ProgressColorStyleLabel
         '
-        Me.ColorStyleLabel.AutoSize = True
-        Me.ColorStyleLabel.Location = New System.Drawing.Point(13, 175)
-        Me.ColorStyleLabel.Name = "ColorStyleLabel"
-        Me.ColorStyleLabel.Size = New System.Drawing.Size(116, 19)
-        Me.ColorStyleLabel.TabIndex = 12
-        Me.ColorStyleLabel.Text = "Viewer Style Color"
-        Me.ColorStyleLabel.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.ProgressColorStyleLabel.AutoSize = True
+        Me.ProgressColorStyleLabel.Location = New System.Drawing.Point(13, 175)
+        Me.ProgressColorStyleLabel.Name = "ProgressColorStyleLabel"
+        Me.ProgressColorStyleLabel.Size = New System.Drawing.Size(128, 19)
+        Me.ProgressColorStyleLabel.TabIndex = 12
+        Me.ProgressColorStyleLabel.Text = "Progress Style Color"
+        Me.ProgressColorStyleLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         '
-        'ColorStyleBox
+        'ProgressColorStyleBox
         '
-        Me.ColorStyleBox.FormattingEnabled = True
-        Me.ColorStyleBox.ItemHeight = 23
-        Me.ColorStyleBox.Items.AddRange(New Object() {"Green", "Black", "White", "Silver", "Blue", "Lime", "Teal", "Orange", "Brown", "Pink", "Magenta", "Purple", "Red", "Yellow"})
-        Me.ColorStyleBox.Location = New System.Drawing.Point(161, 175)
-        Me.ColorStyleBox.Name = "ColorStyleBox"
-        Me.ColorStyleBox.Size = New System.Drawing.Size(102, 29)
-        Me.ColorStyleBox.Style = MetroFramework.MetroColorStyle.Green
-        Me.ColorStyleBox.TabIndex = 11
-        Me.ColorStyleBox.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.ColorStyleBox.UseSelectable = True
+        Me.ProgressColorStyleBox.FormattingEnabled = True
+        Me.ProgressColorStyleBox.ItemHeight = 23
+        Me.ProgressColorStyleBox.Items.AddRange(New Object() {"Green", "Black", "White", "Silver", "Blue", "Lime", "Teal", "Orange", "Brown", "Pink", "Magenta", "Purple", "Red", "Yellow"})
+        Me.ProgressColorStyleBox.Location = New System.Drawing.Point(161, 175)
+        Me.ProgressColorStyleBox.Name = "ProgressColorStyleBox"
+        Me.ProgressColorStyleBox.Size = New System.Drawing.Size(102, 29)
+        Me.ProgressColorStyleBox.Style = MetroFramework.MetroColorStyle.Green
+        Me.ProgressColorStyleBox.TabIndex = 11
+        Me.ProgressColorStyleBox.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.ProgressColorStyleBox.UseSelectable = True
         '
         'VersionLabel
         '
@@ -240,7 +242,7 @@ Partial Class Settings
         'ExportSettingLabel
         '
         Me.ExportSettingLabel.AutoSize = True
-        Me.ExportSettingLabel.Location = New System.Drawing.Point(13, 210)
+        Me.ExportSettingLabel.Location = New System.Drawing.Point(13, 246)
         Me.ExportSettingLabel.Name = "ExportSettingLabel"
         Me.ExportSettingLabel.Size = New System.Drawing.Size(90, 19)
         Me.ExportSettingLabel.TabIndex = 15
@@ -254,19 +256,19 @@ Partial Class Settings
         Me.ExportSettingToggle.AutoSize = True
         Me.ExportSettingToggle.Checked = True
         Me.ExportSettingToggle.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ExportSettingToggle.Location = New System.Drawing.Point(183, 215)
+        Me.ExportSettingToggle.Location = New System.Drawing.Point(183, 251)
         Me.ExportSettingToggle.Name = "ExportSettingToggle"
         Me.ExportSettingToggle.Size = New System.Drawing.Size(80, 17)
         Me.ExportSettingToggle.Style = MetroFramework.MetroColorStyle.Green
         Me.ExportSettingToggle.TabIndex = 14
-        Me.ExportSettingToggle.Text = "On"
+        Me.ExportSettingToggle.Text = "An"
         Me.ExportSettingToggle.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.ExportSettingToggle.UseSelectable = True
         '
         'ExportFolderBtn
         '
         Me.ExportFolderBtn.Image = CType(resources.GetObject("ExportFolderBtn.Image"), System.Drawing.Image)
-        Me.ExportFolderBtn.Location = New System.Drawing.Point(162, 215)
+        Me.ExportFolderBtn.Location = New System.Drawing.Point(162, 251)
         Me.ExportFolderBtn.Name = "ExportFolderBtn"
         Me.ExportFolderBtn.Size = New System.Drawing.Size(14, 16)
         Me.ExportFolderBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -297,7 +299,7 @@ Partial Class Settings
         'LocalDirLabel
         '
         Me.LocalDirLabel.AutoSize = True
-        Me.LocalDirLabel.Location = New System.Drawing.Point(13, 245)
+        Me.LocalDirLabel.Location = New System.Drawing.Point(13, 281)
         Me.LocalDirLabel.Name = "LocalDirLabel"
         Me.LocalDirLabel.Size = New System.Drawing.Size(120, 19)
         Me.LocalDirLabel.TabIndex = 18
@@ -308,7 +310,7 @@ Partial Class Settings
         'LocalDirBtn
         '
         Me.LocalDirBtn.Image = CType(resources.GetObject("LocalDirBtn.Image"), System.Drawing.Image)
-        Me.LocalDirBtn.Location = New System.Drawing.Point(162, 245)
+        Me.LocalDirBtn.Location = New System.Drawing.Point(162, 281)
         Me.LocalDirBtn.Name = "LocalDirBtn"
         Me.LocalDirBtn.Size = New System.Drawing.Size(14, 16)
         Me.LocalDirBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -318,13 +320,36 @@ Partial Class Settings
         '
         'LocalDirValueLabel
         '
-        Me.LocalDirValueLabel.Location = New System.Drawing.Point(183, 245)
+        Me.LocalDirValueLabel.Location = New System.Drawing.Point(183, 281)
         Me.LocalDirValueLabel.Name = "LocalDirValueLabel"
         Me.LocalDirValueLabel.Size = New System.Drawing.Size(102, 19)
         Me.LocalDirValueLabel.TabIndex = 19
         Me.LocalDirValueLabel.Text = "None"
         Me.LocalDirValueLabel.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.LocalDirValueLabel.UseSelectable = True
+        '
+        'WindowColorStyleLabel
+        '
+        Me.WindowColorStyleLabel.AutoSize = True
+        Me.WindowColorStyleLabel.Location = New System.Drawing.Point(13, 211)
+        Me.WindowColorStyleLabel.Name = "WindowColorStyleLabel"
+        Me.WindowColorStyleLabel.Size = New System.Drawing.Size(125, 19)
+        Me.WindowColorStyleLabel.TabIndex = 21
+        Me.WindowColorStyleLabel.Text = "Window Style Color"
+        Me.WindowColorStyleLabel.Theme = MetroFramework.MetroThemeStyle.Dark
+        '
+        'WindowColorStyleBox
+        '
+        Me.WindowColorStyleBox.FormattingEnabled = True
+        Me.WindowColorStyleBox.ItemHeight = 23
+        Me.WindowColorStyleBox.Items.AddRange(New Object() {"Green", "Black", "White", "Silver", "Blue", "Lime", "Teal", "Orange", "Brown", "Pink", "Magenta", "Purple", "Red", "Yellow"})
+        Me.WindowColorStyleBox.Location = New System.Drawing.Point(161, 211)
+        Me.WindowColorStyleBox.Name = "WindowColorStyleBox"
+        Me.WindowColorStyleBox.Size = New System.Drawing.Size(102, 29)
+        Me.WindowColorStyleBox.Style = MetroFramework.MetroColorStyle.Green
+        Me.WindowColorStyleBox.TabIndex = 20
+        Me.WindowColorStyleBox.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.WindowColorStyleBox.UseSelectable = True
         '
         'Settings
         '
@@ -337,8 +362,8 @@ Partial Class Settings
         Me.Controls.Add(Me.ExportSettingLabel)
         Me.Controls.Add(Me.ExportSettingToggle)
         Me.Controls.Add(Me.VersionLabel)
-        Me.Controls.Add(Me.ColorStyleLabel)
-        Me.Controls.Add(Me.ColorStyleBox)
+        Me.Controls.Add(Me.ProgressColorStyleLabel)
+        Me.Controls.Add(Me.ProgressColorStyleBox)
         Me.Controls.Add(Me.ReportLink)
         Me.Controls.Add(Me.CreditsLink)
         Me.Controls.Add(Me.ProgressStyleLabel)
@@ -352,6 +377,8 @@ Partial Class Settings
         Me.Controls.Add(Me.LocalDirLabel)
         Me.Controls.Add(Me.LocalDirBtn)
         Me.Controls.Add(Me.LocalDirValueLabel)
+        Me.Controls.Add(Me.WindowColorStyleLabel)
+        Me.Controls.Add(Me.WindowColorStyleBox)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Settings"
@@ -380,8 +407,8 @@ End Sub
     Friend WithEvents CreditsText As TextBox
     Friend WithEvents Button1 As Button
     Friend WithEvents ReportLink As MetroFramework.Controls.MetroLink
-    Friend WithEvents ColorStyleLabel As MetroFramework.Controls.MetroLabel
-    Friend WithEvents ColorStyleBox As MetroFramework.Controls.MetroComboBox
+    Friend WithEvents ProgressColorStyleLabel As MetroFramework.Controls.MetroLabel
+    Friend WithEvents ProgressColorStyleBox As MetroFramework.Controls.MetroComboBox
     Friend WithEvents VersionLabel As Label
     Friend WithEvents VersionCheck As System.ComponentModel.BackgroundWorker
     Friend WithEvents ExportSettingLabel As MetroFramework.Controls.MetroLabel
@@ -394,4 +421,6 @@ End Sub
     Friend WithEvents LocalDirBtn As PictureBox
     Friend WithEvents LocalDirValueLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents FolderDialog As FolderBrowserDialog
+    Friend WithEvents WindowColorStyleLabel As MetroFramework.Controls.MetroLabel
+    Friend WithEvents WindowColorStyleBox As MetroFramework.Controls.MetroComboBox
 End Class

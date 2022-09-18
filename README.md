@@ -32,6 +32,10 @@ Such wow! Much amaze!
 [Create a Issue if something went wrong](https://github.com/MarcoPNS/Spotify-Stream-Widget/issues)
 
 ## Credits
-Made by Marco Sadowski - Follow me on [Twitch](https://www.twitch.tv/marcnado) or [Twitter](https://twitter.com/MarcoSadowski)
-
-This application use [Metroframework by Dennis Magno](https://github.com/dennismagno/metroframework-modern-ui) and [SpotifyAPI-NET by Jonas Dellinger](https://github.com/JohnnyCrazy/SpotifyAPI-NET)
+Made by [Marco Sadowski](https://twitter.com/MarcoSadowski) - Follow me on [Twitch](https://www.twitch.tv/marcnado) or [Twitter](https://twitter.com/MarcoSadowski)
+Contributers:
+[Dankyss](https://github.com/Dankyss), 
+[J Wong](https://github.com/wong-justin), 
+[Corey Durthaler](https://github.com/cdurth), 
+[Not Bob](https://github.com/notdabob)<br/>
+Also using [Metroframework by Dennis Magno](https://github.com/dennismagno/metroframework-modern-ui) and [SpotifyAPI-NET by Jonas Dellinger](https://github.com/JohnnyCrazy/SpotifyAPI-NET).

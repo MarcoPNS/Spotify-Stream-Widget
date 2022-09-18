@@ -11,7 +11,7 @@
     <Setting Name="ProgressBarStyle" Type="System.String" Scope="User">
       <Value Profile="(Default)">Blocks</Value>
     </Setting>
-    <Setting Name="Color" Type="System.String" Scope="User">
+    <Setting Name="ProgressColor" Type="System.String" Scope="User">
       <Value Profile="(Default)">Green</Value>
     </Setting>
     <Setting Name="ExportMode" Type="System.Boolean" Scope="User">
@@ -25,6 +25,9 @@
     </Setting>
     <Setting Name="LocalDir" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WindowColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Green</Value>
     </Setting>
   </Settings>
 </SettingsFile>

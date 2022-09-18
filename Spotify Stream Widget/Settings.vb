@@ -1,6 +1,6 @@
 ﻿'===================================================================
 '       Written by Marco Sadowski, J. Wong
-'       Last Update: 2020-10-08
+'       Last Update: 2022-09-18
 '       Please add your name after mine if you edit this code <3
 '
 '       Usage of the Settings Form:
@@ -15,13 +15,23 @@ Public Class Settings
         Log("Application started - v" + ProductVersion)
         'check for new version
         VersionCheck.RunWorkerAsync()
+
+        'Migration to v1.5.0.0
+        If My.Settings.WindowColor = "" Then
+            My.Settings.WindowColor = "Green"
+        End If
+        If My.Settings.ProgressColor = "" Then
+            My.Settings.ProgressColor = "Green"
+        End If
+
         'get current settings
         VersionLabel.Text = ProductVersion
         ColorSettingToggle.Checked = My.Settings.DarkMode
         ExportSettingToggle.Checked = My.Settings.ExportMode
         SizeSettingBox.Text = My.Settings.Size
         ProgressStyleBox.Text = My.Settings.ProgressBarStyle
-        ColorStyleBox.Text = My.Settings.Color
+        ProgressColorStyleBox.Text = My.Settings.ProgressColor
+        WindowColorStyleBox.Text = My.Settings.WindowColor
         If Not String.IsNullOrEmpty(My.Settings.LocalDir) Then
             Viewer.InitLocalDir(My.Settings.LocalDir)
             LocalDirValueLabel.Text = My.Settings.LocalDir
@@ -96,8 +106,14 @@ Public Class Settings
         Viewer.ApplyProgressBarStyle()
     End Sub
 
-    Private Sub ColorStyleBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ColorStyleBox.SelectedIndexChanged
-        My.Settings.Color = ColorStyleBox.Text
+    Private Sub ProgressColorStyleBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ProgressColorStyleBox.SelectedIndexChanged
+        My.Settings.ProgressColor = ProgressColorStyleBox.Text
+        My.Settings.Save()
+        Viewer.SetColor()
+    End Sub
+
+    Private Sub WindowColorStyleBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles WindowColorStyleBox.SelectedIndexChanged
+        My.Settings.WindowColor = WindowColorStyleBox.Text
         My.Settings.Save()
         Viewer.SetColor()
     End Sub
@@ -147,5 +163,4 @@ Public Class Settings
     Private Sub CloseApp(sender As Object, e As EventArgs) Handles Me.FormClosing
         Application.Exit()
     End Sub
-
 End Class
