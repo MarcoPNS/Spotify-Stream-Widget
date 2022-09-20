@@ -1,6 +1,6 @@
 ﻿'===================================================================
 '       Written by Marco Sadowski, J. Wong
-'       Last Update: 2020-10-08
+'       Last Update: 2022-09-21
 '       Please add your name after mine if you edit this code <3
 '
 '       Usage of the Viewer Form:
@@ -11,14 +11,21 @@
 
 Imports SpotifyAPI.Web, SpotifyAPI.Web.Auth, SpotifyAPI.Web.Enums, SpotifyAPI.Web.Models
 Imports Spotify_Stream_Widget.Logger
+Imports MetroFramework.Controls
 
 Public Class Viewer
+    Private Const ExchangeServerUri As String = "https://spotify-token-swap.camefrom.space/"
     Private Shared _spotify As SpotifyWebAPI
-    Private Shared _spotifyAuth As TokenSwapAuth = New TokenSwapAuth("https://spotify-token-swap.camefrom.space/", "http://localhost:4002", Scope.UserReadPlaybackState)
+    Private Shared ReadOnly _spotifyAuth As New TokenSwapWebAPIFactory(
+        exchangeServerUri:=ExchangeServerUri,
+        timeout:=60,
+        scope:=Scope.UserReadPlaybackState,
+        autoRefresh:=True
+    )
+
     Dim _playback As PlaybackContext
     Dim _currentTrackId As String
     Dim _authorized As Boolean = False
-    Dim _previousToken As Token
     Dim _localSongManager As LocalSongManager = Nothing
 
     'The Load Event apply the user settings and the event handler for the spotify API
@@ -188,40 +195,41 @@ Public Class Viewer
 
 
     'Connects with Spotify. Needs to be called before all other SpotifyAPI functions
-    Public Sub SpotifyConnect()
+    Public Async Sub SpotifyConnect()
         timeLabel.Text = ""
         Settings.StatusLabel.Text = "Status: Connecting..."
         Settings.StatusLabel.ForeColor = Color.Yellow
         Settings.SpotifyConnectBtn.Enabled = False
         'Spotify Auth
         MsgBox("The Widget will open your browser to connect to the Spotify API")
-        AddHandler _spotifyAuth.AuthReceived, AddressOf _spotify_AuthReceived
+        Log("Starting Auth Process...")
+        AddHandler _spotifyAuth.OnAuthSuccess, AddressOf _spotify_OnAuthSuccess
+        AddHandler _spotifyAuth.OnAuthFailure, AddressOf _spotify_OnAuthFailure
         AddHandler _spotifyAuth.OnAccessTokenExpired, AddressOf _spotify_OnAccessTokenExpired
-        _spotifyAuth.Start()
-        _spotifyAuth.OpenBrowser()
+        _spotify = Await _spotifyAuth.GetWebApiAsync()
         UpdateTrack()
     End Sub
 
     'Handler for the auth process
-    Private Async Sub _spotify_AuthReceived(sender, e)
-        _previousToken = Await _spotifyAuth.ExchangeCodeAsync(e.Code)
-
-        _spotify = New SpotifyWebAPI() With {
-            .TokenType = _previousToken.TokenType,
-            .AccessToken = _previousToken.AccessToken
-            }
-
+    Private Sub _spotify_OnAuthSuccess(sender, e)
+        Log("Auth was successful")
         _authorized = True
-        _spotifyAuth.Stop()
     End Sub
 
-    Private Async Sub _spotify_OnAccessTokenExpired(sender, e)
+    Private Sub _spotify_OnAuthFailure(sender, e)
+        _authorized = False
+        Settings.StatusLabel.Text = "Status: Auth Failed. Please try again"
+        Settings.StatusLabel.ForeColor = Color.Red
+        Settings.SpotifyConnectBtn.Enabled = True
+    End Sub
+
+    'Will be called after an hour. There is a timer in the background.
+    Public Async Sub _spotify_OnAccessTokenExpired(sender, e)
+        _authorized = False
+
         Try
-            Dim _newToken = Await _spotifyAuth.RefreshAuthAsync(_previousToken.RefreshToken)
-            _spotify.AccessToken = _newToken.AccessToken
-            _previousToken.AccessToken = _newToken.AccessToken
-            _previousToken.CreateDate = _newToken.CreateDate
-            Log("Auth refreshed: " & _spotify.AccessToken)
+            Log("Try to refresh Auth...")
+            Await _spotifyAuth.RefreshAuthAsync()
         Catch ex As Exception
             Log(3, "_spotify_OnAccessTokenExpired() Exception: " & ex.ToString())
             MsgBox("There was a problem with reaching the Spotify API. Please check your network connection and try again." + vbNewLine + "_spotify_OnAccessTokenExpired() Exception: " + ex.Message)
@@ -247,23 +255,18 @@ Public Class Viewer
         'get the current track
         'could fail if you do not have a internet connection
         Try
-            'check if new token is needed
-
-
-            If _previousToken.IsExpired() Then
-                Log("Token expired")
-                Settings.StatusLabel.Text = "Status: Connection lost. Try to refresh..."
-                Settings.StatusLabel.ForeColor = Color.Yellow
-                _spotify_OnAccessTokenExpired("", "")
-                Await Task.Delay(5000)
-                UpdateTrack()
-                Return
-            Else
+            'check if authorized
+            If _authorized Then
                 Settings.StatusLabel.Text = "Status: Connected"
                 Settings.StatusLabel.ForeColor = Color.LimeGreen
                 _playback = _spotify.GetPlayback()
                 'Debug Info
                 My.Settings.ApiCalls += 1
+            Else
+                'Wait for something to happen...
+                Await Task.Delay(5000)
+                UpdateTrack()
+                Return
             End If
 
         Catch ex As Exception
@@ -282,10 +285,20 @@ Public Class Viewer
             Return
         End If
 
+        'This does happen when the player is paused or nothing is played
         If _playback.Item Is Nothing Then
             Await Task.Delay(5000)
             UpdateTrack()
             Return
+        End If
+
+        If _playback.IsPlaying = False Then
+            TrackLabel.Text = "⏸️ " & _playback.Item.Name
+            Await Task.Delay(5000)
+            UpdateTrack()
+            Return
+        ElseIf TrackLabel.Text.Contains("⏸️") Then
+            TrackLabel.Text = _playback.Item.Name
         End If
 
         'update the time
@@ -296,7 +309,7 @@ Public Class Viewer
             Dim fakeSeconds As Integer = 0
             Do While fakeSeconds <= 6
                 If _playback.IsPlaying Then
-                    UpdateProgressBar(timeProgressBar.Value + 1000, CInt(_playback.Item.DurationMs))
+                    UpdateProgressBar(_playback.ProgressMs + (fakeSeconds * 1000), CInt(_playback.Item.DurationMs))
                 End If
                 Await Task.Delay(1000)
                 fakeSeconds += 1
@@ -371,8 +384,9 @@ Public Class Viewer
     Private Sub UpdateProgressBar(cur As Integer, max As Integer)
         'check if one of the values are below 0
         If cur < 0 Or max < 0 Then Exit Sub
-        timeProgressBar.Maximum = max
-        If cur < max Then timeProgressBar.Value = cur
+
+        If cur < max Then timeProgressBar.Value = Math.Round(cur / max * 100, 0, MidpointRounding.ToEven)
+        timeProgressBar.Visible = True
         timeLabel.Text = $"{FormatTime(cur)}/{FormatTime(max)}"
 
     End Sub
@@ -385,10 +399,13 @@ Public Class Viewer
                 TrackLabel.Font = New Font("Calibri", 20)
             Case 25 To 30
                 TrackLabel.Font = New Font("Calibri", 17)
-            Case 31 To 35
+            Case 31 To 34
                 TrackLabel.Font = New Font("Calibri", 15)
-            Case Is >= 36
+            Case 35 To 40
                 TrackLabel.Font = New Font("Calibri", 12)
+            Case Is >= 41
+                TrackLabel.Font = New Font("Calibri", 10)
+
         End Select
         'Artist
         Select Case ArtistLabel.Text.Length
@@ -396,18 +413,18 @@ Public Class Viewer
                 ArtistLabel.Font = New Font("Calibri", 16)
             Case 25 To 30
                 ArtistLabel.Font = New Font("Calibri", 14)
-            Case 31 To 35
+            Case 31 To 34
                 ArtistLabel.Font = New Font("Calibri", 12)
-            Case Is >= 36
+            Case Is >= 35
                 ArtistLabel.Font = New Font("Calibri", 10)
         End Select
         'Album
         Select Case AlbumLabel.Text.Length
             Case 0 To 30
                 AlbumLabel.Font = New Font("Calibri", 14)
-            Case 31 To 35
+            Case 31 To 34
                 AlbumLabel.Font = New Font("Calibri", 12)
-            Case Is >= 36
+            Case Is >= 35
                 AlbumLabel.Font = New Font("Calibri", 10)
         End Select
     End Sub
@@ -490,5 +507,6 @@ Public Class Viewer
         ArtistLabel.Refresh()
         AlbumLabel.Refresh()
         TrackLabel.Refresh()
+        timeProgressBar.Refresh()
     End Sub
 End Class
