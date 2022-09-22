@@ -280,6 +280,10 @@ Public Class Viewer
         'With HasError() you can check the error that got back of the spotify API.
         If _playback.HasError() Then
             Log(2, "Error Status: " & _playback.Error.Status & " Msg: " & _playback.Error.Message)
+
+            'handle specific error codes
+            If _playback.Error.Status = 401 Then _spotify_OnAccessTokenExpired("", "")
+
             Await Task.Delay(5000)
             UpdateTrack()
             Return

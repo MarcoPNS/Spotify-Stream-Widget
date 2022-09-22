@@ -13,6 +13,7 @@ Public Class Settings
     'This is the Load Event.
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Log("Application started - v" + ProductVersion)
+
         'check for new version
         VersionCheck.RunWorkerAsync()
 

@@ -69,14 +69,12 @@ Partial Class Settings
         'ColorSettingToggle
         '
         Me.ColorSettingToggle.AutoSize = True
-        Me.ColorSettingToggle.Checked = True
-        Me.ColorSettingToggle.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ColorSettingToggle.Location = New System.Drawing.Point(183, 75)
         Me.ColorSettingToggle.Name = "ColorSettingToggle"
         Me.ColorSettingToggle.Size = New System.Drawing.Size(80, 17)
         Me.ColorSettingToggle.Style = MetroFramework.MetroColorStyle.Green
         Me.ColorSettingToggle.TabIndex = 1
-        Me.ColorSettingToggle.Text = "An"
+        Me.ColorSettingToggle.Text = "Aus"
         Me.ColorSettingToggle.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.ColorSettingToggle.UseSelectable = True
         '
@@ -165,7 +163,7 @@ Partial Class Settings
         '
         Me.CreditPanel.Controls.Add(Me.Button1)
         Me.CreditPanel.Controls.Add(Me.CreditsText)
-        Me.CreditPanel.Location = New System.Drawing.Point(10, 27)
+        Me.CreditPanel.Location = New System.Drawing.Point(13, 27)
         Me.CreditPanel.Name = "CreditPanel"
         Me.CreditPanel.Size = New System.Drawing.Size(275, 391)
         Me.CreditPanel.TabIndex = 99
@@ -254,14 +252,12 @@ Partial Class Settings
         'ExportSettingToggle
         '
         Me.ExportSettingToggle.AutoSize = True
-        Me.ExportSettingToggle.Checked = True
-        Me.ExportSettingToggle.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ExportSettingToggle.Location = New System.Drawing.Point(183, 251)
         Me.ExportSettingToggle.Name = "ExportSettingToggle"
         Me.ExportSettingToggle.Size = New System.Drawing.Size(80, 17)
         Me.ExportSettingToggle.Style = MetroFramework.MetroColorStyle.Green
         Me.ExportSettingToggle.TabIndex = 14
-        Me.ExportSettingToggle.Text = "An"
+        Me.ExportSettingToggle.Text = "Aus"
         Me.ExportSettingToggle.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.ExportSettingToggle.UseSelectable = True
         '
