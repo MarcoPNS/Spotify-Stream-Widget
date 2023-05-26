@@ -31,7 +31,7 @@ Such wow! Much amaze!
 [Create a Issue if something went wrong](https://github.com/MarcoPNS/Spotify-Stream-Widget/issues)
 
 ## Credits
-Made by [Marco Sadowski](https://twitter.com/MarcoSadowski) - Follow me on [Twitch](https://www.twitch.tv/marcnado) or [Twitter](https://twitter.com/MarcoSadowski)
+Made by [Marco Sadowski](https://twitter.com/MarcoFromSpace) - Follow me on [Twitch](https://www.twitch.tv/marcnado) or [Twitter](https://twitter.com/MarcoFromSpace)
 
 Contributers:
 
