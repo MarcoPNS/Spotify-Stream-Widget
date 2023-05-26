@@ -12,8 +12,8 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("A small Tool for Streamers to show the current Track on Spotify to your Viewers")>
 <Assembly: AssemblyCompany("Marco Sadowski")>
 <Assembly: AssemblyProduct("Stream Widget for Spotify")>
-<Assembly: AssemblyCopyright("Marco Sadowski © 2022")>
-<Assembly: AssemblyTrademark("camefrom.space")>
+<Assembly: AssemblyCopyright("Marco Sadowski © 2023")>
+<Assembly: AssemblyTrademark("widgetapp.stream")>
 
 <Assembly: ComVisible(False)>
 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.5.0.2")>
-<Assembly: AssemblyFileVersion("1.5.0.2")>
+<Assembly: AssemblyVersion("1.5.0.3")>
+<Assembly: AssemblyFileVersion("1.5.0.3")>

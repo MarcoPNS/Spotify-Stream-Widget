@@ -1,9 +1,8 @@
 # Stream Widget for Spotify
 A small Tool for Streamers to show the current Track of Spotify to your Viewers! Completly customizable to fit your style.
 
-## [Download this Tool now!](https://github.com/MarcoPNS/Spotify-Stream-Widget/releases)
+## [NEW: Web-App](https://widgetapp.stream/) - [Discord](https://discord.gg/pC28rsbrXZ) - [Download legacy version](https://github.com/MarcoPNS/Spotify-Stream-Widget/releases)
 
-### UPDATE: Now with live edit!
 ![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/widget-for-spotify-presentation.gif?raw=true "Gif")
 ![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/screen.jpg?raw=true "Screenshot")
 ![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/screen2.jpg?raw=true "Screenshot")

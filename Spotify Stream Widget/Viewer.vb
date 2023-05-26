@@ -297,12 +297,12 @@ Public Class Viewer
         End If
 
         If _playback.IsPlaying = False Then
-            TrackLabel.Text = "⏸️ " & _playback.Item.Name
+            TrackLabel.Text = "⏸️ " & _playback.Item.Name.Replace("&", "&&")
             Await Task.Delay(5000)
             UpdateTrack()
             Return
         ElseIf TrackLabel.Text.Contains("⏸️") Then
-            TrackLabel.Text = _playback.Item.Name
+            TrackLabel.Text = _playback.Item.Name.Replace("&", "&&")
         End If
 
         'update the time
@@ -324,18 +324,18 @@ Public Class Viewer
             _currentTrackId = _playback.Item.Uri
         End If
 
-        TrackLabel.Text = _playback.Item.Name
+        TrackLabel.Text = _playback.Item.Name.Replace("&", "&&")
         Dim artists = ""
         For Each artist As SimpleArtist In _playback.Item.Artists
             If artists = "" Then
-                artists = artist.Name
+                artists = artist.Name.Replace("&", "&&")
             Else
-                artists = artists + " - " + artist.Name
+                artists = artists + " - " + artist.Name.Replace("&", "&&")
             End If
 
         Next
         ArtistLabel.Text = artists
-        AlbumLabel.Text = _playback.Item.Album.Name
+        AlbumLabel.Text = _playback.Item.Album.Name.Replace("&", "&&")
 
 
         If _playback.Item.Album.Images.Count > 0 Then

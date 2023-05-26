@@ -1,6 +1,6 @@
 ﻿'===================================================================
 '       Written by Marco Sadowski, J. Wong
-'       Last Update: 2022-09-18
+'       Last Update: 2023-05-26
 '       Please add your name after mine if you edit this code <3
 '
 '       Usage of the Settings Form:
@@ -49,7 +49,7 @@ Public Class Settings
 
     'credit stuff
     Private Sub CreditLink_Click(sender As Object, e As EventArgs) Handles CreditLink.Click
-        Process.Start("https://twitter.com/MarcoSadowski") 'best guy on earth!
+        Process.Start("https://twitter.com/MarcoFromSpace") 'best guy on earth!
     End Sub
     Private Sub ShowCredits(sender As Object, e As EventArgs) Handles CreditsLink.Click
         CreditPanel.Visible = True
@@ -57,8 +57,8 @@ Public Class Settings
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         CreditPanel.Visible = False
     End Sub
-    Private Sub ReportProblemLink(sender As Object, e As EventArgs) Handles ReportLink.Click
-        Process.Start("https://github.com/MarcoPNS/Spotify-Stream-Widget/issues")
+    Private Sub OpenWebAppLink(sender As Object, e As EventArgs) Handles WebAppLink.Click
+        Process.Start("https://widgetapp.stream/")
     End Sub
 
     'This is a BackgroundWorker which check for a new version of the app.   

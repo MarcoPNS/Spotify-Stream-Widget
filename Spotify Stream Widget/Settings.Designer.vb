@@ -36,7 +36,7 @@ Partial Class Settings
         Me.CreditPanel = New System.Windows.Forms.Panel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.CreditsText = New System.Windows.Forms.TextBox()
-        Me.ReportLink = New MetroFramework.Controls.MetroLink()
+        Me.WebAppLink = New MetroFramework.Controls.MetroLink()
         Me.ProgressColorStyleLabel = New MetroFramework.Controls.MetroLabel()
         Me.ProgressColorStyleBox = New MetroFramework.Controls.MetroComboBox()
         Me.VersionLabel = New System.Windows.Forms.Label()
@@ -59,7 +59,7 @@ Partial Class Settings
         '
         'SpotifyConnectBtn
         '
-        Me.SpotifyConnectBtn.Location = New System.Drawing.Point(23, 373)
+        Me.SpotifyConnectBtn.Location = New System.Drawing.Point(23, 351)
         Me.SpotifyConnectBtn.Name = "SpotifyConnectBtn"
         Me.SpotifyConnectBtn.Size = New System.Drawing.Size(251, 23)
         Me.SpotifyConnectBtn.TabIndex = 0
@@ -90,7 +90,7 @@ Partial Class Settings
         '
         'CreditLink
         '
-        Me.CreditLink.Location = New System.Drawing.Point(23, 400)
+        Me.CreditLink.Location = New System.Drawing.Point(23, 378)
         Me.CreditLink.Name = "CreditLink"
         Me.CreditLink.Size = New System.Drawing.Size(251, 18)
         Me.CreditLink.TabIndex = 3
@@ -149,7 +149,7 @@ Partial Class Settings
         '
         'CreditsLink
         '
-        Me.CreditsLink.Location = New System.Drawing.Point(183, 424)
+        Me.CreditsLink.Location = New System.Drawing.Point(183, 417)
         Me.CreditsLink.Name = "CreditsLink"
         Me.CreditsLink.Size = New System.Drawing.Size(115, 18)
         Me.CreditsLink.TabIndex = 8
@@ -163,7 +163,7 @@ Partial Class Settings
         '
         Me.CreditPanel.Controls.Add(Me.Button1)
         Me.CreditPanel.Controls.Add(Me.CreditsText)
-        Me.CreditPanel.Location = New System.Drawing.Point(13, 27)
+        Me.CreditPanel.Location = New System.Drawing.Point(10, 20)
         Me.CreditPanel.Name = "CreditPanel"
         Me.CreditPanel.Size = New System.Drawing.Size(275, 391)
         Me.CreditPanel.TabIndex = 99
@@ -188,17 +188,17 @@ Partial Class Settings
         Me.CreditsText.TabIndex = 10
         Me.CreditsText.Text = resources.GetString("CreditsText.Text")
         '
-        'ReportLink
+        'WebAppLink
         '
-        Me.ReportLink.Location = New System.Drawing.Point(0, 424)
-        Me.ReportLink.Name = "ReportLink"
-        Me.ReportLink.Size = New System.Drawing.Size(88, 18)
-        Me.ReportLink.TabIndex = 10
-        Me.ReportLink.Text = "Report a bug"
-        Me.ReportLink.Theme = MetroFramework.MetroThemeStyle.Dark
-        Me.ReportLink.UseCustomBackColor = True
-        Me.ReportLink.UseSelectable = True
-        Me.ReportLink.UseStyleColors = True
+        Me.WebAppLink.Location = New System.Drawing.Point(0, 417)
+        Me.WebAppLink.Name = "WebAppLink"
+        Me.WebAppLink.Size = New System.Drawing.Size(133, 18)
+        Me.WebAppLink.TabIndex = 10
+        Me.WebAppLink.Text = "[NEW] Open Web-App"
+        Me.WebAppLink.Theme = MetroFramework.MetroThemeStyle.Dark
+        Me.WebAppLink.UseCustomBackColor = True
+        Me.WebAppLink.UseSelectable = True
+        Me.WebAppLink.UseStyleColors = True
         '
         'ProgressColorStyleLabel
         '
@@ -277,7 +277,7 @@ Partial Class Settings
         Me.StatusLabel.AutoSize = True
         Me.StatusLabel.FontSize = MetroFramework.MetroLabelSize.Small
         Me.StatusLabel.ForeColor = System.Drawing.Color.Red
-        Me.StatusLabel.Location = New System.Drawing.Point(22, 357)
+        Me.StatusLabel.Location = New System.Drawing.Point(22, 335)
         Me.StatusLabel.Name = "StatusLabel"
         Me.StatusLabel.Size = New System.Drawing.Size(119, 15)
         Me.StatusLabel.TabIndex = 17
@@ -360,7 +360,7 @@ Partial Class Settings
         Me.Controls.Add(Me.VersionLabel)
         Me.Controls.Add(Me.ProgressColorStyleLabel)
         Me.Controls.Add(Me.ProgressColorStyleBox)
-        Me.Controls.Add(Me.ReportLink)
+        Me.Controls.Add(Me.WebAppLink)
         Me.Controls.Add(Me.CreditsLink)
         Me.Controls.Add(Me.ProgressStyleLabel)
         Me.Controls.Add(Me.ProgressStyleBox)
@@ -380,7 +380,7 @@ Partial Class Settings
         Me.Name = "Settings"
         Me.Resizable = False
         Me.Style = MetroFramework.MetroColorStyle.Green
-        Me.Text = "Widget for Spotify"
+        Me.Text = "Widgetapp for Spotify"
         Me.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center
         Me.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.CreditPanel.ResumeLayout(False)
@@ -402,7 +402,7 @@ End Sub
     Friend WithEvents CreditPanel As Panel
     Friend WithEvents CreditsText As TextBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents ReportLink As MetroFramework.Controls.MetroLink
+    Friend WithEvents WebAppLink As MetroFramework.Controls.MetroLink
     Friend WithEvents ProgressColorStyleLabel As MetroFramework.Controls.MetroLabel
     Friend WithEvents ProgressColorStyleBox As MetroFramework.Controls.MetroComboBox
     Friend WithEvents VersionLabel As Label
