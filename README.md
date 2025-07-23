@@ -1,7 +1,8 @@
 # Stream Widget for Spotify
 A small Tool for Streamers to show the current Track of Spotify to your Viewers! Completly customizable to fit your style.
 
-## [NEW: Web-App](https://widgetapp.stream/) - [Discord](https://discord.gg/pC28rsbrXZ) - [Download legacy version](https://github.com/MarcoPNS/Spotify-Stream-Widget/releases)
+**⚠️ This app is no longer updated. Please switch to our new [web app](https://widgetapp.stream/). ⚠️**
+## [Discord](https://discord.gg/pC28rsbrXZ) - [Download legacy version](https://github.com/MarcoPNS/Spotify-Stream-Widget/releases)
 
 ![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/widget-for-spotify-presentation.gif?raw=true "Gif")
 ![alt text](https://github.com/MarcoPNS/Spotify-Stream-Widget/blob/main/img/screen.jpg?raw=true "Screenshot")
@@ -23,11 +24,7 @@ Info: The timestamp of the song will not be exported.
 ## Donate
 PayPal: [https://www.paypal.me/MarcoSadowski](https://www.paypal.me/MarcoSadowski)
 
-Dogecoin: [D9Amrvp3sGvk9aBepRtiGuZJgHV2zFaYZh](https://dogechain.info/address/D9Amrvp3sGvk9aBepRtiGuZJgHV2zFaYZh)
-Such wow! Much amaze!
-
 ## Troubleshooting
-
 [Create a Issue if something went wrong](https://github.com/MarcoPNS/Spotify-Stream-Widget/issues)
 
 ## Credits
