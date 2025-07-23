@@ -149,7 +149,7 @@ Partial Class Settings
         '
         'CreditsLink
         '
-        Me.CreditsLink.Location = New System.Drawing.Point(183, 417)
+        Me.CreditsLink.Location = New System.Drawing.Point(83, 438)
         Me.CreditsLink.Name = "CreditsLink"
         Me.CreditsLink.Size = New System.Drawing.Size(115, 18)
         Me.CreditsLink.TabIndex = 8
@@ -192,9 +192,9 @@ Partial Class Settings
         '
         Me.WebAppLink.Location = New System.Drawing.Point(0, 417)
         Me.WebAppLink.Name = "WebAppLink"
-        Me.WebAppLink.Size = New System.Drawing.Size(133, 18)
+        Me.WebAppLink.Size = New System.Drawing.Size(297, 18)
         Me.WebAppLink.TabIndex = 10
-        Me.WebAppLink.Text = "[NEW] Open Web-App"
+        Me.WebAppLink.Text = "No longer updated. Please use our new web app."
         Me.WebAppLink.Theme = MetroFramework.MetroThemeStyle.Dark
         Me.WebAppLink.UseCustomBackColor = True
         Me.WebAppLink.UseSelectable = True
@@ -351,7 +351,7 @@ Partial Class Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(297, 441)
+        Me.ClientSize = New System.Drawing.Size(297, 454)
         Me.Controls.Add(Me.CreditPanel)
         Me.Controls.Add(Me.StatusLabel)
         Me.Controls.Add(Me.ExportFolderBtn)

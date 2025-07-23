@@ -1,6 +1,6 @@
 ﻿'===================================================================
 '       Written by Marco Sadowski, J. Wong
-'       Last Update: 2023-05-26
+'       Last Update: 2025-07-23
 '       Please add your name after mine if you edit this code <3
 '
 '       Usage of the Settings Form:
