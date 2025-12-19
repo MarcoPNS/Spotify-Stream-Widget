@@ -20,7 +20,8 @@ Public Class Viewer
         exchangeServerUri:=ExchangeServerUri,
         timeout:=60,
         scope:=Scope.UserReadPlaybackState,
-        autoRefresh:=True
+        autoRefresh:=True,
+        hostServerUri:="http://127.0.0.1:4002"
     )
 
     Dim _playback As PlaybackContext
